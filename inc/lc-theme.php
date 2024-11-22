@@ -149,6 +149,14 @@ add_action('wp_enqueue_scripts', 'lc_theme_enqueue');
 
 add_filter('wpcf7_autop_or_not', '__return_false');
 
+add_action('admin_head', function () {
+    echo '<style>
+   .block-editor-page #wpwrap {
+       overflow-y: auto !important;
+   }
+   </style>';
+});
+
 function add_search_to_nav($items, $args)
 {
     if ($args->theme_location != 'primary_nav') {
