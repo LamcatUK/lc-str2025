@@ -29,7 +29,9 @@ $c = is_front_page() == 1 ? 'home_hero' : '';
         if (get_field('cta') ?? null) {
             $l = get_field('cta');
         ?>
-            <a href="<?= $l['url'] ?>" target="<?= $l['target'] ?>" class="button button-primary" data-aos="fadein" data-aos-delay="<?= $c ?>"><?= $l['title'] ?></a>
+            <div data-aos="fadein" data-aos-delay="<?= $c ?>">
+                <a href="<?= $l['url'] ?>" target="<?= $l['target'] ?>" class="button button-primary"><?= $l['title'] ?></a>
+            </div>
         <?php
         }
         ?>

@@ -2,12 +2,13 @@
     padding: 0.5em 1.5em;
     text-decoration: none;
     transition: background-color var(--transition), color var(--transition), border var(--transition);
-    font-weight: var(--fw-600);
-    font-size: var(--fs-400);
+    font-weight: var(--fw-400);
+    font-size: var(--fs-300);
+    text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-block;
     align-self: start;
-    border-radius: var(--border-lg);
+    border-radius: var(--border-sm);
 }
 
 .button--sm {
