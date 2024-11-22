@@ -23,12 +23,12 @@
                     <div class="insights__date"><?= get_the_date() ?></div>
                 </a>
             <?php
-                $c += 200;
+                $c += 100;
             }
             ?>
         </div>
-        <div class="text-center">
-            <a href="/insights/" class="button button-outline" data-aos="fadein" data-aos-delay="<?= $c ?>">View More Insights</a>
+        <div class="text-center" data-aos="fadein" data-aos-delay="<?= $c ?>">
+            <a href="/insights/" class="button button-outline">View More Insights</a>
         </div>
     </div>
 </section>

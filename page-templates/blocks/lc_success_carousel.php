@@ -12,6 +12,10 @@
             </div>
             <div class="col-md-8" data-aos="fadein" data-aos-delay="200">
                 <div id="successes" class="splide">
+                    <div id="splide-controls" class="splide-controls">
+                        <div class="splide-prev"></div>
+                        <div class="splide-next"></div>
+                    </div>
                     <div class="splide__track">
                         <ul class="splide__list pb-4">
                             <?php
@@ -28,10 +32,6 @@
                             ?>
                         </ul>
                     </div>
-                </div>
-                <div id="splide-controls" class="splide-controls">
-                    <div class="splide-prev"></div>
-                    <div class="splide-next"></div>
                 </div>
             </div>
         </div>
