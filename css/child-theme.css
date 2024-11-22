@@ -22407,6 +22407,26 @@ footer .colophon a:hover {
   grid-area: fifth;
 }
 
+.contact #lc-open-now {
+  padding: 1rem;
+  border-radius: var(--border-lg);
+  box-shadow: var(--shadow-sm);
+}
+.contact #lc-open-now .open_state {
+  font-weight: var(--fw-600);
+}
+.contact .social_icons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.contact .social_icons a {
+  color: var(--col-accent-400);
+}
+.contact .social_icons a:hover {
+  color: var(--col-accent-200);
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22436,6 +22456,11 @@ a.anchor {
 
 a {
   transition: color var(--transition);
+  color: var(--col-accent-400);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--col-accent-200);
 }
 
 .container-xl .container-xl {

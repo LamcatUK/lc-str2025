@@ -32,6 +32,11 @@ a.anchor {
 
 a {
     transition: color var(--transition);
+    color: var(--col-accent-400);
+    text-decoration: none;
+    &:hover {
+        color: var(--col-accent-200);
+    }
 }
 
 .container-xl .container-xl {

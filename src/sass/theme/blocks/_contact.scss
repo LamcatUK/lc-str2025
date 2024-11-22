@@ -1,0 +1,22 @@
+.contact {
+    #lc-open-now {
+        padding: 1rem;
+        border-radius: var(--border-lg);
+        box-shadow: var(--shadow-sm);
+        .open_state {
+            font-weight: var(--fw-600);
+        }
+    }
+
+    .social_icons {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+        a {
+            color: var(--col-accent-400);
+            &:hover {
+                color: var(--col-accent-200);
+            }
+        }
+    }
+}
