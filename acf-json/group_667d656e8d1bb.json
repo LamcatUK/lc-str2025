@@ -331,7 +331,9 @@
                     ],
                     "post_status": "",
                     "taxonomy": "",
-                    "filters": "",
+                    "filters": [
+                        "search"
+                    ],
                     "return_format": "id",
                     "min": "",
                     "max": "",
@@ -362,5 +364,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731431664
+    "modified": 1732268746
 }
