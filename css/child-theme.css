@@ -22374,6 +22374,9 @@ footer .colophon a:hover {
   font-size: var(--fs-400);
   margin-bottom: 0.5rem;
 }
+.insights__card:hover {
+  color: var(--col-black);
+}
 .insights__card:hover img {
   transform: scale(1.1);
 }
