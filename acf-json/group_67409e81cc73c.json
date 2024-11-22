@@ -19,6 +19,27 @@
             "message": "Extracts all H2 title fields from blocks and presents an in-page nav element.",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_6740a5b2b8ad5",
+            "label": "Title",
+            "name": "block_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Sections in this page",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -39,5 +60,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1732288170
+    "modified": 1732289993
 }

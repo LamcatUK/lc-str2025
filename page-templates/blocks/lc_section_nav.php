@@ -1,6 +1,9 @@
 <section class="section_nav">
     <div class="container-xl pb-5">
         <?php
+        if (get_field('block_title') ?? null) {
+            echo '<h2 class="h3">' . get_field('block_title') . '</h2>';
+        }
 
         $titles = [];
 
