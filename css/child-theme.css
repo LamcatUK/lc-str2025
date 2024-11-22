@@ -23860,7 +23860,7 @@ h2.fancy::after, .fancy.h2::after {
   text-align: center;
 }
 
-.fs-200 {
+.fs-100 {
   font-size: var(--fs-100) !important;
 }
 

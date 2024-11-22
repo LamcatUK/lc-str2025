@@ -17,7 +17,7 @@ defined('ABSPATH') || exit;
         <div class="row py-3 py-lg-4 gy-4">
             <div class="col-12 col-xl-5 order-4 order-xl-1">
                 <img src="<?= get_stylesheet_directory_uri() ?>/img/stormcatcher--wo.svg" width="1163" height="215" alt="Stormcatcher" class="mb-3 mx-auto mx-xl-0">
-                <div class="fs-200 text-center text-xl-start">Stormcatcher Law, Stormcatcher Business Lawyers and Lawplan are trading names of Law Plan Services Limited, registered in England. Registered No: 10443305. Registered Office 58 Doods Park Road, Reigate, Surrey RH2 0PY. Authorised and Regulated by the Financial Conduct Authority. Reference: 937045</div>
+                <div class="fs-100 text-center text-xl-start">Stormcatcher Law, Stormcatcher Business Lawyers and Lawplan are trading names of Law Plan Services Limited, registered in England. Registered No: 10443305. Registered Office 58 Doods Park Road, Reigate, Surrey RH2 0PY. Authorised and Regulated by the Financial Conduct Authority. Reference: 937045</div>
             </div>
             <div class="col-sm-6 col-md-4 col-xl-2 col-xxl-2 order-1 order-xl-2">
                 <div class="footer__title">Expertise</div>
