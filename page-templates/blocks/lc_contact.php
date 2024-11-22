@@ -2,7 +2,7 @@
     <div class="container-xl">
         <div class="row g-5">
             <div class="col-lg-5">
-                <h2 class="h3">Contact us Direct</h2>
+                <h2 class="h3">Contact Us Directly</h2>
                 <ul class="fa-ul mb-4">
                     <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span> <?= do_shortcode('[contact_phone]') ?></li>
                     <li><span class="fa-li"><i class="fa-solid fa-paper-plane"></i></span> <?= do_shortcode('[contact_email]') ?></li>
