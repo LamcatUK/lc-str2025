@@ -7,23 +7,17 @@ $pp = get_option('page_for_posts');
 
 ?>
 <section class="hero">
-    <img src="<?=get_stylesheet_directory_uri()?>/img/hero-pattern.png" alt="" class="hero__bg">
-    <div class="hero__words container-xl h-100 d-flex align-items-center">
-        <div class="row w-100">
-            <div class="col-md-6 d-flex flex-column align-items-start justify-content-center">
-                <h1>The Beauty Thread</h1>
-                <a href="/contact/" class="button button-primary">Book Now</a>
+    <!-- Background Image -->
+    <?= get_the_post_thumbnail( $pp, 'full', array('class' => 'hero__bg')) ?>
+    <div class="overlay"></div>
+    <div class="container-xl py-6 my-auto">
+        <h1 data-aos="fadein">Stormcatcher Insights</h1>
+        <div data-aos="fadein" data-aos-delay="200">
+                <a href="/contact/" class="button button-primary">Contact Us Today</a>
             </div>
-        </div>
-    </div>
-    <div class="hero__img container-xl">
-        <div class="row h-100">
-            <div class="col-md-6 offset-md-6 position-relative d-grid">
-            <?php
-                echo wp_get_attachment_image( get_field('image'), 'large', false, array('alt' => '', 'class' => 'hero__image') );
-            ?>
-            </div>
-        </div>
+        <?php
+        }
+        ?>
     </div>
 </section>
 <main id="main" class="pb-5">
