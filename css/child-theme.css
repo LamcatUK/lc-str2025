@@ -21810,6 +21810,7 @@ strong, b, .fw-bold {
 .button-primary:hover {
   background-color: var(--col-accent-200);
   color: var(--col-black);
+  border-color: var(--col-black);
 }
 
 header {
