@@ -3,10 +3,11 @@
     overflow: hidden;
     display: grid;
 
-    min-height: 400px;
+    min-height: 490px;
+    padding-top: 90px;    
 
     &.home_hero {
-        min-height: 550px;
+        min-height: 640px;
     }
 
     /* Background Image */

@@ -22090,12 +22090,13 @@ footer .colophon a:hover {
   position: relative;
   overflow: hidden;
   display: grid;
-  min-height: 400px;
+  min-height: 490px;
+  padding-top: 90px;
   /* Background Image */
   color: var(--col-white);
 }
 .hero.home_hero {
-  min-height: 550px;
+  min-height: 640px;
 }
 .hero .hero__bg {
   position: absolute;
@@ -22398,10 +22399,6 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
-}
-
-main {
-  padding-top: 90px;
 }
 
 a.anchor {
