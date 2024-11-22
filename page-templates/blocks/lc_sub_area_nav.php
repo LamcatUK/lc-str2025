@@ -12,7 +12,7 @@
                 // Query for child pages
                 $args = [
                     'post_type'      => 'page',
-                    'post_parent'    => 26, // get_the_ID(),
+                    'post_parent'    => get_the_ID(),
                     'post_status'    => 'publish',
                     'posts_per_page' => -1
                 ];
