@@ -21883,6 +21883,7 @@ header .nav-link:hover::after {
 }
 
 footer {
+  margin-top: 1.5rem;
   background-color: var(--col-secondary-400);
   color: var(--col-white);
   font-size: var(--fs-300);
