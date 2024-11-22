@@ -30,7 +30,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -42,7 +42,8 @@
             "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
-            "layout": "vertical",
+            "allow_in_bindings": 1,
+            "layout": "horizontal",
             "save_other_choice": 0
         },
         {
@@ -55,7 +56,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -70,7 +71,7 @@
             "allow_null": 0,
             "other_choice": 0,
             "allow_in_bindings": 1,
-            "layout": "vertical",
+            "layout": "horizontal",
             "save_other_choice": 0
         },
         {
@@ -173,5 +174,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731860958
+    "modified": 1732268870
 }
