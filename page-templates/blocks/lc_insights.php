@@ -27,7 +27,7 @@
             }
             ?>
         </div>
-        <div class="text-center" data-aos="fadein" data-aos-delay="<?= $c ?>">
+        <div class="text-center" data-aos="fadein">
             <a href="/insights/" class="button button-outline">View More Insights</a>
         </div>
     </div>
