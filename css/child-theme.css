@@ -24517,6 +24517,7 @@ footer .colophon a:hover {
   aspect-ratio: 16/9;
   overflow: hidden;
   margin-bottom: 0.75rem;
+  border-radius: var(--border-sm);
 }
 .insights__card .insights__date {
   font-size: var(--fs-200);
