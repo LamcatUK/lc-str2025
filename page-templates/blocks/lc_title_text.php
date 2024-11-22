@@ -10,8 +10,10 @@ switch (get_field('split')) {
         $colTitle = 'col-md-6';
         $colContent = 'col-md-6';
 }
+
+$id = acf_slugify(get_field('title'));
 ?>
-<section class="title_text bg-<?= $background ?>">
+<section class="title_text bg-<?= $background ?>" id="<?= $id ?>">
     <div class="container-xl py-6">
         <div class="row">
             <div class="<?= $colTitle ?>" data-aos="fadein">

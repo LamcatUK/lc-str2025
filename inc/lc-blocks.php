@@ -76,6 +76,15 @@ function acf_blocks()
             'mode'    => 'edit',
             'supports' => array('mode' => false),
         ));
+        acf_register_block_type(array(
+            'name'                => 'lc_section_nav',
+            'title'                => __('LC Section Nav'),
+            'category'            => 'layout',
+            'icon'                => 'cover-image',
+            'render_template'    => 'page-templates/blocks/lc_section_nav.php',
+            'mode'    => 'edit',
+            'supports' => array('mode' => false),
+        ));
     }
 }
 
