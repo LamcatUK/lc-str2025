@@ -15,7 +15,7 @@ $id = acf_slugify(get_field('title'));
 ?>
 <section class="title_text bg-<?= $background ?>" id="<?= $id ?>">
     <div class="container-xl py-6">
-        <div class="row">
+        <div class="row g-5">
             <div class="<?= $colTitle ?>" data-aos="fadein">
                 <h2 class="fancy"><?= get_field('title') ?></h2>
             </div>

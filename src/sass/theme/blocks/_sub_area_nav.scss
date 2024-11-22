@@ -1,0 +1,68 @@
+.sub_area_nav {
+    &__card {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 50px auto;
+        grid-template-areas: "icon title" "intro intro";
+        gap: 1rem;
+        // background-color: var(--col-accent-400);
+        background-color: white;
+        color: var(--col-black);
+        padding: 0.5rem 1rem;
+        width: 100%;
+        border-radius: var(--border-lg);
+        box-shadow: var(--shadow-lg);
+        font-weight: var(--fw-600);
+        transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+        &:hover {
+            transform: translateY(2px);
+            box-shadow: var(--shadow-sm);
+            color: var(--col-black);
+            // background-color: var(--col-accent-200);
+            .sub_area_nav__image {
+                filter: brightness(0);
+            }
+            h3 {
+                color: black;
+                &::after {
+                    background-color: black;
+                }
+            }
+            p {
+                color: black;
+            }
+        }
+        h3 {
+            grid-area: title;
+            font-family: var(--ff-body);
+            font-size: var(--fs-400);
+            margin-bottom: 0;
+            align-self: center;
+            transition: color var(--transition);
+            &::after {
+                content: "";
+                position: relative;
+                display: block;
+                width: 75%;
+                height: 1px;
+                background-color: var(--col-primary-400);
+                margin-top: 1rem;
+                transition: background-color var(--transition);
+            }
+        }
+        p {
+            grid-area: intro;
+            font-size: var(--fs-300);
+            font-weight: var(--fw-400);
+            transition: color var(--transition);
+        }
+    }
+    &__image {
+        grid-area: icon;
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        filter: brightness(0.2);
+        transition: filter var(--transition);
+    }
+}

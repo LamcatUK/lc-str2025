@@ -85,6 +85,15 @@ function acf_blocks()
             'mode'    => 'edit',
             'supports' => array('mode' => false),
         ));
+        acf_register_block_type(array(
+            'name'                => 'lc_sub_area_nav',
+            'title'                => __('LC Sub-Area Nav'),
+            'category'            => 'layout',
+            'icon'                => 'cover-image',
+            'render_template'    => 'page-templates/blocks/lc_sub_area_nav.php',
+            'mode'    => 'edit',
+            'supports' => array('mode' => false),
+        ));
     }
 }
 
