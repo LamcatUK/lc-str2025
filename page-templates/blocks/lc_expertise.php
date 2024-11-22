@@ -6,31 +6,29 @@
                 <p>intro</p>
                 <a href="/expertise/" class="button button-primary">All Practice Areas</a>
             </div>
-            <div class="col-lg-9 expertise__slider">
+            <div class="col-lg-9 expertise__slider" data-aos="fadein">
                 <div class="splide" id="expertiseSplide">
                     <div class="splide__track">
                         <ul class="splide__list">
                             <?php
-                            $c = 200;
                             while (have_rows('expertise', 'option')) {
                                 the_row();
                             ?>
                                 <li class="splide__slide">
-                                    <a class="expertise__card" href="<?= get_the_permalink(get_sub_field('page')[0]) ?>" data-aos="fadein" data-aos-delay="<?= $c ?>">
+                                    <a class="expertise__card" href="<?= get_the_permalink(get_sub_field('page')[0]) ?>">
                                         <img src="<?= get_sub_field('icon') ?>" alt="">
                                         <h3><?= get_sub_field('title') ?></h3>
                                         <p><?= get_sub_field('intro') ?></p>
                                     </a>
                                 </li>
                             <?php
-                                $c += 100;
                             }
                             ?>
                         </ul>
                     </div>
                 </div>
                 <!-- Custom controls container below the carousel -->
-                <div class="splide-controls" data-aos="fadein">
+                <div class="splide-controls">
                     <button class="splide__arrow splide__arrow--prev" aria-label="Previous"></button>
                     <div class="splide__pagination"></div>
                     <button class="splide__arrow splide__arrow--next" aria-label="Next"></button>
