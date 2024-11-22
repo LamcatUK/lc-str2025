@@ -28,7 +28,9 @@
             font-size: var(--fs-500);
         }
         p {
-            transform: translateY(115%);
+            @media (min-width:992px) {
+                transform: translateY(115%);
+            }
             padding-bottom: 1rem;
             transition: transform var(--transition);
             font-size: var(--fs-300);

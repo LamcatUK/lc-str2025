@@ -3,7 +3,7 @@
       display: block;
       background-color: var(--col-white);
       padding: 1rem;
-      margin-block: 1.25rem 0;
+      margin-block: 1.25rem 0.5rem;
       margin-inline: 1.5rem;
       border-radius: var(--border-lg);
       text-decoration: none;
@@ -35,7 +35,8 @@
     .splide-controls {
         display: flex;
         justify-content: flex-start;
-        gap: 1rem;  
+        gap: 1rem;
+        margin-inline-start: 1.5rem;
 
         .splide-prev,
         .splide-next {

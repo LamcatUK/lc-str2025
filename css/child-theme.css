@@ -22162,10 +22162,14 @@ footer .colophon a:hover {
   font-size: var(--fs-500);
 }
 .expertise__card p {
-  transform: translateY(115%);
   padding-bottom: 1rem;
   transition: transform var(--transition);
   font-size: var(--fs-300);
+}
+@media (min-width: 992px) {
+  .expertise__card p {
+    transform: translateY(115%);
+  }
 }
 .expertise__card:hover {
   color: var(--col-white);
@@ -22259,7 +22263,7 @@ footer .colophon a:hover {
   display: block;
   background-color: var(--col-white);
   padding: 1rem;
-  margin-block: 1.25rem 0;
+  margin-block: 1.25rem 0.5rem;
   margin-inline: 1.5rem;
   border-radius: var(--border-lg);
   text-decoration: none;
@@ -22286,6 +22290,8 @@ footer .colophon a:hover {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+  -webkit-margin-start: 1.5rem;
+  margin-inline-start: 1.5rem;
 }
 .success_carousel .splide-controls .splide-prev,
 .success_carousel .splide-controls .splide-next {

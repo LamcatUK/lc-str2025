@@ -1,6 +1,6 @@
 <section class="expertise bg-grey-100 py-6">
     <div class="container-xl">
-        <div class="row">
+        <div class="row g-5">
             <div class="col-lg-3" data-aos="fadein">
                 <h2 class="fancy">Our<br><span>Expertise</span></h2>
                 <p>intro</p>
