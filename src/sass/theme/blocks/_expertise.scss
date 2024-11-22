@@ -28,12 +28,14 @@
             font-size: var(--fs-500);
         }
         p {
-            @media (min-width:992px) {
-                transform: translateY(115%);
-            }
             padding-bottom: 1rem;
             transition: transform var(--transition);
             font-size: var(--fs-300);
+        }
+        @media (min-width:992px) {
+            p:not(.show) {
+                transform: translateY(115%);
+            }
         }
 
         &:hover {

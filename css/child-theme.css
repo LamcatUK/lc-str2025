@@ -24318,7 +24318,7 @@ footer .colophon a:hover {
   font-size: var(--fs-300);
 }
 @media (min-width: 992px) {
-  .expertise__card p {
+  .expertise__card p:not(.show) {
     transform: translateY(115%);
   }
 }
