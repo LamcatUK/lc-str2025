@@ -30,7 +30,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -45,6 +45,29 @@
             "allow_in_bindings": 1,
             "layout": "horizontal",
             "save_other_choice": 0
+        },
+        {
+            "key": "field_67409a8153e72",
+            "label": "Background",
+            "name": "background",
+            "aria-label": "",
+            "type": "editor_palette",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "white",
+            "allowed_colors": [
+                "white",
+                "grey-100"
+            ],
+            "exclude_colors": "",
+            "return_format": "slug",
+            "allow_in_bindings": 0
         },
         {
             "key": "field_67331a32e6c65",
@@ -124,5 +147,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1732268850
+    "modified": 1732287131
 }

@@ -1,4 +1,6 @@
 <?php
+$background = get_field('background') ?: 'white';
+
 switch (get_field('split')) {
     case 4060:
         $colTitle = 'col-md-4';
@@ -9,7 +11,7 @@ switch (get_field('split')) {
         $colContent = 'col-md-6';
 }
 ?>
-<section class="title_text">
+<section class="title_text bg-<?= $background ?>">
     <div class="container-xl py-6">
         <div class="row">
             <div class="<?= $colTitle ?>" data-aos="fadein">
