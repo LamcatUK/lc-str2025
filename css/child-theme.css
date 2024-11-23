@@ -24216,7 +24216,8 @@ footer .colophon a:hover {
   font-size: var(--fs-300);
 }
 .news_index__meta {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
   gap: 0.5rem;
   justify-content: space-between;
   font-size: var(--fs-300);
@@ -24225,14 +24226,21 @@ footer .colophon a:hover {
   justify-content: start;
   align-items: flex-end;
 }
+.news_index__meta .news_index__categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-self: flex-end;
+}
 .news_index__category {
   background-color: var(--col-accent-400);
   color: var(--col-black);
   font-family: var(--ff-body);
-  font-size: var(--fs-300);
-  font-weight: var(--fw-600);
-  padding-inline: 0.5rem;
-  padding-block: 0.25 rem 0;
+  font-size: var(--fs-200);
+  font-weight: var(--fw-400);
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--border-sm);
 }
 
 .hero {

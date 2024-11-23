@@ -60,16 +60,15 @@ $page_for_posts = get_option('page_for_posts');
                         <p><?= wp_trim_words(get_the_content(), $length) ?>
                         </p>
                         <div class="news_index__meta <?= $c ?>">
-                            <div class="fs-300 fw-bold">
+                            <div class="fs-200">
                                 <?= get_the_date() ?>
                             </div>
-                            <div>
+                            <div class="news_index__categories">
                                 <?php
                                 if ($categories) {
                                     foreach ($categories as $category) {
                                 ?>
-                                        <span
-                                            class="news_index__category"><?= esc_html($category->name) ?></span>
+                                        <span class="news_index__category"><?= esc_html($category->name) ?></span>
                                 <?php
                                     }
                                 }
