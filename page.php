@@ -9,6 +9,8 @@ get_header();
     <?php
     the_content();
     ?>
+    <hr>
+    <?php get_template_part('page-templates/flexible-parts'); ?>
 </main>
 <?php
 get_footer();
