@@ -23851,6 +23851,10 @@ h2.fancy::after, .fancy.h2::after {
   margin-top: 1rem;
 }
 
+h2.fancy--wide, .fancy--wide.h2 {
+  max-width: 36ch;
+}
+
 .center-container {
   display: flex;
   justify-content: center; /* Center the flex items horizontally */

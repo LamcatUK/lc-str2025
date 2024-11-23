@@ -76,6 +76,10 @@ h2.fancy {
     }
 }
 
+h2.fancy--wide {
+    max-width: 36ch;
+}
+
 .center-container {
     display: flex;
     justify-content: center; /* Center the flex items horizontally */

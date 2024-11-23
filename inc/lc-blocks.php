@@ -128,4 +128,15 @@ function modify_core_add_container($attributes, $content)
     $content = ob_get_clean();
     return $content;
 }
+
+add_filter('render_block', function ($block_content, $block) {
+    // Target the core/heading block
+    if ($block['blockName'] === 'core/heading' && isset($block['innerHTML'])) {
+        // Allow span tags in the heading content
+        $block_content = preg_replace('/&lt;span(.*?)&gt;(.*?)&lt;\/span&gt;/i', '<span$1>$2</span>', $block_content);
+    }
+    return $block_content;
+}, 10, 2);
+
+
 ?>
