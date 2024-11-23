@@ -23964,7 +23964,7 @@ strong, b, .fw-bold {
   color: var(--col-black);
   background-color: transparent;
 }
-.button-outline:hover {
+.button-outline.active, .button-outline:hover {
   background-color: var(--col-black);
   color: var(--col-white);
 }

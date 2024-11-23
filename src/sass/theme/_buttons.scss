@@ -21,6 +21,7 @@
     border: 2px solid var(--col-black);
     color: var(--col-black);
     background-color: transparent;
+    &.active,
     &:hover {
         background-color: var(--col-black);
         color: var(--col-white);
