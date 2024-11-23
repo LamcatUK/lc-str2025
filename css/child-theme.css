@@ -23765,6 +23765,11 @@ readers do not read off random characters that represent icons */
   background-color: var(--col-grey-600);
 }
 
+.bg-accent-400,
+.has-accent-400-background-color {
+  background-color: var(--col-accent-400);
+}
+
 .text-grey-600,
 .has-grey-600-color {
   color: var(--col-grey-600);
@@ -24095,167 +24100,139 @@ footer .colophon a:hover {
   color: var(--col-accent-400);
 }
 
-.grid {
-  --_gap: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
+.cta {
+  background-color: var(--col-accent-400);
+  border-radius: var(--border-lg);
+  box-shadow: var(--shadow-in);
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
-.grid__card {
-  text-decoration: none;
-  box-sizing: border-box;
-  margin: 0.5rem;
-  flex: 1 1 calc(100% - 1rem); /* Each card takes up 100% of the container's width for very small screens */
-}
-@media (min-width: 768px) {
-  .grid__card {
-    flex: 1 1 calc(50% - 1rem); /* Each card takes up 1/2 of the container's width for smaller screens */
-    max-width: calc(50% - var(--_gap));
-  }
-}
-@media (min-width: 992px) {
-  .grid__card {
-    flex: 1 1 calc(33.333% - var(--_gap));
-    min-width: calc(33.333% - var(--_gap));
-    max-width: calc(33.333% - var(--_gap));
-  }
-}
-.grid .card {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  align-items: stretch;
+.cta a {
   color: var(--col-black);
-  background-color: var(--col-white);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  height: 100%;
-  transition: box-shadow var(--transition), transform var(--transition);
 }
-.grid .card:hover {
-  transform: translateY(2px);
-  box-shadow: var(--shadow-sm);
+.cta:hover {
+  background-color: var(--col-accent-200);
 }
-.grid .card__image_container {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-.grid .card__flash {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  border-radius: var(--border-radius-sm);
-  font-size: var(--fs-200);
-  text-transform: uppercase;
-  background-color: var(--col-grey-400);
-  padding: 0.25em 1em;
-  color: var(--col-white);
-  z-index: 9;
-}
-.grid .card__image {
-  aspect-ratio: 16/9;
-  width: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  transition: scale var(--transition);
-}
-.grid .card__inner {
-  padding: 1rem;
-  display: grid;
-  grid-template-rows: auto 1rem 1fr;
-  gap: 0.5rem;
-}
-.grid .card__date {
-  font-size: var(--fs-200);
-}
-.grid .card__title {
-  font-size: var(--fs-600);
-}
-.grid .grid__card--sm .card__inner {
-  padding: 1rem;
-  display: grid;
-  grid-template-rows: auto;
+.cta:hover a {
+  color: var(--col-black);
 }
 
-.single-blog {
-  padding-top: 2rem;
+.insights__categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
 }
-.single-blog h2, .single-blog .h2 {
-  font-size: var(--fs-700);
+.insights__categories a {
+  min-width: -moz-max-content;
+  min-width: max-content;
+  background-color: var(--col-grey-100);
+  border-radius: var(--border-sm);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: var(--fs-200);
+  color: var(--col-black);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-.single-blog h3, .single-blog .h3 {
-  font-size: var(--fs-600);
+.insights__categories a.active {
+  background-color: var(--col-primary-400);
+  color: var(--col-white);
 }
-.single-blog__image {
-  margin-bottom: 1rem;
+
+.news_index__grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 992px) {
+  .news_index__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .news_index__grid .cta {
+    grid-column: span 2;
+  }
+}
+.news_index__card {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: max-content;
+  border-radius: var(--border-lg);
+  font-weight: var(--fw-400);
+  background-color: var(--col-grey-100);
+  padding: 1rem;
+  box-shadow: var(--shadow-in);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.news_index__card:hover .news_index__image img {
+  transform: scale(1.1);
+}
+@media (min-width: 992px) {
+  .news_index__card--first {
+    grid-column: 1/-1;
+    grid-template-columns: 0.75fr 1fr;
+  }
+  .news_index__card--first .news_index__image {
+    border-top-right-radius: 0 !important;
+    border-bottom-left-radius: var(--border-sm);
+  }
+  .news_index__card--first .news_index__inner {
+    grid-template-rows: repeat(3, auto);
+  }
+  .news_index__card--first .news_index__inner h2, .news_index__card--first .news_index__inner .h2 {
+    font-size: var(--fs-600);
+  }
+  .news_index__card--first .news_index__inner p {
+    font-size: var(--fs-400);
+  }
+}
+.news_index__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-top-left-radius: var(--border-sm);
+  border-top-right-radius: var(--border-sm);
+}
+.news_index__image img {
+  transition: transform var(--transition);
   aspect-ratio: 16/9;
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-sm);
+  -o-object-position: center;
+  object-position: center;
 }
-.single-blog__title {
-  margin-bottom: 1rem;
-  font-size: var(--fs-800);
+.news_index__inner {
+  display: grid;
+  grid-template-rows: minmax(4rem, auto) auto;
+  color: var(--col-black);
 }
-.single-blog__read {
-  color: var(--col-grey-300);
+.news_index__inner h2, .news_index__inner .h2 {
+  margin-top: 0;
+  font-size: var(--fs-500);
+  font-family: var(--ff-body);
+  font-weight: var(--fw-600);
+}
+.news_index__inner p {
   font-size: var(--fs-300);
-  margin-bottom: 1rem;
 }
-.single-blog__read .reading {
-  display: inline;
+.news_index__meta {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  font-size: var(--fs-300);
 }
-.single-blog .accordion-button {
-  --bs-accordion-inner-border-radius: 0;
-  --bs-accordion-active-color: var(--col-green-400);
-  --bs-accordion-active-bg: transparent;
-  --bs-accordion-btn-padding-x: 0;
-  --bs-accordion-btn-padding-y: 0;
-  --bs-accordion-transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,border-radius 0.15s ease;
-  --bs-accordion-border-color: var(--bs-border-color);
-  --bs-accordion-btn-color: var(--col-green-400);
-  --bs-accordion-btn-bg: transparent;
-  --bs-accordion-btn-icon-width: 1.25rem;
-  --bs-accordion-btn-icon-transform: rotate(-180deg);
-  --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
-  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F5EEDE'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F5EEDE'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-  --bs-accordion-btn-icon-transform: rotate(180deg);
+.news_index__meta.news_index__meta--first {
+  justify-content: start;
+  align-items: flex-end;
+}
+.news_index__category {
+  background-color: var(--col-accent-400);
+  color: var(--col-black);
+  font-family: var(--ff-body);
+  font-size: var(--fs-300);
   font-weight: var(--fw-600);
-}
-.single-blog .sidebar {
-  position: sticky;
-  top: var(--h-top);
-  margin-bottom: 1rem;
-}
-.single-blog .sidebar .quicklinks {
-  background-color: var(--col-grey-400);
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-sm);
-}
-.single-blog .sidebar .quicklinks .h5 {
-  color: var(--col-green-400);
-  font-weight: var(--fw-600);
-}
-.single-blog .sidebar .quicklinks li {
-  list-style: none;
-  -webkit-padding-start: 0;
-  padding-inline-start: 0;
-  font-size: 0.889rem;
-  margin-bottom: 0.5rem;
-}
-.single-blog .sidebar .quicklinks li a {
-  text-decoration: none;
-  color: var(--col-white);
-  transition: all 0.2s ease-out;
-}
-.single-blog .sidebar .quicklinks li a:hover {
-  color: var(--col-green-400);
+  padding-inline: 0.5rem;
+  padding-block: 0.25 rem 0;
 }
 
 .hero {

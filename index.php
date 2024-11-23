@@ -3,12 +3,12 @@
 defined('ABSPATH') || exit;
 get_header();
 
-$pp = get_option('page_for_posts');
+$page_for_posts = get_option('page_for_posts');
 
 ?>
 <section class="hero">
     <!-- Background Image -->
-    <?= get_the_post_thumbnail($pp, 'full', array('class' => 'hero__bg')) ?>
+    <?= get_the_post_thumbnail($page_for_posts, 'full', array('class' => 'hero__bg')) ?>
     <div class="overlay"></div>
     <div class="container-xl py-6 my-auto">
         <h1 data-aos="fadein">Stormcatcher Insights</h1>
@@ -17,100 +17,84 @@ $pp = get_option('page_for_posts');
         </div>
     </div>
 </section>
-<main id="main" class="pb-5">
+<main id="main" class="pb-5 news_index">
     <div class="container-xl py-5 mb-5">
+        <?= apply_filters('the_content', get_the_content(null, false, $page_for_posts)) ?>
         <?php
-        $cats = get_categories(array('exclude' => array(32)));
-        ?>
-        <div class="filters mb-4">
-            <?php
-            echo '<button class="button button-outline button--sm active me-2 mb-2" data-filter="*">All</button>';
-            foreach ($cats as $cat) {
-                echo '<button class="button button-outline button--sm me-2 mb-2" data-filter=".' . acf_slugify($cat->name) . '">' . $cat->cat_name . '</button>';
+        $categories = get_categories([
+            'hide_empty' => true, // Only include categories with posts
+        ]);
+
+        if (!empty($categories)) {
+            echo '<div class="insights__categories mb-4">';
+            echo '<a href="/insights/" class="active">All</a>';
+            foreach ($categories as $category) {
+                echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">';
+                echo esc_html($category->name);
+                echo '</a>';
             }
-            ?>
-        </div>
-        <div class="grid">
+            echo '</div>';
+        } else {
+            echo '<p>No categories found with posts.</p>';
+        }
+
+        ?>
+        <div class="news_index__grid">
             <?php
+            $style = 'news_index__card--first';
+            $length = 50;
+            $c = 'news_index__meta--first';
             while (have_posts()) {
                 the_post();
-                $img = get_the_post_thumbnail_url(get_the_ID(), 'large');
-                if (!$img) {
-                    $img = get_stylesheet_directory_uri() . '/img/default-blog.jpg';
-                }
-                $cats = get_the_category();
-                $category = wp_list_pluck($cats, 'name');
-                $flashcat = acf_slugify($category[0]);
-                $catclass = implode(' ', array_map('acf_slugify', $category));
-                $category = implode(', ', $category);
 
-                $the_date = get_the_date('jS F, Y');
-
+                $categories = get_the_category();
             ?>
-                <a class="grid__card <?= $catclass ?>"
-                    href="<?= get_the_permalink(get_the_ID()) ?>">
-                    <div class="card card--<?= $flashcat ?>">
-                        <div class="card__image_container">
-                            <div
-                                class="card__flash card__flash--<?= $flashcat ?>">
-                                <?= $category ?>
+                <a href="<?= get_the_permalink() ?>"
+                    class="news_index__card <?= $style ?>">
+                    <div class="news_index__image">
+                        <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>"
+                            alt="">
+                    </div>
+                    <div class="news_index__inner">
+                        <h2><?= get_the_title() ?></h2>
+                        <p><?= wp_trim_words(get_the_content(), $length) ?>
+                        </p>
+                        <div class="news_index__meta <?= $c ?>">
+                            <div class="fs-300 fw-bold">
+                                <?= get_the_date() ?>
                             </div>
-                            <?= get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'card__image')) ?>
-                        </div>
-                        <div class="card__inner">
-                            <h3 class="card__title mb-0">
-                                <?= get_the_title() ?>
-                            </h3>
-                            <div class="card__date"><?= $the_date ?>
-                            </div>
-                            <div class="card__content">
-                                <div class="card__content__overlay"></div>
-                                <?= wp_trim_words(get_the_content(get_the_ID()), 20) ?>
+                            <div>
+                                <?php
+                                if ($categories) {
+                                    foreach ($categories as $category) {
+                                ?>
+                                        <span
+                                            class="news_index__category"><?= esc_html($category->name) ?></span>
+                                <?php
+                                    }
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
                 </a>
+                <?php
+                if ($c != '') {
+                ?>
+                    <section class="cta my-2">
+                        <a href="/contact/" class="container-xl px-5 py-4 d-flex justify-content-between align-items-center column-gap-5 row-gap-4 flex-wrap">
+                            <h2 class="my-0">Stormcatcher</h2>
+                            <div class="button button--inverse"><span>Contact Us Today</span></div>
+                        </a>
+                    </section>
             <?php
+                }
+                $style = '';
+                $c = '';
+                $length = 20;
             }
             ?>
+            <?= understrap_pagination() ?>
         </div>
     </div>
 </main>
-<?php
-add_action('wp_footer', function () {
-?>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            var grid = document.querySelector('.grid');
-            var iso = new Isotope(grid, {
-                itemSelector: '.grid__card',
-                percentPosition: true,
-                layoutMode: 'fitRows',
-                fitRows: {
-                    equalheight: true
-                }
-            });
-
-            var filterButtons = document.querySelectorAll('.filters button');
-            filterButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var filterValue = this.getAttribute('data-filter');
-                    iso.arrange({
-                        filter: filterValue
-                    });
-                    filterButtons.forEach(function(btn) {
-                        btn.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                });
-            });
-
-        });
-    </script>
-<?php
-}, 9999);
-
-get_footer();
-?>
