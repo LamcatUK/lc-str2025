@@ -20,8 +20,8 @@ switch (get_field('split')) {
         $colImage = 'col-md-6';
 }
 
-$orderText = get_field('order') == 'text image' ? 'order-md-1' : 'order-md-2';
-$orderImage = get_field('order') == 'text image' ? 'order-md-2' : 'order-md-1';
+$orderText = get_field('order') == 'Text Image' ? 'order-md-1' : 'order-md-2';
+$orderImage = get_field('order') == 'Text Image' ? 'order-md-2' : 'order-md-1';
 
 if (isset($block['anchor'])) {
     echo '<a id="' . esc_attr($block['anchor']) . '" class="anchor"></a>';
