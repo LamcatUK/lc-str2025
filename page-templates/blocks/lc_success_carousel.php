@@ -8,7 +8,7 @@
                 <div class="mb-4">
                     <?= get_field('content') ?>
                 </div>
-                <a href="/successes/" class="button button-primary">Read more</a>
+                <a href="/success-stories/" class="button button-primary">Read more</a>
             </div>
             <div class="col-md-8" data-aos="fadein" data-aos-delay="200">
                 <div id="successes" class="splide">
