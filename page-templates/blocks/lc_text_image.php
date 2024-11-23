@@ -27,6 +27,8 @@ if (isset($block['anchor'])) {
     echo '<a id="' . esc_attr($block['anchor']) . '" class="anchor"></a>';
 }
 
+$link = get_field('image_link') ?? null;
+
 ?>
 <section
     class="text_image bg-<?= $background ?> <?= $class ?>">
@@ -51,8 +53,21 @@ if (isset($block['anchor'])) {
             </div>
             <div
                 class="<?= $colImage ?> <?= $orderImage ?> d-flex justify-content-center align-items-center" data-aos="fadein" data-aos-delay="200">
-                <img src="<?= wp_get_attachment_image_url(get_field('image'), 'large') ?>" class="rounded--lg has-shadow--lg"
-                    alt="">
+                <?php
+                if ($link) {
+                ?>
+                    <a class="text_image__image rounded--lg has-shadow--lg overflow-hidden" href="<?= $link['url'] ?>" target="<?= $link['target'] ?>">
+                        <img src="<?= wp_get_attachment_image_url(get_field('image'), 'large') ?>" alt="">
+                    </a>
+                <?php
+                } else {
+                ?>
+                    <div class="text_image__image rounded--lg has-shadow--lg overflow-hidden">
+                        <img src="<?= wp_get_attachment_image_url(get_field('image'), 'large') ?>" alt="">
+                    </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
