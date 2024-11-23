@@ -23821,7 +23821,16 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, .h99 {
   margin-bottom: 1rem;
   text-wrap: balance;
 }
-h1 span, .h1 span, h2 span, .h2 span, h3 span, .h3 span, h4 span, .h4 span, .h99 span {
+h1 span,
+h1 strong, .h1 span,
+.h1 strong, h2 span,
+h2 strong, .h2 span,
+.h2 strong, h3 span,
+h3 strong, .h3 span,
+.h3 strong, h4 span,
+h4 strong, .h4 span,
+.h4 strong, .h99 span,
+.h99 strong {
   color: var(--col-primary-400);
 }
 

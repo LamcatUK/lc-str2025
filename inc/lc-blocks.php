@@ -129,17 +129,17 @@ function modify_core_add_container($attributes, $content)
     return $content;
 }
 
-add_filter('render_block', function ($block_content, $block) {
-    // Target the core/heading block
-    if ($block['blockName'] === 'core/heading') {
-        // Replace escaped <span> tags with actual <span> tags
-        $block_content = str_replace(
-            ['&lt;span>', '&lt;/span>'],
-            ['<span>', '</span>'],
-            $block_content
-        );
-    }
-    return $block_content;
-}, 10, 2);
+// add_filter('render_block', function ($block_content, $block) {
+//     // Target the core/heading block
+//     if ($block['blockName'] === 'core/heading') {
+//         // Replace escaped <span> tags with actual <span> tags
+//         $block_content = str_replace(
+//             ['&lt;span>', '&lt;/span>'],
+//             ['<span>', '</span>'],
+//             $block_content
+//         );
+//     }
+//     return $block_content;
+// }, 10, 2);
 
 ?>
