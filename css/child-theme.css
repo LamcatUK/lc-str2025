@@ -23956,8 +23956,9 @@ strong, b, .fw-bold {
 }
 
 .button--sm {
-  padding: 0.25em 1em;
+  padding: 0.5em 1em;
   font-size: var(--fs-200);
+  line-height: 1;
 }
 
 .button-outline {
