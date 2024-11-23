@@ -40,15 +40,15 @@ $class = $block['className'] ?? 'py-5';
                 $ac = $accordion . '_' . $counter;
             ?>
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" class="accordion-item">
-                    <h4 class="accordion-header">
-                        <button class="accordion-button <?= $button ?>"
+                    <div class="accordion-header">
+                        <button class="accordion-button fs-500 <?= $button ?>"
                             itemprop="name" type="button" data-bs-toggle="collapse"
                             data-bs-target="#c<?= $ac ?>"
                             aria-expanded="<?= $expanded ?>"
                             aria-controls="c<?= $ac ?>">
                             <?= get_sub_field('question') ?>
                         </button>
-                    </h4>
+                    </div>
                     <div id="c<?= $ac ?>"
                         class="collapse <?= $show ?>" itemscope=""
                         itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
