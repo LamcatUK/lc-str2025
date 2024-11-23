@@ -24,9 +24,9 @@ $pp = get_option('page_for_posts');
         ?>
         <div class="filters mb-4">
             <?php
-            echo '<button class="button button-outline-primary button--sm active me-2 mb-2" data-filter="*">All</button>';
+            echo '<button class="button button-outline button--sm active me-2 mb-2" data-filter="*">All</button>';
             foreach ($cats as $cat) {
-                echo '<button class="button button-outline-primary button--sm me-2 mb-2" data-filter=".' . acf_slugify($cat->name) . '">' . $cat->cat_name . '</button>';
+                echo '<button class="button button-outline button--sm me-2 mb-2" data-filter=".' . acf_slugify($cat->name) . '">' . $cat->cat_name . '</button>';
             }
             ?>
         </div>
