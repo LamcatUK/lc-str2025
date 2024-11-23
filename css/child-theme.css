@@ -24705,6 +24705,14 @@ a:hover {
   padding-block: 4rem !important;
 }
 
+.pt-6 {
+  padding-top: 4rem !important;
+}
+
+.pb-6 {
+  padding-bottom: 4rem !important;
+}
+
 @media all and (min-width: 992px) {
   .cols-lg-2 {
     -moz-columns: 2;
