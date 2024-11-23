@@ -1,5 +1,6 @@
 <?php
 $background = get_field('background') ?: 'white';
+$class = $block['className'] ?? 'py-6';
 
 switch (get_field('split')) {
     case 4060:
@@ -13,7 +14,7 @@ switch (get_field('split')) {
 
 $id = acf_slugify(get_field('title'));
 ?>
-<section class="title_text bg-<?= $background ?> py-6" id="<?= $id ?>">
+<section class="title_text bg-<?= $background ?> <?= $class ?>" id="<?= $id ?>">
     <div class="container-xl">
         <div class="row g-5">
             <div class="<?= $colTitle ?>" data-aos="fadein">
