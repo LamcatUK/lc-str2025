@@ -11,8 +11,8 @@ $page_for_posts = get_option('page_for_posts');
     <?= get_the_post_thumbnail($page_for_posts, 'full', array('class' => 'hero__bg')) ?>
     <div class="overlay"></div>
     <div class="container-xl py-6 my-auto">
-        <h1 data-aos="fadein">Stormcatcher Insights</h1>
-        <div data-aos="fadein" data-aos-delay="200">
+        <h1>Stormcatcher Insights</h1>
+        <div>
             <a href="/contact/" class="button button-primary">Contact Us Today</a>
         </div>
     </div>
