@@ -12,10 +12,9 @@
 }
 
 .button--sm {
-    padding: 0.5em 1em;
+    padding: 0.25em 1em;
+    font-size: var(--fs-200);
 }
-
-// button--sm
 
 .button-outline {
     border: 2px solid var(--col-black);
