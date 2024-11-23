@@ -12,7 +12,9 @@ get_header();
     <hr>
     *** OLD CONTENT BELOW ***
     <hr>
-    <?php get_template_part('page-templates/flexible-parts'); ?>
+    <?php
+    get_template_part('page-templates/flexible-parts');
+    ?>
 </main>
 <?php
 get_footer();
