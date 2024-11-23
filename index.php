@@ -97,3 +97,5 @@ $page_for_posts = get_option('page_for_posts');
         </div>
     </div>
 </main>
+<?php
+get_footer();
