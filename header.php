@@ -84,7 +84,21 @@ defined('ABSPATH') || exit;
         ?>
         <script type="application/ld+json">
             {
-
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "name": "Stormcatcher Business Legal Services UK",
+                "url": "https://stormcatcher.co.uk/",
+                "Description": "Stormcatcher Law is a friendly and approachable renowned niche law firm with a leading reputation and enviable track record across a wide range of areas of law, specialising in consumer law and civil dispute resolution, second to none in automotive law, building and construction and contract law. We provide legal advice and services for individuals and businesses. ",
+                "sameAs": ["https://www.facebook.com/stormcatcheruk/",
+                    "https://twitter.com/stormcatcheruk/",
+                    "https://www.linkedin.com/company/stormcatcher/"
+                ],
+                "logo": "https://stormcatcher.co.uk/wp-content/uploads/2019/05/stormcatcher-business-lawyers-og-1200x630.jpg",
+                "contactPoint": [{
+                    "@type": "ContactPoint",
+                    "telephone": "+44-3337007676",
+                    "contactType": "enquiries"
+                }]
             }
         </script>
     <?php
