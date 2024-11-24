@@ -24269,6 +24269,7 @@ footer .colophon a:hover {
   margin-bottom: 1rem;
   -o-object-fit: cover;
   object-fit: cover;
+  width: 100%;
 }
 .single-blog__read {
   font-size: var(--fs-300);
