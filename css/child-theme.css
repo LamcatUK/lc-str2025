@@ -24260,6 +24260,8 @@ footer .colophon a:hover {
   aspect-ratio: 16/9;
   border-radius: var(--border-lg);
   margin-bottom: 1rem;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 .single-blog__read {
   font-size: var(--fs-300);
@@ -24267,11 +24269,14 @@ footer .colophon a:hover {
   gap: 0.5rem;
   color: var(--col-grey-600);
 }
-.single-blog h2, .single-blog .h2 {
+.single-blog__title {
   font-size: var(--fs-700);
 }
-.single-blog h3, .single-blog .h3 {
+.single-blog h2, .single-blog .h2 {
   font-size: var(--fs-600);
+}
+.single-blog h3, .single-blog .h3 {
+  font-size: var(--fs-500);
 }
 .single-blog .sidebar {
   position: sticky;

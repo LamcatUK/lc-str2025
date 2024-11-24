@@ -146,6 +146,7 @@
         aspect-ratio: 16 / 9;
         border-radius: var(--border-lg);
         margin-bottom: 1rem;
+        object-fit: cover;
     }
     &__read {
         font-size: var(--fs-300);
@@ -153,11 +154,14 @@
         gap: 0.5rem;
         color: var(--col-grey-600);
     }
-    h2 {
+    &__title {
         font-size: var(--fs-700);
     }
-    h3 {
+    h2 {
         font-size: var(--fs-600);
+    }
+    h3 {
+        font-size: var(--fs-500);
     }
 
     .sidebar {

@@ -29,7 +29,7 @@ get_header();
     <div class="container-xl">
         <div class="row g-4 pb-4">
             <div class="col-lg-9 order-2 order-lg-1">
-                <h1 class="h2 single-blog__title"><?= get_the_title() ?>
+                <h1 class="single-blog__title"><?= get_the_title() ?>
                 </h1>
                 <?= $img ?>
                 <div class="single-blog__read">
