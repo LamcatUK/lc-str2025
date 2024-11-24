@@ -80,7 +80,7 @@ defined('ABSPATH') || exit;
     if (get_field('bing_site_verification', 'options')) {
         echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'options') . '" />';
     }
-    if (is_front_page() || is_page('contact-us')) {
+    if (is_front_page() || is_page('contact')) {
         ?>
         <script type="application/ld+json">
             {
