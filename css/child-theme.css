@@ -23709,6 +23709,7 @@ readers do not read off random characters that represent icons */
   --col-white: #FFFFFF;
   --col-grey-100: #f4f4f4;
   --col-grey-400: #e6e6e6;
+  --col-grey-600: #8f8f8f;
   --hsl-primary-400: 183 100% 18%;
   --col-primary-400: hsl(var(--hsl-primary-400));
   --hsl-secondary-400: 198 100% 14%;
@@ -23853,11 +23854,11 @@ h3, .h3 {
   font-size: var(--fs-700);
 }
 
-h2.fancy, .fancy.h2 {
+.fancy {
   max-width: 18ch;
   position: relative;
 }
-h2.fancy::after, .fancy.h2::after {
+.fancy::after {
   content: "";
   position: relative;
   display: block;
@@ -23867,7 +23868,7 @@ h2.fancy::after, .fancy.h2::after {
   margin-top: 1rem;
 }
 
-h2.fancy--wide, .fancy--wide.h2 {
+.fancy--wide {
   max-width: 36ch;
 }
 
@@ -24250,6 +24251,65 @@ footer .colophon a:hover {
   text-transform: uppercase;
   padding: 0.15rem 0.5rem;
   border-radius: var(--border-sm);
+}
+
+.single-blog {
+  padding-top: calc(90px + 1rem);
+}
+.single-blog__image {
+  aspect-ratio: 16/9;
+  border-radius: var(--border-lg);
+  margin-bottom: 1rem;
+}
+.single-blog__read {
+  font-size: var(--fs-300);
+  display: flex;
+  gap: 0.5rem;
+  color: var(--col-grey-600);
+}
+.single-blog h2, .single-blog .h2 {
+  font-size: var(--fs-700);
+}
+.single-blog h3, .single-blog .h3 {
+  font-size: var(--fs-600);
+}
+.single-blog .grid {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 576px) {
+  .single-blog .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .single-blog .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.single-blog .grid__card {
+  background-color: white;
+  height: 100%;
+  border-radius: var(--border-sm);
+  box-shadow: var(--shadow-lg);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.single-blog .grid__card:hover {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-sm);
+}
+.single-blog .card__image {
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-top-left-radius: var(--border-sm);
+  border-top-right-radius: var(--border-sm);
+}
+.single-blog .card__title {
+  font-family: var(--ff-body);
+  font-size: var(--fs-300);
+  color: var(--col-black);
+  padding: 0.5rem;
 }
 
 .hero {
@@ -24748,7 +24808,7 @@ a:hover {
   }
 }
 .breadcrumbs {
-  color: var(--col-grey-600);
+  color: var(--col-primary-400);
   font-size: var(--fs-300);
 }
 .breadcrumbs a {

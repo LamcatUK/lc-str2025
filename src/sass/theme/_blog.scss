@@ -139,3 +139,59 @@
     
 }
 
+.single-blog {
+    padding-top: calc(90px + 1rem);
+
+    &__image {
+        aspect-ratio: 16 / 9;
+        border-radius: var(--border-lg);
+        margin-bottom: 1rem;
+    }
+    &__read {
+        font-size: var(--fs-300);
+        display: flex;
+        gap: 0.5rem;
+        color: var(--col-grey-600);
+    }
+    h2 {
+        font-size: var(--fs-700);
+    }
+    h3 {
+        font-size: var(--fs-600);
+    }
+    .grid {
+        display: grid;
+        gap: 1rem;
+        @media (min-width:576px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (min-width:992px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .grid__card {
+        background-color: white;
+        height: 100%;
+        border-radius: var(--border-sm);
+        box-shadow: var(--shadow-lg);
+        transition: box-shadow var(--transition), transform var(--transition);
+        &:hover {
+            transform: translateY(2px);
+            box-shadow: var(--shadow-sm);
+        }
+    }
+
+    .card__image {
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-top-left-radius: var(--border-sm);
+        border-top-right-radius: var(--border-sm);
+    }
+    .card__title {
+        font-family: var(--ff-body);
+        font-size: var(--fs-300);
+        color: var(--col-black);
+        padding: 0.5rem;
+    }
+}
