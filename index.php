@@ -81,10 +81,10 @@ $page_for_posts = get_option('page_for_posts');
                 if ($c != '') {
                 ?>
                     <section class="cta my-2">
-                        <a href="/contact/" class="container-xl px-5 py-4 d-flex justify-content-between align-items-center column-gap-5 row-gap-4 flex-wrap">
-                            <h2 class="my-0">Stormcatcher</h2>
-                            <div class="button button--inverse"><span>Contact Us Today</span></div>
-                        </a>
+                        <div class="container-xl px-5 py-4 d-flex justify-content-between align-items-center gap-4 flex-wrap">
+                            <h2 class="h4 mb-0 mx-auto ms-md-0">Stormcatcher - Your First Step Towards Resolution</h2>
+                            <a href="/contact/" class="button button-secondary align-self-center mx-auto me-md-0"><span>Contact Us Today</span></a>
+                        </div>
                     </section>
             <?php
                 }

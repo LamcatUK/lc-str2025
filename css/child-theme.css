@@ -23713,6 +23713,7 @@ readers do not read off random characters that represent icons */
   --col-primary-400: hsl(var(--hsl-primary-400));
   --hsl-secondary-400: 198 100% 14%;
   --col-secondary-400: hsl(var(--hsl-secondary-400));
+  --col-secondary-200: hsl(198, 100%, 30%);
   --col-accent-400: #dda46f;
   --col-accent-200: #FFD6A5;
   --ff-body: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -23992,6 +23993,17 @@ strong, b, .fw-bold {
   border-color: var(--col-black);
 }
 
+.button-secondary {
+  border: 1px solid var(--col-secondary-400);
+  background-color: var(--col-secondary-400);
+  color: var(--col-white);
+}
+.button-secondary:hover {
+  background-color: var(--col-secondary-200);
+  color: var(--col-white);
+  border-color: var(--col-secondary-400);
+}
+
 header {
   position: fixed;
   top: 0;
@@ -24107,18 +24119,10 @@ footer .colophon a:hover {
 
 .cta {
   background-color: var(--col-accent-400);
+  color: var(--col-black);
   border-radius: var(--border-lg);
   box-shadow: var(--shadow-in);
   transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
-}
-.cta a {
-  color: var(--col-black);
-}
-.cta:hover {
-  background-color: var(--col-accent-200);
-}
-.cta:hover a {
-  color: var(--col-black);
 }
 
 .insights__categories {

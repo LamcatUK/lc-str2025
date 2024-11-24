@@ -38,3 +38,14 @@
         border-color: var(--col-black);
     }
 }
+
+.button-secondary {
+    border: 1px solid var(--col-secondary-400);
+    background-color: var(--col-secondary-400);
+    color: var(--col-white);
+    &:hover {
+        background-color: var(--col-secondary-200);
+        color: var(--col-white);
+        border-color: var(--col-secondary-400);
+    }
+}
