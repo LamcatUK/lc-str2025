@@ -8,7 +8,7 @@ $background = get_field('bg_colour') ?: 'white';
             <h2>Stormcatcher <span>Insights</span></h2>
             <div class="line"></div>
         </div>
-        <div class="insights__grid mb-5">
+        <div class="insights__grid mb-5" data-aos="fadein">
             <?php
             $q = new WP_Query(array(
                 'post_type' => 'post',
@@ -22,7 +22,7 @@ $background = get_field('bg_colour') ?: 'white';
                 $q->the_post();
                 $post_categories = get_the_category();
             ?>
-                <a class="insights__card" href="<?= get_the_permalink() ?>" data-aos="fadein" data-aos-delay="<?= $c ?>">
+                <a class="insights__card" href="<?= get_the_permalink() ?>">
                     <div>
                         <div class="insights__image">
                             <?= get_the_post_thumbnail(get_the_ID(), 'large') ?>
@@ -37,7 +37,7 @@ $background = get_field('bg_colour') ?: 'white';
                         }
                             ?>
                     </div>
-                    <div class="insights__meta <?= $c ?>">
+                    <div class="insights__meta">
                         <div class="fs-200">
                             <?= get_the_date() ?>
                         </div>
