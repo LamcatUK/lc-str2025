@@ -1,4 +1,7 @@
-<section class="insights py-6 bg-grey-100">
+<?php
+$background = get_field('bg_colour') ?: 'white';
+?>
+<section class="insights py-6 bg-<?= $background ?>">
     <div class="container-xl">
         <div class="insights__title mb-4" data-aos="fadein">
             <div class="line"></div>

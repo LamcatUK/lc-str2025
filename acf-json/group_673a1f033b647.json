@@ -12,13 +12,36 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "message": "",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_6743289e30b19",
+            "label": "Background",
+            "name": "bg_colour",
+            "aria-label": "",
+            "type": "editor_palette",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "white",
+            "allowed_colors": [
+                "grey-100",
+                "white"
+            ],
+            "exclude_colors": "",
+            "return_format": "slug",
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -39,5 +62,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731862288
+    "modified": 1732454650
 }

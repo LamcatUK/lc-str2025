@@ -673,9 +673,9 @@
     "location": [
         [
             {
-                "param": "page_template",
+                "param": "post_type",
                 "operator": "==",
-                "value": "page-templates\/flexible-page.php"
+                "value": "page"
             }
         ],
         [
@@ -697,5 +697,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731864430
+    "modified": 1732454722
 }
