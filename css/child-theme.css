@@ -24122,7 +24122,7 @@ footer .colophon a:hover {
   background-color: var(--col-accent-400);
   color: var(--col-black);
   border-radius: var(--border-lg);
-  box-shadow: var(--shadow-in);
+  box-shadow: var(--shadow-sm);
   transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
 }
 
@@ -24169,7 +24169,7 @@ footer .colophon a:hover {
   font-weight: var(--fw-400);
   background-color: var(--col-grey-100);
   padding: 1rem;
-  box-shadow: var(--shadow-in);
+  box-shadow: var(--shadow-sm);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 .news_index__card:hover .news_index__image img {
@@ -24272,6 +24272,41 @@ footer .colophon a:hover {
 }
 .single-blog h3, .single-blog .h3 {
   font-size: var(--fs-600);
+}
+.single-blog .sidebar {
+  position: sticky;
+  top: calc(90px + 1rem);
+}
+.single-blog .sidebar .accordion-button::after {
+  background-image: var(--bs-accordion-btn-active-icon);
+  width: 1rem;
+  height: 1rem;
+}
+.single-blog .sidebar .quicklinks {
+  background-color: var(--col-grey-100);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--border-sm);
+}
+.single-blog .sidebar .quicklinks .h5 {
+  font-family: var(--ff-heading);
+}
+.single-blog .sidebar .quicklinks button.h5 {
+  font-size: var(--fs-400);
+  margin-bottom: 0;
+}
+.single-blog .sidebar .quicklinks ul {
+  -webkit-padding-start: 1rem;
+  padding-inline-start: 1rem;
+  font-size: var(--fs-300);
+}
+.single-blog .sidebar__cta {
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--col-primary-400);
+  color: white;
+  border-radius: var(--border-sm);
+  box-shadow: var(--shadow-sm);
 }
 .single-blog .grid {
   display: grid;

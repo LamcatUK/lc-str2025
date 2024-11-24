@@ -28,7 +28,7 @@ get_header();
     </section>
     <div class="container-xl">
         <div class="row g-4 pb-4">
-            <div class="col-lg-9">
+            <div class="col-lg-9 order-2 order-lg-1">
                 <h1 class="h2 single-blog__title"><?= get_the_title() ?>
                 </h1>
                 <?= $img ?>
@@ -51,19 +51,19 @@ get_header();
                 }
                 ?>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 order-1 order-lg-2">
                 <div class="sidebar">
                     <?php
                     if ($sidebar) {
                     ?>
                         <div class="quicklinks">
                             <div class="h5 has-line d-none d-lg-inline-block">Quick Links</div>
-                            <button class="d-lg-none accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="d-lg-none accordion-button collapsed h5" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#links" aria-expanded="true" aria-controls="links">Quick Links</button>
 
                             <!-- <div class="h5 d-lg-none" data-bs-toggle="collapse" href="#links" role="button">Quick Links</div> -->
                             <div class="collapse d-lg-block" id="links">
-                                <div class="pt-3 pt-lg-0">
+                                <ul class="pt-3 pt-lg-0">
                                     <?php
                                     foreach ($sidebar as $heading => $id) {
                                     ?>
@@ -73,12 +73,19 @@ get_header();
                                     <?php
                                     }
                                     ?>
-                                </div>
+                                </ul>
                             </div>
                         </div>
                     <?php
                     }
                     ?>
+                    <div class="sidebar__cta mt-3 d-none d-lg-block">
+                        <div class="fw-600 mb-3">Contact Stormcatcher for First Free Advice</div>
+                        <div class="d-flex gap-2 justify-content-center align-items-center">
+                            <a href="tel:<?= parse_phone(get_field('contact_phone', 'option')) ?>" class="button button-primary"><i class="fas fa-phone"></i> Call</a>
+                            <a href="mailto:<?= get_field('contact_email', 'option') ?>" class="button button-primary"><i class="fas fa-paper-plane"></i> Email</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,7 +117,7 @@ get_header();
                         }
 
                     ?>
-                        <a class="grid__card grid__card--sm <?= $catclass ?>"
+                        <a class="grid__card grid__card--sm"
                             href="<?= get_the_permalink(get_the_ID()) ?>">
                             <div class="card__image_container">
                                 <?= get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'card__image')) ?>
