@@ -160,3 +160,7 @@ strong, b, .fw-bold {
     max-width: 35ch;
     margin-inline: auto;
 }
+
+.wp-block-quote {
+    font-family: var(--ff-heading);
+}
