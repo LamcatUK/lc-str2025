@@ -18,7 +18,7 @@ $page_for_posts = get_option('page_for_posts');
     </div>
 </section>
 <main id="main" class="news_index">
-    <div class="container-xl py-5 mb-5">
+    <div class="container-xl py-5">
         <?= apply_filters('the_content', get_the_content(null, false, $page_for_posts)) ?>
         <?php
         $categories = get_categories([
