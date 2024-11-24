@@ -5,18 +5,6 @@ defined('ABSPATH') || exit;
 
 require_once LC_THEME_DIR . '/inc/lc-utility.php';
 require_once LC_THEME_DIR . '/inc/lc-blocks.php';
-// require_once LC_THEME_DIR . '/inc/lc-blog.php';
-
-// if (function_exists('acf_add_options_page')) {
-//     acf_add_options_page(
-//         array(
-//             'page_title'     => 'Site-Wide Settings',
-//             'menu_title'    => 'Site-Wide Settings',
-//             'menu_slug'     => 'theme-general-settings',
-//             'capability'    => 'edit_posts',
-//         )
-//     );
-// }
 
 function widgets_init()
 {
@@ -260,5 +248,41 @@ function splide_slider_shortcode($atts)
     return ob_get_clean(); // Return the captured HTML
 }
 add_shortcode('splide_slider', 'splide_slider_shortcode');
+
+// add_filter('wpseo_breadcrumb_links', 'add_expertise_breadcrumb');
+function add_expertise_breadcrumb($links)
+{
+    // Define the pages where 'Expertise' should be added
+    $expertise_pages = [
+        'automotive-law',
+        'consumer-law',
+        'construction-law',
+        'civil-fraud',
+        'dispute-resolution',
+        'yacht-law'
+    ];
+
+    // Get the current post object
+    global $post;
+
+    if ($post) {
+        // Get the top-level parent or the current post's slug
+        $top_level_slug = get_post_field('post_name', get_post_ancestors($post->ID)[0] ?? $post->ID);
+
+        // Check if the current page or one of its ancestors is in the list
+        if (in_array($top_level_slug, $expertise_pages)) {
+            // Create the 'Expertise' breadcrumb link
+            $expertise_link = [
+                'url' => home_url('/expertise/'),
+                'text' => 'Expertise'
+            ];
+
+            // Insert the 'Expertise' link before the current page link
+            array_splice($links, 1, 0, [$expertise_link]);
+        }
+    }
+
+    return $links;
+}
 
 ?>
