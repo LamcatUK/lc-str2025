@@ -9,9 +9,12 @@
     --hsl-primary-400: 183 100% 18%;
     --col-primary-400: hsl(var(--hsl-primary-400)); // #00555a;
     --col-secondary-400: #003349;
-
-    --col-accent-400: #72BDA3; //#FFA931;
-    --col-accent-200: #8ECCB2; //#FFD6A5;
+    
+    // --col-accent-400: #72BDA3; //#FFA931;
+    // --col-accent-200: #8ECCB2; //#FFD6A5;
+    
+    --col-accent-400: #dda46f;
+    --col-accent-200: #FFD6A5;
 
     --ff-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --ff-heading: 'Playfair Display', 'Georgia', 'Times New Roman', serif;

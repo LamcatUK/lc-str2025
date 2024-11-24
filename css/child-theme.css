@@ -23712,8 +23712,8 @@ readers do not read off random characters that represent icons */
   --hsl-primary-400: 183 100% 18%;
   --col-primary-400: hsl(var(--hsl-primary-400));
   --col-secondary-400: #003349;
-  --col-accent-400: #72BDA3;
-  --col-accent-200: #8ECCB2;
+  --col-accent-400: #dda46f;
+  --col-accent-200: #FFD6A5;
   --ff-body: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --ff-heading: "Playfair Display", "Georgia", "Times New Roman", serif;
   --ff-fa: "Font Awesome 6 Free";
@@ -23836,7 +23836,7 @@ h3 strong, .h3 span,
 h4 strong, .h4 span,
 .h4 strong, .h99 span,
 .h99 strong {
-  color: var(--col-primary-400);
+  color: var(--col-accent-400);
 }
 
 h1, .h1 {
@@ -23955,7 +23955,7 @@ strong, b, .fw-bold {
   padding: 0.5em 1.5em;
   text-decoration: none;
   transition: background-color var(--transition), color var(--transition), border var(--transition);
-  font-weight: var(--fw-400);
+  font-weight: var(--fw-600);
   font-size: var(--fs-300);
   text-transform: uppercase;
   letter-spacing: 1px;
