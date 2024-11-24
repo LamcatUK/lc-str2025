@@ -249,7 +249,7 @@ function splide_slider_shortcode($atts)
 }
 add_shortcode('splide_slider', 'splide_slider_shortcode');
 
-// add_filter('wpseo_breadcrumb_links', 'add_expertise_breadcrumb');
+add_filter('wpseo_breadcrumb_links', 'add_expertise_breadcrumb');
 function add_expertise_breadcrumb($links)
 {
     // Define the pages where 'Expertise' should be added
