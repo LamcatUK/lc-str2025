@@ -8,7 +8,8 @@
 
     --hsl-primary-400: 183 100% 18%;
     --col-primary-400: hsl(var(--hsl-primary-400)); // #00555a;
-    --col-secondary-400: #003349;
+    --hsl-secondary-400: 198 100% 14%;
+    --col-secondary-400: hsl(var(--hsl-secondary-400)); // #003349;
     
     // --col-accent-400: #72BDA3; //#FFA931;
     // --col-accent-200: #8ECCB2; //#FFD6A5;
