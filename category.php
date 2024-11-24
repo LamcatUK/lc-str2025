@@ -4,10 +4,13 @@ defined('ABSPATH') || exit;
 get_header();
 
 $category = get_queried_object(); // Get the current category
+
+$page_for_posts = get_option('page_for_posts');
+
 ?>
 <section class="hero">
     <!-- Background Image -->
-    <?= get_the_post_thumbnail($category, 'full', ['class' => 'hero__bg']) ?>
+    <?= get_the_post_thumbnail($page_for_posts, 'full', array('class' => 'hero__bg')) ?>
     <div class="overlay"></div>
     <div class="container-xl py-6 my-auto">
         <h1><?= esc_html($category->name) ?> Insights</h1>
