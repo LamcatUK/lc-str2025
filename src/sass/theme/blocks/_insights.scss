@@ -31,6 +31,9 @@
     &__card {
         color: var(--col-black);
         text-decoration: none;
+        display: grid;
+        align-content: space-between;
+
         .insights__image {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -38,8 +41,34 @@
             margin-bottom: 0.75rem;
             border-radius: var(--border-sm);
         }
-        .insights__date {
-            font-size: var(--fs-200);
+        .insights__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: space-between;
+            &.insights__meta--first {
+                justify-content: start;
+                align-items: flex-end;
+            }
+            .insights__categories {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+                justify-self: flex-end;
+            }
+            .insights__date {
+                font-size: var(--fs-200);
+            }
+            .insights__category {
+                border: 1px solid var(--col-accent-400);
+                color: var(--col-black);
+                font-family: var(--ff-body);
+                font-size: var(--fs-100);
+                font-weight: var(--fw-400);
+                text-transform: uppercase;
+                padding: 0.15rem 0.5rem;
+                border-radius: var(--border-sm);
+            }
         }
         img {
             aspect-ratio: 16 / 9;
