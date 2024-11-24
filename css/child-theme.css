@@ -24352,6 +24352,7 @@ footer .colophon a:hover {
   object-fit: cover;
   border-top-left-radius: var(--border-sm);
   border-top-right-radius: var(--border-sm);
+  width: 100%;
 }
 .single-blog .card__title {
   font-family: var(--ff-body);
