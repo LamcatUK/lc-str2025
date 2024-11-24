@@ -23947,6 +23947,10 @@ strong, b, .fw-bold {
   margin-inline: auto;
 }
 
+.wp-block-quote {
+  font-family: var(--ff-heading);
+}
+
 .button {
   padding: 0.5em 1.5em;
   text-decoration: none;
