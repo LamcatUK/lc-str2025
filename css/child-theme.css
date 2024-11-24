@@ -24045,10 +24045,12 @@ header .phone {
 header .navbar {
   grid-area: nav;
 }
-header .current-menu-item {
+header .current-menu-item,
+header .current_page_parent {
   font-weight: var(--fw-600);
 }
-header .current-menu-item .nav-link::after {
+header .current-menu-item .nav-link::after,
+header .current_page_parent .nav-link::after {
   transform: scaleX(1);
 }
 header .nav-link {

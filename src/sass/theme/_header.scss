@@ -43,7 +43,8 @@ header {
         grid-area: nav;
     }
 
-    .current-menu-item {
+    .current-menu-item,
+    .current_page_parent {
         font-weight: var(--fw-600);
         .nav-link::after {
             transform: scaleX(1);
