@@ -258,7 +258,7 @@ function add_expertise_breadcrumb($links)
         'consumer-law',
         'construction-law',
         'civil-fraud',
-        'dispute-resolution',
+        'dispute-resolution-lawyers',
         'yacht-law'
     ];
 
