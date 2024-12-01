@@ -105,12 +105,12 @@ function display_child_pages_with_sidebar_template($post_id)
                     print_r(get_field('sidebar', get_the_ID()));
                     $sidebar = get_field('sidebar', get_the_ID());
                     if (!$sidebar) {
-                        $sidebar = 'Show Siblings'; // Default value if unset
+                        $sidebar = 'Siblings'; // Default value if unset
                     }
 
-                    if ($sidebar === 'Show Children') {
+                    if ($sidebar === 'Children') {
                         display_child_pages_with_sidebar_template(get_the_ID());
-                    } else if ($sidebar === 'Show Siblings') {
+                    } else if ($sidebar === 'Siblings') {
                         display_sibling_pages_with_sidebar_template(get_the_ID());
                     }
                     ?>

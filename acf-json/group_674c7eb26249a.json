@@ -17,10 +17,10 @@
                 "id": ""
             },
             "choices": {
-                "Show Children": "Show Children",
-                "Show Siblings": "Show Siblings"
+                "Children": "Children",
+                "Siblings": "Siblings"
             },
-            "default_value": "Show Siblings",
+            "default_value": "Siblings",
             "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
@@ -47,5 +47,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1733068076
+    "modified": 1733069037
 }
