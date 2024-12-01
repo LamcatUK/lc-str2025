@@ -13,7 +13,7 @@
         // var_dump($blocks);
 
         foreach ($blocks as $block) {
-            echo $block['blockName'] . '<br>';
+            echo '--' . $block['blockName'] . '--<br>';
 
             if ($block['blockName'] == 'core/heading') {
                 var_dump($block);
