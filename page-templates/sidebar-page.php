@@ -99,19 +99,17 @@ function display_child_pages_with_sidebar_template($post_id)
             <div class="col-md-3">
                 <ul class="sidebar">
                     <?php
-                    echo get_page_template_slug(get_the_ID());
-                    print_r(get_post_meta(get_the_ID(), 'sidebar', true));
-                    var_dump(get_field('sidebar', get_the_ID()));
 
-                    print_r(get_field('sidebar', get_the_ID()));
                     $sidebar = get_field('sidebar', get_the_ID());
                     if (!$sidebar) {
                         $sidebar = 'Siblings'; // Default value if unset
                     }
 
                     if ($sidebar === 'Children') {
+                        echo 'Children';
                         display_child_pages_with_sidebar_template(get_the_ID());
                     } else if ($sidebar === 'Siblings') {
+                        echo 'Siblings';
                         display_sibling_pages_with_sidebar_template(get_the_ID());
                     }
                     ?>
