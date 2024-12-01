@@ -166,6 +166,9 @@ a {
     box-shadow: var(--shadow-sm);
     background-color: var(--col-grey-100);
 
+    a {
+        color: var(--col-secondary-400);
+    }
     .active {
         font-weight: var(--fw-600);
     }

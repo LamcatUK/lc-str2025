@@ -24975,6 +24975,9 @@ a:hover {
   box-shadow: var(--shadow-sm);
   background-color: var(--col-grey-100);
 }
+.sidebar a {
+  color: var(--col-secondary-400);
+}
 .sidebar .active {
   font-weight: var(--fw-600);
 }
