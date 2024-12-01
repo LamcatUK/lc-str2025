@@ -105,10 +105,8 @@ function display_child_pages_with_sidebar_template($post_id)
                 }
 
                 if ($sidebar === 'Children') {
-                    echo 'Children';
                     display_child_pages_with_sidebar_template(get_the_ID());
                 } else if ($sidebar === 'Siblings') {
-                    echo 'Siblings';
                     display_sibling_pages_with_sidebar_template(get_the_ID());
                 }
                 ?>
