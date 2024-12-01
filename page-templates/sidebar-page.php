@@ -47,6 +47,39 @@ function display_sibling_pages_with_sidebar_template($post_id)
     }
 }
 
+function get_child_pages_with_sidebar_template($post_id)
+{
+    // Query for child pages
+    $children = get_pages([
+        'post_parent'    => $post_id,
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+    ]);
+
+    // Filter children to include only those with the 'sidebar-page.php' template
+    $sidebar_children = array_filter($children, function ($page) {
+        return get_page_template_slug($page->ID) === 'sidebar-page.php';
+    });
+
+    return $sidebar_children;
+}
+
+function display_child_pages_with_sidebar_template($post_id)
+{
+    // Get child pages using the function
+    $children = get_child_pages_with_sidebar_template($post_id);
+
+    if (!empty($children)) {
+        echo '<ul class="child-pages">';
+        foreach ($children as $child) {
+            echo '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
+        }
+        echo '</ul>';
+    } else {
+        echo '<p>No child pages found with the sidebar template.</p>';
+    }
+}
+
 ?>
 <main>
     <?php
@@ -66,7 +99,11 @@ function display_sibling_pages_with_sidebar_template($post_id)
             <div class="col-md-3">
                 <ul class="sidebar">
                     <?php
-                    display_sibling_pages_with_sidebar_template(get_the_ID());
+                    if (get_field('sidebar') == 'Show Children') {
+                        display_child_pages_with_sidebar_template(get_the_ID());
+                    } else {
+                        display_sibling_pages_with_sidebar_template(get_the_ID());
+                    }
                     ?>
                 </ul>
             </div>

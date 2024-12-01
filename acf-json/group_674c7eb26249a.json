@@ -7,7 +7,7 @@
             "label": "Sidebar",
             "name": "sidebar",
             "aria-label": "",
-            "type": "relationship",
+            "type": "radio",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,21 +16,17 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "page"
-            ],
-            "post_status": "",
-            "taxonomy": "",
-            "filters": [
-                "search"
-            ],
-            "return_format": "id",
-            "min": "",
-            "max": "",
-            "allow_in_bindings": 0,
-            "elements": "",
-            "bidirectional": 0,
-            "bidirectional_target": []
+            "choices": {
+                "Show Children": "Show Children",
+                "Show Siblings": "Show Siblings"
+            },
+            "default_value": "Show Siblings",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "allow_in_bindings": 1,
+            "layout": "vertical",
+            "save_other_choice": 0
         }
     ],
     "location": [
@@ -51,5 +47,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1733066457
+    "modified": 1733067653
 }
