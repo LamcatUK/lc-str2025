@@ -97,7 +97,7 @@ function display_child_pages_with_sidebar_template($post_id)
     ?>
     <div class="container-xl">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <?php
                 $sidebar = get_field('sidebar', get_the_ID());
                 if (!$sidebar) {
@@ -111,7 +111,7 @@ function display_child_pages_with_sidebar_template($post_id)
                 }
                 ?>
             </div>
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <?php
                 foreach ($blocks as $block) {
                     if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-hero') {

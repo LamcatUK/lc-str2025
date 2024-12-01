@@ -24970,6 +24970,10 @@ a:hover {
   -webkit-padding-start: 0;
   padding-inline-start: 0;
   list-style: none;
+  padding: 1rem;
+  border-radius: var(--border-sm);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--col-grey-100);
 }
 .sidebar .active {
   font-weight: var(--fw-600);
