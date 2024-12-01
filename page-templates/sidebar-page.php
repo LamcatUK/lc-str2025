@@ -39,7 +39,7 @@ function display_sibling_pages_with_sidebar_template($post_id)
     if (!empty($siblings)) {
         echo '<ul class="sibling-pages">';
         foreach ($siblings as $sibling) {
-            $active = ($child->ID == get_the_ID()) ? 'active' : '';
+            $active = ($sibling->ID == get_the_ID()) ? 'active' : '';
             echo '<li><a href="' . esc_url(get_permalink($sibling->ID)) . '" class="' . $active . '">' . esc_html($sibling->post_title) . '</a></li>';
         }
         echo '</ul>';
