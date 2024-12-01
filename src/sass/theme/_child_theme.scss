@@ -157,4 +157,7 @@ a {
 .sidebar {
     position: sticky;
     top: 100px;
+
+    padding-inline-start: 0;
+    list-style: none;
 }

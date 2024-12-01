@@ -24967,6 +24967,9 @@ a:hover {
 .sidebar {
   position: sticky;
   top: 100px;
+  -webkit-padding-start: 0;
+  padding-inline-start: 0;
+  list-style: none;
 }
 
 .has-blue-color,
