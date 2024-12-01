@@ -13,12 +13,11 @@
         // var_dump($blocks);
 
         foreach ($blocks as $block) {
-            echo '--' . $block['blockName'] . '--<br>';
 
-            if ($block['blockName'] == 'core/heading') {
-                var_dump($block);
-
-                if (isset($block['attrs']['level']) && $block['attrs']['level'] === 2) {
+            if ($block['blockName'] === 'core/heading') {
+                // Check if 'level' is not set or explicitly set to 2 (H2)
+                $level = isset($block['attrs']['level']) ? $block['attrs']['level'] : 2; // Default to 2 if not set
+                if ($level === 2) {
                     $heading = strip_tags($block['innerHTML']);
                     $id = acf_slugify($heading);
                     $titles[$id] = $heading;
