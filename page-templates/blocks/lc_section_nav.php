@@ -13,6 +13,8 @@
         // var_dump($blocks);
 
         foreach ($blocks as $block) {
+            echo $block['blockName'] . '<br>';
+
             if ($block['blockName'] == 'core/heading') {
                 if (isset($block['attrs']['level']) && $block['attrs']['level'] === 2) {
                     $heading = strip_tags($block['innerHTML']);
