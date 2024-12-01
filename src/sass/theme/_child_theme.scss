@@ -160,4 +160,8 @@ a {
 
     padding-inline-start: 0;
     list-style: none;
+
+    .active {
+        font-weight: var(--fw-600);
+    }
 }

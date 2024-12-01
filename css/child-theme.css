@@ -24971,6 +24971,9 @@ a:hover {
   padding-inline-start: 0;
   list-style: none;
 }
+.sidebar .active {
+  font-weight: var(--fw-600);
+}
 
 .has-blue-color,
 .has-blue-color:visited {
