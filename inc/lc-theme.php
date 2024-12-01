@@ -285,4 +285,77 @@ function add_expertise_breadcrumb($links)
     return $links;
 }
 
+
+function get_sibling_pages_with_sidebar_template($post_id)
+{
+    // Get the parent of the current page
+    $parent_id = wp_get_post_parent_id($post_id);
+
+    // If no parent, consider it a top-level page
+    $parent_id = $parent_id ? $parent_id : $post_id;
+
+    // Query for sibling pages
+    $siblings = get_pages([
+        'post_parent'    => $parent_id,
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+    ]);
+
+    // Filter siblings to include only those with the 'sidebar-page.php' template
+    $sidebar_pages = array_filter($siblings, function ($page) {
+        return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
+    });
+
+    return $sidebar_pages;
+}
+
+function display_sibling_pages_with_sidebar_template($post_id)
+{
+    // Get sibling pages using the function
+    $siblings = get_sibling_pages_with_sidebar_template($post_id);
+
+    if (!empty($siblings)) {
+        echo '<ul class="sidebar sibling-pages">';
+        foreach ($siblings as $sibling) {
+            $active = ($sibling->ID == get_the_ID()) ? 'active' : '';
+            echo '<li><a href="' . esc_url(get_permalink($sibling->ID)) . '" class="' . $active . '">' . esc_html($sibling->post_title) . '</a></li>';
+        }
+        echo '</ul>';
+    } else {
+        echo '<p>No sibling pages found with the sidebar template.</p>';
+    }
+}
+
+function get_child_pages_with_sidebar_template($post_id)
+{
+    // Query for child pages
+    $children = get_pages([
+        'post_parent'    => $post_id,
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+    ]);
+
+    // Filter children to include only those with the 'sidebar-page.php' template
+    $sidebar_children = array_filter($children, function ($page) {
+        return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
+    });
+
+    return $sidebar_children;
+}
+
+function display_child_pages_with_sidebar_template($post_id)
+{
+    // Get child pages using the function
+    $children = get_child_pages_with_sidebar_template($post_id);
+
+    if (!empty($children)) {
+        echo '<ul class="sidebar child-pages">';
+        foreach ($children as $child) {
+            echo '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
+        }
+        echo '</ul>';
+    } else {
+        echo '<p>No child pages found with the sidebar template.</p>';
+    }
+}
 ?>
