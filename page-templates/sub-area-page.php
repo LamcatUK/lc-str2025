@@ -12,7 +12,7 @@ $blocks = parse_blocks($content);
 <main>
     <?php
     foreach ($blocks as $block) {
-        echo $block['blockName'];
+        echo '- ' . $block['blockName'] . '<br>';
         if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-hero') {
             echo render_block($block);
             // return; // Output only the first instance of the hero block
