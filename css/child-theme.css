@@ -24964,6 +24964,11 @@ a:hover {
   filter: invert(1);
 }
 
+.sidebar {
+  position: sticky;
+  top: 100px;
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #0d6efd;
