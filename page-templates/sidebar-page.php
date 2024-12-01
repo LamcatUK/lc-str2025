@@ -103,9 +103,14 @@ function display_child_pages_with_sidebar_template($post_id)
                     var_dump(get_field('sidebar', get_the_ID()));
 
                     print_r(get_field('sidebar', get_the_ID()));
-                    if (get_field('sidebar') === 'Show Children') {
+                    $sidebar = get_field('sidebar', get_the_ID());
+                    if (!$sidebar) {
+                        $sidebar = 'Show Siblings'; // Default value if unset
+                    }
+
+                    if ($sidebar === 'Show Children') {
                         display_child_pages_with_sidebar_template(get_the_ID());
-                    } else if (get_field('sidebar') === 'Show Siblings') {
+                    } else if ($sidebar === 'Show Siblings') {
                         display_sibling_pages_with_sidebar_template(get_the_ID());
                     }
                     ?>
