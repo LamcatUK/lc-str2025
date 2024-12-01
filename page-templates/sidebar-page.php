@@ -37,7 +37,7 @@ function display_sibling_pages_with_sidebar_template($post_id)
     $siblings = get_sibling_pages_with_sidebar_template($post_id);
 
     if (!empty($siblings)) {
-        echo '<ul class="sibling-pages">';
+        echo '<ul class="sidebar sibling-pages">';
         foreach ($siblings as $sibling) {
             $active = ($sibling->ID == get_the_ID()) ? 'active' : '';
             echo '<li><a href="' . esc_url(get_permalink($sibling->ID)) . '" class="' . $active . '">' . esc_html($sibling->post_title) . '</a></li>';
@@ -71,7 +71,7 @@ function display_child_pages_with_sidebar_template($post_id)
     $children = get_child_pages_with_sidebar_template($post_id);
 
     if (!empty($children)) {
-        echo '<ul class="child-pages">';
+        echo '<ul class="sidebar child-pages">';
         foreach ($children as $child) {
             echo '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
         }
@@ -98,23 +98,20 @@ function display_child_pages_with_sidebar_template($post_id)
     <div class="container-xl">
         <div class="row">
             <div class="col-md-3">
-                <ul class="sidebar">
-                    <?php
+                <?php
+                $sidebar = get_field('sidebar', get_the_ID());
+                if (!$sidebar) {
+                    $sidebar = 'Siblings'; // Default value if unset
+                }
 
-                    $sidebar = get_field('sidebar', get_the_ID());
-                    if (!$sidebar) {
-                        $sidebar = 'Siblings'; // Default value if unset
-                    }
-
-                    if ($sidebar === 'Children') {
-                        echo 'Children';
-                        display_child_pages_with_sidebar_template(get_the_ID());
-                    } else if ($sidebar === 'Siblings') {
-                        echo 'Siblings';
-                        display_sibling_pages_with_sidebar_template(get_the_ID());
-                    }
-                    ?>
-                </ul>
+                if ($sidebar === 'Children') {
+                    echo 'Children';
+                    display_child_pages_with_sidebar_template(get_the_ID());
+                } else if ($sidebar === 'Siblings') {
+                    echo 'Siblings';
+                    display_sibling_pages_with_sidebar_template(get_the_ID());
+                }
+                ?>
             </div>
             <div class="col-md-9">
                 <?php
