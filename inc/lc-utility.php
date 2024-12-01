@@ -373,5 +373,47 @@ function acf_load_menu_field_choices($field)
 }
 add_filter('acf/load_field/name=sidebar_menu', 'acf_load_menu_field_choices');
 
+// show template name in admin
+function add_page_template_column($columns)
+{
+    $columns['page_template'] = 'Template';
+    return $columns;
+}
+add_filter('manage_pages_columns', 'add_page_template_column');
+
+function display_page_template_column($column, $post_id)
+{
+    if ($column === 'page_template') {
+        $template = get_page_template_slug($post_id);
+
+        if ($template) {
+            // Get the human-readable name of the template
+            $templates = wp_get_theme()->get_page_templates();
+            echo isset($templates[$template]) ? esc_html($templates[$template]) : esc_html($template);
+        } else {
+            echo 'Default Template';
+        }
+    }
+}
+add_action('manage_pages_custom_column', 'display_page_template_column', 10, 2);
+
+function make_page_template_column_sortable($columns)
+{
+    $columns['page_template'] = 'page_template';
+    return $columns;
+}
+add_filter('manage_edit-page_sortable_columns', 'make_page_template_column_sortable');
+
+function sort_page_template_column($query)
+{
+    if (!is_admin() || !$query->is_main_query() || $query->get('orderby') !== 'page_template') {
+        return;
+    }
+
+    $query->set('meta_key', '_wp_page_template');
+    $query->set('orderby', 'meta_value');
+}
+add_action('pre_get_posts', 'sort_page_template_column');
+
 
 ?>
