@@ -99,6 +99,7 @@ function display_child_pages_with_sidebar_template($post_id)
             <div class="col-md-3">
                 <ul class="sidebar">
                     <?php
+                    print_r(get_field('sidebar'));
                     if (get_field('sidebar') === 'Show Children') {
                         display_child_pages_with_sidebar_template(get_the_ID());
                     } else if (get_field('sidebar') === 'Show Siblings') {
