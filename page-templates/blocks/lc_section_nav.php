@@ -16,6 +16,8 @@
             echo $block['blockName'] . '<br>';
 
             if ($block['blockName'] == 'core/heading') {
+                var_dump($block);
+
                 if (isset($block['attrs']['level']) && $block['attrs']['level'] === 2) {
                     $heading = strip_tags($block['innerHTML']);
                     $id = acf_slugify($heading);
