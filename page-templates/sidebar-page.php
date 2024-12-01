@@ -25,7 +25,7 @@ function get_sibling_pages_with_sidebar_template($post_id)
 
     // Filter siblings to include only those with the 'sidebar-page.php' template
     $sidebar_pages = array_filter($siblings, function ($page) {
-        return get_page_template_slug($page->ID) === 'sidebar-page.php';
+        return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
     });
 
     return $sidebar_pages;
@@ -58,7 +58,7 @@ function get_child_pages_with_sidebar_template($post_id)
 
     // Filter children to include only those with the 'sidebar-page.php' template
     $sidebar_children = array_filter($children, function ($page) {
-        return get_page_template_slug($page->ID) === 'sidebar-page.php';
+        return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
     });
 
     return $sidebar_children;
