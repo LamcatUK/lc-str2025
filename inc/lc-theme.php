@@ -294,15 +294,19 @@ function get_sibling_pages_with_sidebar_template($post_id)
     // If no parent, consider it a top-level page
     $parent_id = $parent_id ? $parent_id : $post_id;
 
-    // Query for sibling pages
-    $siblings = get_pages([
-        'post_parent'    => $parent_id,
+    $args = [
         'post_type'      => 'page',
         'post_status'    => 'publish',
-    ]);
+        'post_parent'    => $parent_id,
+        'posts_per_page' => -1, // Fetch all children
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+    ];
+
+    $query = new WP_Query($args);
 
     // Filter siblings to include only those with the 'sidebar-page.php' template
-    $sidebar_pages = array_filter($siblings, function ($page) {
+    $sidebar_pages = array_filter($query->posts, function ($page) {
         return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
     });
 
@@ -314,13 +318,20 @@ function display_sibling_pages_with_sidebar_template($post_id)
     // Get sibling pages using the function
     $siblings = get_sibling_pages_with_sidebar_template($post_id);
 
+    $parent_id = wp_get_post_parent_id($post_id);
+
+    // If no parent, consider it a top-level page
+    $parent_id = $parent_id ? $parent_id : $post_id;
+
     if (!empty($siblings)) {
-        echo '<ul class="sidebar sibling-pages">';
+        echo '<div class="sidebar sibling-pages">';
+        echo '<h3><a href="' . get_the_permalink($parent_id) . '">' . get_the_title($parent_id) . '</a></h3>';
+        echo '<ul>';
         foreach ($siblings as $sibling) {
             $active = ($sibling->ID == get_the_ID()) ? 'active' : '';
             echo '<li><a href="' . esc_url(get_permalink($sibling->ID)) . '" class="' . $active . '">' . esc_html($sibling->post_title) . '</a></li>';
         }
-        echo '</ul>';
+        echo '</ul></div>';
     } else {
         echo '<p>No sibling pages found with the sidebar template.</p>';
     }
@@ -328,12 +339,6 @@ function display_sibling_pages_with_sidebar_template($post_id)
 
 function get_child_pages_with_sidebar_template($post_id)
 {
-    // // Query for child pages
-    // $children = get_pages([
-    //     'post_parent'    => $post_id,
-    //     'post_type'      => 'page',
-    //     'post_status'    => 'publish',
-    // ]);
 
     $args = [
         'post_type'      => 'page',
@@ -363,7 +368,7 @@ function display_child_pages_with_sidebar_template($post_id)
 
     if (!empty($children)) {
         echo '<div class="sidebar child-pages">';
-        echo '<h3>' . get_the_title(get_the_ID()) . '</h3>';
+        echo '<h3><a href="' . get_the_permalink(get_the_ID()) . '">' . get_the_title(get_the_ID()) . '</a></h3>';
         echo '<ul>';
         foreach ($children as $child) {
             echo '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';

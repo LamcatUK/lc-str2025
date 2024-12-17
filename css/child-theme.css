@@ -24982,6 +24982,9 @@ a:hover {
   padding-inline-start: 0;
   list-style: none;
 }
+.sidebar ul li {
+  margin-bottom: 0.5rem;
+}
 .sidebar a {
   color: var(--col-secondary-400);
 }

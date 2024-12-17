@@ -34,7 +34,6 @@ $blocks = parse_blocks($content);
                 if ($sidebar === 'Children') {
                     display_child_pages_with_sidebar_template(get_the_ID());
                 } else if ($sidebar === 'Siblings') {
-                    echo "SIDEBAR SIBLINGS " . get_the_ID();
                     display_sibling_pages_with_sidebar_template(get_the_ID());
                 }
                 ?>
