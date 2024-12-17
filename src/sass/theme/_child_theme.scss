@@ -158,8 +158,16 @@ a {
     position: sticky;
     top: 100px;
 
-    padding-inline-start: 0;
-    list-style: none;
+    h3 {
+        font-family: var(--ff-body);
+        font-size: var(--fs-500);
+        font-weight: var(--fw-600);
+    }
+
+    ul {
+        padding-inline-start: 0;
+        list-style: none;
+    }
 
     padding: 1rem;
     border-radius: var(--border-sm);

@@ -24967,13 +24967,20 @@ a:hover {
 .sidebar {
   position: sticky;
   top: 100px;
-  -webkit-padding-start: 0;
-  padding-inline-start: 0;
-  list-style: none;
   padding: 1rem;
   border-radius: var(--border-sm);
   box-shadow: var(--shadow-sm);
   background-color: var(--col-grey-100);
+}
+.sidebar h3, .sidebar .h3 {
+  font-family: var(--ff-body);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-600);
+}
+.sidebar ul {
+  -webkit-padding-start: 0;
+  padding-inline-start: 0;
+  list-style: none;
 }
 .sidebar a {
   color: var(--col-secondary-400);
