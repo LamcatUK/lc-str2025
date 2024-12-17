@@ -28,12 +28,11 @@ $blocks = parse_blocks($content);
                 <?php
                 $sidebar = get_field('sidebar', get_the_ID());
                 if (!$sidebar) {
-                    echo "NO SIDEBAR DEFINED";
                     $sidebar = 'Siblings'; // Default value if unset
                 }
 
                 if ($sidebar === 'Children') {
-                    echo "SIDEBAR CHILDREN " . get_the_ID();
+                    echo "SIDEBAR CHILDREN " . get_the_title(get_the_ID());
                     display_child_pages_with_sidebar_template(get_the_ID());
                 } else if ($sidebar === 'Siblings') {
                     echo "SIDEBAR SIBLINGS " . get_the_ID();
