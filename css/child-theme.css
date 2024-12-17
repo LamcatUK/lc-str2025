@@ -24992,11 +24992,6 @@ a:hover {
   font-weight: var(--fw-600);
 }
 
-.sidebar-insights {
-  position: sticky;
-  top: 100px;
-}
-
 .has-blue-color,
 .has-blue-color:visited {
   color: #0d6efd;

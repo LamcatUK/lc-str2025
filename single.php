@@ -79,7 +79,7 @@ get_header();
                     <?php
                     }
                     ?>
-                    <div class="sidebar__cta mt-3 d-none d-lg-block">
+                    <div class="sidebar-insights__cta mt-3 d-none d-lg-block">
                         <div class="fw-600 mb-3">Contact Stormcatcher for First Free Advice</div>
                         <div class="d-flex gap-2 justify-content-center align-items-center">
                             <a href="tel:<?= parse_phone(get_field('contact_phone', 'option')) ?>" class="button button-primary"><i class="fas fa-phone"></i> Call</a>
