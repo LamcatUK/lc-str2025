@@ -52,7 +52,7 @@ get_header();
                 ?>
             </div>
             <div class="col-lg-3 order-1 order-lg-2">
-                <div class="sidebar">
+                <div class="sidebar-insights">
                     <?php
                     if ($sidebar) {
                     ?>
