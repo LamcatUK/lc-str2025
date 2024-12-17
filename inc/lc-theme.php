@@ -328,15 +328,26 @@ function display_sibling_pages_with_sidebar_template($post_id)
 
 function get_child_pages_with_sidebar_template($post_id)
 {
-    // Query for child pages
-    $children = get_pages([
-        'post_parent'    => $post_id,
+    // // Query for child pages
+    // $children = get_pages([
+    //     'post_parent'    => $post_id,
+    //     'post_type'      => 'page',
+    //     'post_status'    => 'publish',
+    // ]);
+
+    $args = [
         'post_type'      => 'page',
         'post_status'    => 'publish',
-    ]);
+        'post_parent'    => $post_id,
+        'posts_per_page' => -1, // Fetch all children
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+    ];
+
+    $query = new WP_Query($args);
 
     // Filter children to include only those with the 'sidebar-page.php' template
-    $sidebar_children = array_filter($children, function ($page) {
+    $sidebar_children = array_filter($query, function ($page) {
         return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
     });
 
