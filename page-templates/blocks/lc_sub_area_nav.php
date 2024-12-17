@@ -28,7 +28,7 @@
             <?php
             foreach ($sub_area_pages as $s) {
             ?>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <a href="<?= get_the_permalink($s) ?>" class="sub_area_nav__card">
                         <?= wp_get_attachment_image(get_field('icon', $s), 'full', false, array('class' => 'sub_area_nav__image')) ?>
                         <h3><?= get_the_title($s) ?></h3>
