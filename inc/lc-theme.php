@@ -362,6 +362,7 @@ function display_child_pages_with_sidebar_template($post_id)
     $children = get_child_pages_with_sidebar_template($post_id);
 
     if (!empty($children)) {
+        echo '<h3>' . get_the_title(get_the_ID()) . '</h3>';
         echo '<ul class="sidebar child-pages">';
         foreach ($children as $child) {
             echo '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
