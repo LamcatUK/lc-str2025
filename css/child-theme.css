@@ -24288,34 +24288,34 @@ footer .colophon a:hover {
 .single-blog h3, .single-blog .h3 {
   font-size: var(--fs-500);
 }
-.single-blog .sidebar {
+.single-blog .sidebar-insights {
   position: sticky;
   top: calc(90px + 1rem);
 }
-.single-blog .sidebar .accordion-button::after {
+.single-blog .sidebar-insights .accordion-button::after {
   background-image: var(--bs-accordion-btn-active-icon);
   width: 1rem;
   height: 1rem;
 }
-.single-blog .sidebar .quicklinks {
+.single-blog .sidebar-insights .quicklinks {
   background-color: var(--col-grey-100);
   padding: 1rem;
   box-shadow: var(--shadow-sm);
   border-radius: var(--border-sm);
 }
-.single-blog .sidebar .quicklinks .h5 {
+.single-blog .sidebar-insights .quicklinks .h5 {
   font-family: var(--ff-heading);
 }
-.single-blog .sidebar .quicklinks button.h5 {
+.single-blog .sidebar-insights .quicklinks button.h5 {
   font-size: var(--fs-400);
   margin-bottom: 0;
 }
-.single-blog .sidebar .quicklinks ul {
+.single-blog .sidebar-insights .quicklinks ul {
   -webkit-padding-start: 1rem;
   padding-inline-start: 1rem;
   font-size: var(--fs-300);
 }
-.single-blog .sidebar__cta {
+.single-blog .sidebar-insights__cta {
   padding: 1rem;
   text-align: center;
   background-color: var(--col-primary-400);
