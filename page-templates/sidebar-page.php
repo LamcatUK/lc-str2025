@@ -53,6 +53,9 @@ $blocks = parse_blocks($content);
             </div>
         </div>
     </div>
+    <?php
+    get_template_part('page-templates/blocks/lc_insights');
+    ?>
     <hr>
     *** OLD CONTENT BELOW ***
     <hr>
