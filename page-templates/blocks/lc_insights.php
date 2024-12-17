@@ -1,5 +1,15 @@
 <?php
 $background = get_field('bg_colour') ?: 'white';
+
+global $post;
+
+// Get the current page template
+$template_slug = get_page_template_slug($post->ID);
+
+if ($template_slug === 'page-templates/sidebar-page.php') {
+    $background = 'bg-grey-100';
+}
+
 ?>
 <section class="insights py-6 bg-<?= $background ?>">
     <div class="container-xl">
