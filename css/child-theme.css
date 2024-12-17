@@ -24992,6 +24992,31 @@ a:hover {
   font-weight: var(--fw-600);
 }
 
+.cards {
+  gap: 0.5rem;
+}
+.cards .wp-block-column {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  background-color: var(--col-grey-100);
+}
+.cards .wp-block-column .container-xl:first-of-type {
+  border-bottom: 1px solid var(--col-primary-400);
+  margin-bottom: 0.5rem;
+}
+.cards .wp-block-column .container-xl:first-of-type p {
+  margin-bottom: 0.25rem;
+}
+.cards .wp-block-column .container-xl:nth-of-type(2) {
+  font-size: var(--fs-300);
+}
+.cards .wp-block-column .container-xl:nth-of-type(3) {
+  font-weight: var(--fw-600);
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #0d6efd;

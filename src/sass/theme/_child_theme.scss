@@ -184,3 +184,28 @@ a {
         font-weight: var(--fw-600);
     }
 }
+
+.cards {
+    gap: 0.5rem;
+    .wp-block-column {
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--border-sm);
+        box-shadow: var(--shadow-sm);
+        padding: 1rem;
+        background-color: var(--col-grey-100);
+        .container-xl:first-of-type {
+            border-bottom: 1px solid var(--col-primary-400);
+            margin-bottom: 0.5rem;
+            p {
+                margin-bottom: 0.25rem;
+            }
+        }
+        .container-xl:nth-of-type(2) {
+            font-size: var(--fs-300);
+        }
+        .container-xl:nth-of-type(3) {
+            font-weight: var(--fw-600);
+        }
+    }
+}
