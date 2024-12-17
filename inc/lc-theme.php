@@ -362,12 +362,13 @@ function display_child_pages_with_sidebar_template($post_id)
     $children = get_child_pages_with_sidebar_template($post_id);
 
     if (!empty($children)) {
+        echo '<div class="sidebar child-pages">';
         echo '<h3>' . get_the_title(get_the_ID()) . '</h3>';
-        echo '<ul class="sidebar child-pages">';
+        echo '<ul>';
         foreach ($children as $child) {
             echo '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
         }
-        echo '</ul>';
+        echo '</ul></div>';
     } else {
         echo '<p>No child pages found with the sidebar template.</p>';
     }
