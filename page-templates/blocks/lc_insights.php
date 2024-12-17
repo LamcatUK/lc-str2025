@@ -7,7 +7,7 @@ global $post;
 $template_slug = get_page_template_slug($post->ID);
 
 if ($template_slug === 'page-templates/sidebar-page.php') {
-    $background = 'bg-grey-100';
+    $background = 'grey-100';
 }
 
 ?>
