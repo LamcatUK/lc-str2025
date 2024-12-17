@@ -28,6 +28,7 @@ $blocks = parse_blocks($content);
                 <?php
                 $sidebar = get_field('sidebar', get_the_ID());
                 if (!$sidebar) {
+                    echo "NO SIDEBAR DEFINED";
                     $sidebar = 'Siblings'; // Default value if unset
                 }
 
