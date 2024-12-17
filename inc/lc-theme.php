@@ -346,10 +346,12 @@ function get_child_pages_with_sidebar_template($post_id)
 
     $query = new WP_Query($args);
 
-    // Filter children to include only those with the 'sidebar-page.php' template
-    $sidebar_children = array_filter($query, function ($page) {
+    $sidebar_children = array_filter($query->posts, function ($page) {
         return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
     });
+
+    // Reset post data after custom query
+    wp_reset_postdata();
 
     return $sidebar_children;
 }
