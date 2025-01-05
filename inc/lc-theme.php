@@ -308,7 +308,7 @@ function add_expertise_breadcrumb($links)
 
 add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
     // Check if we're on the "Success" archive
-    if (is_post_type_archive('success')) {
+    if (is_post_type_archive('success') || is_singular('success')) {
         // Get the blog page ID
         $blog_page_id = get_option('page_for_posts');
 
@@ -317,7 +317,6 @@ add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
             $classes = array_diff($classes, ['current_page_parent']);
         }
     }
-
     return $classes;
 }, 10, 4);
 
