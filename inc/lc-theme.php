@@ -294,8 +294,8 @@ function add_success_cpt_to_yoast_breadcrumbs($links)
 
         // Add a new breadcrumb link for the custom post type archive
         $breadcrumb = [
-            'url'  => $post_type_archive,
-            'text' => 'Successes', // Adjust this label as needed
+            'url'  => home_url('/success-stories/'),
+            'text' => 'Success Stories',
         ];
 
         // Insert the new breadcrumb before the current post breadcrumb
