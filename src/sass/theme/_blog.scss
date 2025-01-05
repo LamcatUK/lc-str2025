@@ -1,9 +1,11 @@
 .cta {
-    background-color: var(--col-primary-400);
-    color: var(--col-white);
-    border-radius: var(--border-lg);
-    box-shadow: var(--shadow-sm);
-    transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+    &__inner {
+        background-color: var(--col-primary-400);
+        color: var(--col-white);
+        border-radius: var(--border-lg);
+        box-shadow: var(--shadow-sm);
+        transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+    }
 }
 
 .insights__categories {
