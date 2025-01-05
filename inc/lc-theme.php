@@ -285,27 +285,26 @@ function add_expertise_breadcrumb($links)
     return $links;
 }
 
-function add_success_cpt_to_yoast_breadcrumbs($links)
-{
-    // Check if we're on a single "success" post
-    if (is_singular('success')) {
-        // Get the archive link for the custom post type
-        $post_type_archive = get_post_type_archive_link('success');
+// function add_success_cpt_to_yoast_breadcrumbs($links)
+// {
+//     // Check if we're on a single "success" post
+//     if (is_singular('success')) {
+//         // Get the archive link for the custom post type
+//         $post_type_archive = get_post_type_archive_link('success');
 
-        // Add a new breadcrumb link for the custom post type archive
-        $breadcrumb = [
-            'url'  => home_url('/success-stories/'),
-            'text' => 'Success Stories',
-        ];
+//         // Add a new breadcrumb link for the custom post type archive
+//         $breadcrumb = [
+//             'url'  => home_url('/success-stories/'),
+//             'text' => 'Success Stories',
+//         ];
 
-        // Insert the new breadcrumb before the current post breadcrumb
-        array_splice($links, -1, 0, [$breadcrumb]);
-    }
+//         // Insert the new breadcrumb before the current post breadcrumb
+//         array_splice($links, -1, 0, [$breadcrumb]);
+//     }
 
-    return $links;
-}
-add_filter('wpseo_breadcrumb_links', 'add_success_cpt_to_yoast_breadcrumbs');
-
+//     return $links;
+// }
+// add_filter('wpseo_breadcrumb_links', 'add_success_cpt_to_yoast_breadcrumbs');
 
 
 function get_sibling_pages_with_sidebar_template($post_id)
