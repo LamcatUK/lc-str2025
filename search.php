@@ -18,18 +18,15 @@ get_header(); ?>
 </section>
 <main>
     <div class="container-xl py-5">
-        <header class="page-header">
-            <h1 class="page-title">
-                <?php
-                // Display the search query
-                printf(
-                    esc_html__('Search Results for: %s', 'your-text-domain'),
-                    '<span>' . get_search_query() . '</span>'
-                );
-                ?>
-            </h1>
-        </header><!-- .page-header -->
-
+        <h2>
+            <?php
+            // Display the search query
+            printf(
+                esc_html__('Search Results for: %s', 'lc-str2025'),
+                '<span>' . get_search_query() . '</span>'
+            );
+            ?>
+        </h2>
         <?php if (have_posts()) { ?>
             <div class="row">
                 <?php while (have_posts()) {
