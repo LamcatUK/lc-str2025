@@ -23,26 +23,42 @@ $blocks = parse_blocks($content);
     }
     ?>
     <div class="container-xl">
-        <div class="row">
-            <div class="col-lg-3">
-                <?php
-                display_child_pages_with_sidebar_template(get_the_ID());
-                ?>
+        <?php
+        if (display_child_pages_with_sidebar_template(get_the_ID()) ?? null) {
+        ?>
+            <div class="row">
+                <div class="col-lg-3">
+                    <?php
+                    display_child_pages_with_sidebar_template(get_the_ID());
+                    ?>
+                </div>
+                <div class="col-lg-9">
+                    <?php
+                    foreach ($blocks as $block) {
+                        if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-hero') {
+                            continue; // Skip this block
+                        }
+                        if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-breadcrumbs') {
+                            continue;
+                        }
+                        echo render_block($block);
+                    }
+                    ?>
+                </div>
             </div>
-            <div class="col-lg-9">
-                <?php
-                foreach ($blocks as $block) {
-                    if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-hero') {
-                        continue; // Skip this block
-                    }
-                    if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-breadcrumbs') {
-                        continue;
-                    }
-                    echo render_block($block);
+        <?php
+        } else {
+            foreach ($blocks as $block) {
+                if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-hero') {
+                    continue; // Skip this block
                 }
-                ?>
-            </div>
-        </div>
+                if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-breadcrumbs') {
+                    continue;
+                }
+                echo render_block($block);
+            }
+        }
+        ?>
     </div>
 </main>
 <?php
