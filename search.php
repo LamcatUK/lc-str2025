@@ -5,8 +5,18 @@
  */
 
 get_header(); ?>
-
-<main id="primary" class="site-main">
+<section class="hero">
+    <!-- Background Image -->
+    <img fetchpriority="high" decoding="async" width="1280" height="853" src="/wp-content/uploads/2024/11/sea-4242303_1280.jpg" class="hero__bg" alt="" srcset="/wp-content/uploads/2024/11/sea-4242303_1280.jpg 1280w, /wp-content/uploads/2024/11/sea-4242303_1280-300x200.jpg 300w, /wp-content/uploads/2024/11/sea-4242303_1280-1024x682.jpg 1024w, /wp-content/uploads/2024/11/sea-4242303_1280-768x512.jpg 768w" sizes="(max-width: 1280px) 100vw, 1280px">
+    <div class="overlay"></div>
+    <div class="container-xl py-6 my-auto">
+        <h1>Search</h1>
+        <div>
+            <a href="/contact/" class="button button-primary">Contact Us Today</a>
+        </div>
+    </div>
+</section>
+<main>
     <div class="container-xl py-5">
         <header class="page-header">
             <h1 class="page-title">
