@@ -25017,6 +25017,14 @@ a:hover {
   font-weight: var(--fw-600);
 }
 
+.success_card {
+  display: block;
+  color: var(--col-black);
+}
+.success_card:nth-of-type(odd) {
+  background-color: var(--col-grey-100);
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #0d6efd;

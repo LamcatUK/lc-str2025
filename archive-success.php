@@ -30,9 +30,9 @@ $page_for_posts = get_option('page_for_posts');
                 the_post();
         ?>
                 <article id="post-<?php the_ID(); ?>">
-                    <a href="<?= get_the_permalink() ?>" class="card">
-                        <h2 class="card-title h5"><?= get_the_title() ?></h2>
-                        <p class="card-text">
+                    <a href="<?= get_the_permalink() ?>" class="success_card">
+                        <h2 class="success_card__title h5"><?= get_the_title() ?></h2>
+                        <p class="success_card__text">
                             <?= wp_trim_words(get_the_excerpt(), 20) ?>
                         </p>
                     </a>

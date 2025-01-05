@@ -209,3 +209,11 @@ a {
         }
     }
 }
+
+.success_card {
+    display: block;
+    color: var(--col-black);
+    &:nth-of-type(odd) {
+        background-color: var(--col-grey-100);
+    }
+}
