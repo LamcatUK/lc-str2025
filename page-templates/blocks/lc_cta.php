@@ -7,7 +7,7 @@ $class = $block['className'] ?? 'my-5';
             <?php
             if (get_field('pre_title') ?? null) {
             ?>
-                <div class="text-uppercase fw-bold pb-2"><?= get_field('title') ?></div>
+                <div class="text-uppercase fw-bold pb-2"><?= get_field('pre_title') ?></div>
             <?php
             }
             if (get_field('title') ?? null) {
