@@ -32,48 +32,37 @@ get_header(); ?>
                 <?php while (have_posts()) {
                     the_post(); ?>
                     <div class="col-md-4 mb-4">
-                        <article id="post-<?php the_ID(); ?>" <?php post_class('card h-100'); ?>>
-                            <a href="<?php the_permalink(); ?>" class="card-img-top">
-                                <?php
-                                if (has_post_thumbnail()) {
-                                    the_post_thumbnail('medium', ['class' => 'img-fluid']);
-                                } else {
-                                    // Retrieve the post content and parse it for blocks
-                                    $blocks = parse_blocks(get_the_content());
-                                    $background_image_url = null;
+                        <a href="<?php the_permalink(); ?>" class="card-img-top">
+                            <?php
+                            if (has_post_thumbnail()) {
+                                the_post_thumbnail('medium', ['class' => 'img-fluid']);
+                            } else {
+                                // Retrieve the post content and parse it for blocks
+                                $blocks = parse_blocks(get_the_content());
+                                $background_image_url = null;
 
-                                    // Loop through the blocks to find the first 'acf/lc-hero' block
-                                    foreach ($blocks as $block) {
-                                        if ($block['blockName'] === 'acf/lc-hero' && !empty($block['attrs']['data']['attached_file_id'])) {
-                                            // Get the image URL from the 'attached_file_id'
-                                            $background_image_id = $block['attrs']['data']['attached_file_id'];
-                                            $background_image_url = wp_get_attachment_image_url($background_image_id, 'medium');
-                                            break; // Exit the loop once we find the hero block
-                                        }
-                                    }
-
-                                    if ($background_image_url) {
-                                        // Output the background image from the hero block
-                                        echo '<img src="' . esc_url($background_image_url) . '" alt="Hero Background" class="img-fluid">';
-                                    } else {
-                                        // Fallback to the placeholder image
-                                        echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.jpg') . '" alt="Placeholder Image" class="img-fluid">';
+                                // Loop through the blocks to find the first 'acf/lc-hero' block
+                                foreach ($blocks as $block) {
+                                    if ($block['blockName'] === 'acf/lc-hero' && !empty($block['attrs']['data']['attached_file_id'])) {
+                                        // Get the image URL from the 'attached_file_id'
+                                        $background_image_id = $block['attrs']['data']['attached_file_id'];
+                                        $background_image_url = wp_get_attachment_image_url($background_image_id, 'medium');
+                                        break; // Exit the loop once we find the hero block
                                     }
                                 }
-                                ?>
-                            </a>
-                            <div class="card-body">
-                                <h2 class="card-title h5">
-                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                </h2>
-                                <p class="card-text">
-                                    <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="<?php the_permalink(); ?>" class="button button-secondary">Read More</a>
-                            </div>
-                        </article>
+
+                                if ($background_image_url) {
+                                    // Output the background image from the hero block
+                                    echo '<img src="' . esc_url($background_image_url) . '" alt="Hero Background" class="img-fluid">';
+                                } else {
+                                    // Fallback to the placeholder image
+                                    echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.jpg') . '" alt="Placeholder Image" class="img-fluid">';
+                                }
+                            }
+                            ?>
+                            <h2 class="h5"><?= get_the_title() ?></h2>
+                            <div><?= wp_trim_words(get_the_excerpt(), 20) ?></div>
+                        </a>
                     </div>
                 <?php } ?>
             </div>
