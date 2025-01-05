@@ -1,7 +1,7 @@
 <?php
 $class = $block['className'] ?? 'my-5';
 ?>
-<section class="cta <?= $class ?>">
+<section class="cta <?= $class ?>" data-aos="fade">
     <div class="container-xl">
         <div class="bg-primary-400 text-white text-center p-4">
             <?php
