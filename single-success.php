@@ -31,7 +31,6 @@ get_header();
                 <h1 class="single-blog__title"><?= get_the_title() ?>
                 </h1>
                 <div class="single-blog__read">
-                    <?= get_the_date() ?><span>|</span>
                     <?= estimate_reading_time_in_minutes(get_the_content(), 200, true, true) ?>
                 </div>
                 <?php
