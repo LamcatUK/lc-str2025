@@ -57,16 +57,8 @@ get_header(); ?>
             </div>
 
             <!-- Pagination -->
-            <div class="pagination py-4">
-                <?php
-                // Display pagination
-                the_posts_pagination([
-                    'mid_size'  => 2,
-                    'prev_text' => __('&laquo; Previous', 'your-text-domain'),
-                    'next_text' => __('Next &raquo;', 'your-text-domain'),
-                ]);
-                ?>
-            </div>
+            <?= understrap_pagination() ?>
+
         <?php } else { ?>
             <div class="alert alert-warning">
                 <p><?php esc_html_e('Sorry, but nothing matched your search terms. Please try again with different keywords.', 'your-text-domain'); ?></p>
