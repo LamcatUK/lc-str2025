@@ -3,7 +3,7 @@ $class = $block['className'] ?? 'my-5';
 ?>
 <section class="cta" data-aos="fade">
     <div class="container-xl">
-        <div class="bg-primary-400 text-white text-center p-4  <?= $class ?>">
+        <div class="cta__inner <?= $class ?>">
             <?php
             if (get_field('pre_title') ?? null) {
             ?>
