@@ -414,7 +414,7 @@ function display_child_pages_with_sidebar_template($post_id)
         }
         echo '</ul></div>';
     } else {
-        echo '<p>No child pages found with the sidebar template.</p>';
+        // echo '<p>No child pages found with the sidebar template.</p>';
         return null;
     }
 }
