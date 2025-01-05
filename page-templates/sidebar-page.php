@@ -52,12 +52,14 @@ $blocks = parse_blocks($content);
     </div>
     <?php
     get_template_part('page-templates/blocks/lc_insights');
+    /*
     ?>
     <hr>
     *** OLD CONTENT BELOW ***
     <hr>
     <?php
     get_template_part('page-templates/flexible-parts');
+    */
     ?>
 </main>
 <?php
