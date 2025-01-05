@@ -4,7 +4,7 @@
             <?php
             if (get_field('pre_title') ?? null) {
             ?>
-                <div class="text-uppercase fw-bold"><?= get_field('title') ?></div>
+                <div class="text-uppercase fw-bold pb-2"><?= get_field('title') ?></div>
             <?php
             }
             if (get_field('title') ?? null) {
@@ -14,7 +14,7 @@
             }
             if (get_field('content') ?? null) {
             ?>
-                <div><?= get_field('content') ?></div>
+                <div class="pb-4"><?= get_field('content') ?></div>
             <?php
             }
             ?>
