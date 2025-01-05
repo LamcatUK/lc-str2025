@@ -307,8 +307,8 @@ function add_expertise_breadcrumb($links)
 // add_filter('wpseo_breadcrumb_links', 'add_success_cpt_to_yoast_breadcrumbs');
 
 add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
-    // Check if we're viewing the "success" CPT
-    if (is_singular('success')) {
+    // Check if we're on the "Success" archive
+    if (is_post_type_archive('success')) {
         // Get the blog page ID
         $blog_page_id = get_option('page_for_posts');
 
