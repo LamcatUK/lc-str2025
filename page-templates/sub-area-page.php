@@ -24,7 +24,7 @@ $blocks = parse_blocks($content);
     ?>
     <div class="container-xl">
         <?php
-        if (display_child_pages_with_sidebar_template(get_the_ID()) != null) {
+        if (display_child_pages_with_sidebar_template(get_the_ID()) !== null) {
         ?>
             <div class="row">
                 <div class="col-lg-3">

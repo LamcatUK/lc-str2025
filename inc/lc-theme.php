@@ -406,13 +406,15 @@ function display_child_pages_with_sidebar_template($post_id)
     $children = get_child_pages_with_sidebar_template($post_id);
 
     if (!empty($children)) {
-        echo '<div class="sidebar child-pages">';
-        echo '<h3><a href="' . get_the_permalink(get_the_ID()) . '">' . get_the_title(get_the_ID()) . '</a></h3>';
-        echo '<ul>';
+        $output = '<div class="sidebar child-pages">';
+        $output .= '<h3><a href="' . get_the_permalink($post_id) . '">' . get_the_title($post_id) . '</a></h3>';
+        $output .= '<ul>';
         foreach ($children as $child) {
-            echo '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
+            $output .= '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
         }
-        echo '</ul></div>';
+        $output .= '</ul></div>';
+
+        return $output;
     } else {
         // echo '<p>No child pages found with the sidebar template.</p>';
         return null;
