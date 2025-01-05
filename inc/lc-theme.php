@@ -306,6 +306,21 @@ function add_expertise_breadcrumb($links)
 // }
 // add_filter('wpseo_breadcrumb_links', 'add_success_cpt_to_yoast_breadcrumbs');
 
+add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
+    // Check if we're viewing the "success" CPT
+    if (is_singular('success')) {
+        // Get the blog page ID
+        $blog_page_id = get_option('page_for_posts');
+
+        // Remove current_page_parent from the blog menu item
+        if (isset($item->object_id) && $item->object_id == $blog_page_id) {
+            $classes = array_diff($classes, ['current_page_parent']);
+        }
+    }
+
+    return $classes;
+}, 10, 4);
+
 
 function get_sibling_pages_with_sidebar_template($post_id)
 {
