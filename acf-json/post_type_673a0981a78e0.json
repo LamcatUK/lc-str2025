@@ -70,7 +70,7 @@
         "custom-fields"
     ],
     "taxonomies": "",
-    "has_archive": false,
+    "has_archive": true,
     "has_archive_slug": "",
     "rewrite": {
         "permalink_rewrite": "custom_permalink",
