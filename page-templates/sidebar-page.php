@@ -28,8 +28,6 @@ $blocks = parse_blocks($content);
                 <?php
                 $sidebar = get_field('sidebar', get_the_ID()) ?? 'Siblings';
 
-                echo '<h1>' . var_dump($sidebar) . '</h1>';
-
                 if ($sidebar === 'Children') {
                     display_child_pages_with_sidebar_template(get_the_ID());
                 } else if ($sidebar === 'Siblings') {
