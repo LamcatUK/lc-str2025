@@ -28,14 +28,18 @@ get_header(); ?>
             ?>
         </h2>
         <?php if (have_posts()) { ?>
-            <div class="row">
+            <div class="news_index__grid">
                 <?php while (have_posts()) {
                     the_post(); ?>
                     <div class="col-md-4 mb-4">
-                        <a href="<?php the_permalink(); ?>" class="card-img-top">
+                        <a href="<?php the_permalink(); ?>" class="news_index__card">
                             <?php
                             if (has_post_thumbnail()) {
-                                the_post_thumbnail('medium', ['class' => 'img-fluid']);
+                            ?>
+                                <div class="news_index__image">
+                                    <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="">
+                                </div>
+                            <?php
                             } else {
                                 // Retrieve the post content and parse it for blocks
                                 $blocks = parse_blocks(get_the_content());
@@ -53,15 +57,21 @@ get_header(); ?>
 
                                 if ($background_image_url) {
                                     // Output the background image from the hero block
+                                    echo '<div class="news_index__image">';
                                     echo '<img src="' . esc_url($background_image_url) . '" alt="Hero Background" class="img-fluid">';
+                                    echo '</div>';
                                 } else {
                                     // Fallback to the placeholder image
+                                    echo '<div class="news_index__image">';
                                     echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.jpg') . '" alt="Placeholder Image" class="img-fluid">';
+                                    echo '</div>';
                                 }
                             }
                             ?>
-                            <h2 class="h5"><?= get_the_title() ?></h2>
-                            <div><?= wp_trim_words(get_the_excerpt(), 20) ?></div>
+                            <div class="news_index__inner">
+                                <h2><?= get_the_title() ?></h2>
+                                <p><?= wp_trim_words(get_the_content(), 50) ?>
+                            </div>
                         </a>
                     </div>
                 <?php } ?>
