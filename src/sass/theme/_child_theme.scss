@@ -213,7 +213,10 @@ a {
 .success_card {
     display: block;
     color: var(--col-black);
-    &:nth-of-type(odd) {
-        background-color: var(--col-grey-100);
+    border-bottom: 1px solid var(--col-grey-100);
+    padding-inline: 1rem;
+    margin-bottom: 0.5rem;
+    &__text {
+        margin-bottom: 0;
     }
 }

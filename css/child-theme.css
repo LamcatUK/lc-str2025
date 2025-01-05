@@ -25020,9 +25020,12 @@ a:hover {
 .success_card {
   display: block;
   color: var(--col-black);
+  border-bottom: 1px solid var(--col-grey-100);
+  padding-inline: 1rem;
+  margin-bottom: 0.5rem;
 }
-.success_card:nth-of-type(odd) {
-  background-color: var(--col-grey-100);
+.success_card__text {
+  margin-bottom: 0;
 }
 
 .has-blue-color,
