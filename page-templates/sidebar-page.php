@@ -29,7 +29,7 @@ $blocks = parse_blocks($content);
                 $sidebar = get_field('sidebar', get_the_ID()) ?? 'Siblings';
 
                 if ($sidebar === 'Children') {
-                    display_child_pages_with_sidebar_template(get_the_ID());
+                    echo display_child_pages_with_sidebar_template(get_the_ID());
                 } else if ($sidebar === 'Siblings') {
                     display_sibling_pages_with_sidebar_template(get_the_ID());
                 }
