@@ -31,49 +31,47 @@ get_header(); ?>
             <div class="news_index__grid">
                 <?php while (have_posts()) {
                     the_post(); ?>
-                    <div class="col-md-4 mb-4">
-                        <a href="<?php the_permalink(); ?>" class="news_index__card">
-                            <?php
-                            if (has_post_thumbnail()) {
-                            ?>
-                                <div class="news_index__image">
-                                    <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="">
-                                </div>
-                            <?php
-                            } else {
-                                // Retrieve the post content and parse it for blocks
-                                $blocks = parse_blocks(get_the_content());
-                                $background_image_url = null;
+                    <a href="<?php the_permalink(); ?>" class="news_index__card">
+                        <?php
+                        if (has_post_thumbnail()) {
+                        ?>
+                            <div class="news_index__image">
+                                <img src="<?= get_the_post_thumbnail_url(get_the_ID(), 'large') ?>" alt="">
+                            </div>
+                        <?php
+                        } else {
+                            // Retrieve the post content and parse it for blocks
+                            $blocks = parse_blocks(get_the_content());
+                            $background_image_url = null;
 
-                                // Loop through the blocks to find the first 'acf/lc-hero' block
-                                foreach ($blocks as $block) {
-                                    if ($block['blockName'] === 'acf/lc-hero' && !empty($block['attrs']['data']['attached_file_id'])) {
-                                        // Get the image URL from the 'attached_file_id'
-                                        $background_image_id = $block['attrs']['data']['attached_file_id'];
-                                        $background_image_url = wp_get_attachment_image_url($background_image_id, 'medium');
-                                        break; // Exit the loop once we find the hero block
-                                    }
-                                }
-
-                                if ($background_image_url) {
-                                    // Output the background image from the hero block
-                                    echo '<div class="news_index__image">';
-                                    echo '<img src="' . esc_url($background_image_url) . '" alt="Hero Background" class="img-fluid">';
-                                    echo '</div>';
-                                } else {
-                                    // Fallback to the placeholder image
-                                    echo '<div class="news_index__image">';
-                                    echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.jpg') . '" alt="Placeholder Image" class="img-fluid">';
-                                    echo '</div>';
+                            // Loop through the blocks to find the first 'acf/lc-hero' block
+                            foreach ($blocks as $block) {
+                                if ($block['blockName'] === 'acf/lc-hero' && !empty($block['attrs']['data']['attached_file_id'])) {
+                                    // Get the image URL from the 'attached_file_id'
+                                    $background_image_id = $block['attrs']['data']['attached_file_id'];
+                                    $background_image_url = wp_get_attachment_image_url($background_image_id, 'medium');
+                                    break; // Exit the loop once we find the hero block
                                 }
                             }
-                            ?>
-                            <div class="news_index__inner">
-                                <h2><?= get_the_title() ?></h2>
-                                <p><?= wp_trim_words(get_the_content(), 50) ?>
-                            </div>
-                        </a>
-                    </div>
+
+                            if ($background_image_url) {
+                                // Output the background image from the hero block
+                                echo '<div class="news_index__image">';
+                                echo '<img src="' . esc_url($background_image_url) . '" alt="Hero Background" class="img-fluid">';
+                                echo '</div>';
+                            } else {
+                                // Fallback to the placeholder image
+                                echo '<div class="news_index__image">';
+                                echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.jpg') . '" alt="Placeholder Image" class="img-fluid">';
+                                echo '</div>';
+                            }
+                        }
+                        ?>
+                        <div class="news_index__inner">
+                            <h2><?= get_the_title() ?></h2>
+                            <p><?= wp_trim_words(get_the_content(), 50) ?>
+                        </div>
+                    </a>
                 <?php } ?>
             </div>
 
