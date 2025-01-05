@@ -73,6 +73,8 @@ get_header(); ?>
                         </div>
                     </a>
                 <?php } ?>
+            </div>
+            <div class="pt-5">
                 <?= understrap_pagination() ?>
             </div>
 
