@@ -1,6 +1,6 @@
 <section class="cta">
     <div class="container-xl">
-        <div class="bg-primary-400 text-white text-center">
+        <div class="bg-primary-400 text-white text-center p-4">
             <div class="h3"><?= get_field('title') ?></div>
             <div><?= get_field('content') ?></div>
             <a href="tel:<?= parse_phone(get_field('contact_phone', 'option')) ?>" class="button button-primary"><i class="fas fa-phone"></i> Call</a>
