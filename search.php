@@ -34,11 +34,33 @@ get_header(); ?>
                     <div class="col-md-4 mb-4">
                         <article id="post-<?php the_ID(); ?>" <?php post_class('card h-100'); ?>>
                             <a href="<?php the_permalink(); ?>" class="card-img-top">
-                                <?php if (has_post_thumbnail()) { ?>
-                                    <?php the_post_thumbnail('medium', ['class' => 'img-fluid']); ?>
-                                <?php } else { ?>
-                                    <img src="<?= get_template_directory_uri(); ?>/images/placeholder.jpg" alt="Placeholder Image" class="img-fluid">
-                                <?php } ?>
+                                <?php
+                                if (has_post_thumbnail()) {
+                                    the_post_thumbnail('medium', ['class' => 'img-fluid']);
+                                } else {
+                                    // Retrieve the post content and parse it for blocks
+                                    $blocks = parse_blocks(get_the_content());
+                                    $background_image_url = null;
+
+                                    // Loop through the blocks to find the first 'acf/lc-hero' block
+                                    foreach ($blocks as $block) {
+                                        if ($block['blockName'] === 'acf/lc-hero' && !empty($block['attrs']['data']['attached_file_id'])) {
+                                            // Get the image URL from the 'attached_file_id'
+                                            $background_image_id = $block['attrs']['data']['attached_file_id'];
+                                            $background_image_url = wp_get_attachment_image_url($background_image_id, 'medium');
+                                            break; // Exit the loop once we find the hero block
+                                        }
+                                    }
+
+                                    if ($background_image_url) {
+                                        // Output the background image from the hero block
+                                        echo '<img src="' . esc_url($background_image_url) . '" alt="Hero Background" class="img-fluid">';
+                                    } else {
+                                        // Fallback to the placeholder image
+                                        echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.jpg') . '" alt="Placeholder Image" class="img-fluid">';
+                                    }
+                                }
+                                ?>
                             </a>
                             <div class="card-body">
                                 <h2 class="card-title h5">
