@@ -420,4 +420,13 @@ function display_child_pages_with_sidebar_template($post_id)
         return null;
     }
 }
+
+function modify_search_results_per_page($query)
+{
+    // Check if it's the main query and a search query
+    if ($query->is_main_query() && $query->is_search()) {
+        $query->set('posts_per_page', 10); // Set the desired number of results per page
+    }
+}
+add_action('pre_get_posts', 'modify_search_results_per_page');
 ?>
