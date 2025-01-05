@@ -1,4 +1,7 @@
-<section class="cta">
+<?php
+$class = $block['className'] ?? null;
+?>
+<section class="cta <?= $class ?>">
     <div class="container-xl">
         <div class="bg-primary-400 text-white text-center p-4">
             <?php
