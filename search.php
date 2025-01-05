@@ -73,10 +73,8 @@ get_header(); ?>
                         </div>
                     </a>
                 <?php } ?>
+                <?= understrap_pagination() ?>
             </div>
-
-            <!-- Pagination -->
-            <?= understrap_pagination() ?>
 
         <?php } else { ?>
             <div class="alert alert-warning">
