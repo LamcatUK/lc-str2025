@@ -21,6 +21,27 @@
             "esc_html": 0
         },
         {
+            "key": "field_677ac6bc3986b",
+            "label": "Pre-Title",
+            "name": "pre_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_677ac5d7dd76a",
             "label": "Title",
             "name": "title",
