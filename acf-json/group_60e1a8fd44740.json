@@ -3,31 +3,6 @@
     "title": "Flexible Blocks",
     "fields": [
         {
-            "key": "field_61225e107d244",
-            "label": "Sidebar Menu",
-            "name": "sidebar",
-            "aria-label": "",
-            "type": "checkbox",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "Yes": "Yes"
-            },
-            "allow_custom": 0,
-            "default_value": [],
-            "layout": "vertical",
-            "toggle": 0,
-            "return_format": "value",
-            "save_custom": 0,
-            "custom_choice_button_text": "Add new choice"
-        },
-        {
             "key": "field_60e1a9084239d",
             "label": "Flexible Blocks",
             "name": "flexible_blocks",
