@@ -62,7 +62,7 @@ get_header(); ?>
                             } else {
                                 // Fallback to the placeholder image
                                 echo '<div class="news_index__image">';
-                                echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.jpg') . '" alt="Placeholder Image" class="img-fluid">';
+                                echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/img/placeholder.png') . '" alt="Placeholder Image" class="img-fluid">';
                                 echo '</div>';
                             }
                         }
