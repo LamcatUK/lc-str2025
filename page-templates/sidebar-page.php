@@ -26,10 +26,9 @@ $blocks = parse_blocks($content);
         <div class="row">
             <div class="col-lg-3">
                 <?php
-                $sidebar = get_field('sidebar', get_the_ID());
-                if (!$sidebar) {
-                    $sidebar = 'Siblings'; // Default value if unset
-                }
+                $sidebar = get_field('sidebar', get_the_ID()) ?? 'Siblings';
+
+                echo '<h1>' . $sidebar . '</h1>';
 
                 if ($sidebar === 'Children') {
                     display_child_pages_with_sidebar_template(get_the_ID());
