@@ -28,7 +28,7 @@ $blocks = parse_blocks($content);
         ?>
             <div class="row">
                 <div class="col-lg-3">
-                    <?php
+                    <?=
                     display_child_pages_with_sidebar_template(get_the_ID());
                     ?>
                 </div>
