@@ -24120,7 +24120,7 @@ footer .colophon a:hover {
   color: var(--col-accent-400);
 }
 
-.cta {
+.cta__inner {
   background-color: var(--col-primary-400);
   color: var(--col-white);
   border-radius: var(--border-lg);
