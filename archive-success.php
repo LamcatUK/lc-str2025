@@ -15,7 +15,7 @@ $page_for_posts = get_option('page_for_posts');
     <img src="/wp-content/uploads/2021/09/notable-victories-hero.jpg" class="hero__bg">
     <div class="overlay"></div>
     <div class="container-xl py-6 my-auto">
-        <h1>Stormcatcher Insights</h1>
+        <h1>Success Stories</h1>
         <div>
             <a href="/contact/" class="button button-primary">Contact Us Today</a>
         </div>
