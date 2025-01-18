@@ -132,7 +132,7 @@ defined('ABSPATH') || exit;
                 </button>
             </div>
             <div class="phone text-lg-end d-none d-lg-block">
-                Call us today: <span class="fw-bold">0333 7007 676</span>
+                Call us today: <span class="fw-bold"><?= do_shortcode('[contact_phone]') ?></span>
             </div>
             <nav class="navbar navbar-expand-lg p-0">
                 <?php

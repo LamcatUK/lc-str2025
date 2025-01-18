@@ -24042,6 +24042,12 @@ header .logo a {
 header .phone {
   grid-area: phone;
 }
+header .phone span a {
+  color: var(--col-black);
+}
+header .phone span a:hover {
+  color: var(--col-accent-400);
+}
 header .navbar {
   grid-area: nav;
 }

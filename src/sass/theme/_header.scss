@@ -38,6 +38,12 @@ header {
     }
     .phone {
         grid-area: phone;
+        span a {
+            color: var(--col-black);
+            &:hover {
+                color: var(--col-accent-400);
+            }
+        }
     }
     .navbar {
         grid-area: nav;
