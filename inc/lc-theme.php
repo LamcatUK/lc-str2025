@@ -429,4 +429,15 @@ function modify_search_results_per_page($query)
     }
 }
 add_action('pre_get_posts', 'modify_search_results_per_page');
+
+function remove_dashboard_widgets()
+{
+    remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // At a Glance
+    remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // Activity
+    remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Quick Draft
+    remove_meta_box('dashboard_primary', 'dashboard', 'side'); // WordPress News and Events
+}
+add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+
+
 ?>
