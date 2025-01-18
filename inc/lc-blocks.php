@@ -174,13 +174,14 @@ function set_default_acf_link_field($field)
 add_filter('acf/load_field/key=field_67331133d7555', 'set_default_acf_link_field');
 
 
-function deregister_yoast_seo_breadcrumbs_block()
+function deregister_yoast_blocks()
 {
     if (function_exists('unregister_block_type')) {
-        unregister_block_type('yoast-seo/breadcrumbs'); // Correct block name
+        unregister_block_type('yoast-seo/breadcrumbs');
+        unregister_block_type('yoast/faq-block');
     }
 }
-add_action('init', 'deregister_yoast_seo_breadcrumbs_block', 20); // Higher priority
+add_action('init', 'deregister_yoast_blocks', 20); // Higher priority
 
 
 
