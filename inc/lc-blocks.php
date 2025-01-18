@@ -157,6 +157,7 @@ function modify_core_add_container($attributes, $content)
 }
 
 
+// set default for lc hero cta
 function set_default_acf_link_field($field)
 {
     // Check the field key or name to ensure you're targeting the correct field
@@ -171,5 +172,16 @@ function set_default_acf_link_field($field)
     return $field;
 }
 add_filter('acf/load_field/key=field_67331133d7555', 'set_default_acf_link_field');
+
+
+function deregister_yoast_breadcrumbs_block()
+{
+    // Check if the function exists to avoid errors if Yoast is not active
+    if (function_exists('unregister_block_type')) {
+        unregister_block_type('yoast/breadcrumbs');
+    }
+}
+add_action('init', 'deregister_yoast_breadcrumbs_block');
+
 
 ?>
