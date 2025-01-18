@@ -180,7 +180,7 @@ function deregister_yoast_seo_breadcrumbs_block()
         unregister_block_type('yoast-seo/breadcrumbs'); // Correct block name
     }
 }
-add_action('init', 'deregister_yoast_seo_breadcrumbs_block');
+add_action('init', 'deregister_yoast_seo_breadcrumbs_block', 20); // Higher priority
 
 
 
