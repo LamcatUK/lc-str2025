@@ -3,7 +3,7 @@
         <div class="row g-5">
             <div class="col-lg-3" data-aos="fadein">
                 <h2 class="fancy">Our<br><span>Expertise</span></h2>
-                <p>intro</p>
+                <p><?= get_field('intro') ?></p>
                 <a href="/expertise/" class="button button-primary">All Practice Areas</a>
             </div>
             <div class="col-lg-9 expertise__slider" data-aos="fadein">
