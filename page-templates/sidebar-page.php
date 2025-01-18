@@ -44,7 +44,9 @@ $blocks = parse_blocks($content);
                     if (isset($block['blockName']) && $block['blockName'] === 'acf/lc-breadcrumbs') {
                         continue;
                     }
-                    echo render_block($block);
+                    // echo render_block($block);
+                    $block_content = render_block($block);
+                    echo do_shortcode($block_content);
                 }
                 ?>
             </div>
