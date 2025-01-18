@@ -199,7 +199,7 @@ function remove_featured_image_support_for_template()
             $template = get_page_template_slug($post_id);
 
             // Specify the template where you want to remove featured image support
-            if ($template === 'sidebar-page.php') {
+            if ($template === 'page-templates/sidebar-page.php') {
                 remove_post_type_support('post', 'thumbnail'); // Remove featured image
             }
         }
