@@ -184,27 +184,26 @@ function deregister_yoast_blocks()
 add_action('init', 'deregister_yoast_blocks', 20); // Higher priority
 
 
-function remove_featured_image_support_for_template()
+function remove_featured_image_support_for_sidebar_template()
 {
-    // Get the current screen
-    $screen = get_current_screen();
-
-    // Check if we're in the post editor and the post type supports featured images
-    if (is_admin() && $screen && $screen->post_type === 'post') {
+    // Check if we're in the admin area
+    if (is_admin()) {
         // Get the current post ID
         $post_id = isset($_GET['post']) ? intval($_GET['post']) : null;
 
         if ($post_id) {
-            // Get the template used by the post
+            // Get the template assigned to the post
             $template = get_page_template_slug($post_id);
 
-            // Specify the template where you want to remove featured image support
+            // Check if the template matches your specific template
             if ($template === 'page-templates/sidebar-page.php') {
-                remove_post_type_support('post', 'thumbnail'); // Remove featured image
+                // Remove featured image support for pages
+                remove_post_type_support('page', 'thumbnail');
             }
         }
     }
 }
-add_action('current_screen', 'remove_featured_image_support_for_template');
+add_action('load-post.php', 'remove_featured_image_support_for_sidebar_template');
+add_action('load-post-new.php', 'remove_featured_image_support_for_sidebar_template');
 
 ?>
