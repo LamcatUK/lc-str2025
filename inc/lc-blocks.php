@@ -184,5 +184,27 @@ function deregister_yoast_blocks()
 add_action('init', 'deregister_yoast_blocks', 20); // Higher priority
 
 
+function remove_featured_image_support_for_template()
+{
+    // Get the current screen
+    $screen = get_current_screen();
+
+    // Check if we're in the post editor and the post type supports featured images
+    if (is_admin() && $screen && $screen->post_type === 'post') {
+        // Get the current post ID
+        $post_id = isset($_GET['post']) ? intval($_GET['post']) : null;
+
+        if ($post_id) {
+            // Get the template used by the post
+            $template = get_page_template_slug($post_id);
+
+            // Specify the template where you want to remove featured image support
+            if ($template === 'sidebar-page.php') {
+                remove_post_type_support('post', 'thumbnail'); // Remove featured image
+            }
+        }
+    }
+}
+add_action('current_screen', 'remove_featured_image_support_for_template');
 
 ?>
