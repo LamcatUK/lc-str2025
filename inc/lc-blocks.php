@@ -156,4 +156,20 @@ function modify_core_add_container($attributes, $content)
     return $content;
 }
 
+
+function set_default_acf_link_field($field)
+{
+    // Check the field key or name to ensure you're targeting the correct field
+    if ($field['key'] === 'field_67331133d7555') {
+        $field['default_value'] = array(
+            'url'    => '/contact/',  // Default URL
+            'title'  => 'Contact Us Today',          // Default link text
+            'target' => '_self',              // Default target (_self, _blank, etc.)
+        );
+    }
+
+    return $field;
+}
+add_filter('acf/load_field/key=field_67331133d7555', 'set_default_acf_link_field');
+
 ?>
