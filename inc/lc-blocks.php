@@ -174,15 +174,14 @@ function set_default_acf_link_field($field)
 add_filter('acf/load_field/key=field_67331133d7555', 'set_default_acf_link_field');
 
 
-function deregister_yoast_breadcrumbs_block_script()
+function deregister_yoast_seo_breadcrumbs_block()
 {
-    // Check if Yoast SEO is active
-    if (defined('WPSEO_VERSION')) {
-        // Dequeue the Yoast block editor script
-        wp_dequeue_script('yoast-seo-breadcrumbs');
+    if (function_exists('unregister_block_type')) {
+        unregister_block_type('yoast-seo/breadcrumbs'); // Correct block name
     }
 }
-add_action('enqueue_block_editor_assets', 'deregister_yoast_breadcrumbs_block_script');
+add_action('init', 'deregister_yoast_seo_breadcrumbs_block');
+
 
 
 ?>
