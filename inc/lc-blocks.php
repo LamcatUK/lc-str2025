@@ -196,7 +196,11 @@ function remove_featured_image_support_for_sidebar_template()
             $template = get_page_template_slug($post_id);
 
             // Check if the template matches your specific template
-            if ($template === 'page-templates/sidebar-page.php') {
+            if (
+                $template === 'page-templates/sidebar-page.php'
+                ||
+                $template === 'page-templates/sub-area-page.php'
+            ) {
                 // Remove featured image support for pages
                 remove_post_type_support('page', 'thumbnail');
             }
