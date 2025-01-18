@@ -83,7 +83,7 @@ function lc_dashboard_widget_display()
         <img style="width: 50%;"
             src="<?= get_stylesheet_directory_uri() . '/img/lc-full.jpg'; ?>">
         <a class="button button-primary" target="_blank" rel="noopener nofollow noreferrer"
-            href="mailto:hello@lamcat.co.uk/">Contact</a>
+            href="mailto:hello@lamcat.co.uk">Contact</a>
     </div>
     <div>
         <p><strong>Thanks for choosing Lamcat!</strong></p>
