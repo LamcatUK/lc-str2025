@@ -439,7 +439,7 @@ function remove_dashboard_widgets()
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
-function ensure_current_menu_ancestor($items)
+function force_add_current_menu_ancestor($items)
 {
     global $post;
 
@@ -448,14 +448,21 @@ function ensure_current_menu_ancestor($items)
         $ancestor_ids = get_post_ancestors($current_page_id);
 
         foreach ($items as &$item) {
+            // Check if the menu item's object ID is in the current page's ancestor list
             if (in_array($item->object_id, $ancestor_ids)) {
-                // Apply the current-menu-ancestor class
                 $item->classes[] = 'current-menu-ancestor';
+            }
+
+            // Optionally add a class to the direct parent
+            if ($item->object_id == $post->post_parent) {
+                $item->classes[] = 'current-menu-parent';
             }
         }
     }
+
     return $items;
 }
-add_filter('wp_nav_menu_objects', 'ensure_current_menu_ancestor', 10, 1);
+add_filter('wp_nav_menu_objects', 'force_add_current_menu_ancestor', 10, 1);
+
 
 ?>
