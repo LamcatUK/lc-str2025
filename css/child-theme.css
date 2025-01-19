@@ -24052,14 +24052,15 @@ header .navbar {
   grid-area: nav;
 }
 header .current-menu-item,
-header .current_page_parent,
-header .menu-item-has-children {
+header .current_page_parent {
   font-weight: var(--fw-600);
 }
 header .current-menu-item .nav-link::after,
-header .current_page_parent .nav-link::after,
-header .menu-item-has-children .nav-link::after {
+header .current_page_parent .nav-link::after {
   transform: scaleX(1);
+}
+header .dropdown-toggle::after {
+  margin-left: 0;
 }
 header .nav-link {
   color: var(--col-black);
