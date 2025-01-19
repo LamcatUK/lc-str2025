@@ -1,6 +1,6 @@
 <section class="expertise bg-grey-100 py-6">
     <div class="container-xl" data-aos="fadein">
-        <div class="row g-5">
+        <div class="row gy-5">
             <div class="col-lg-3">
                 <h2 class="fancy">Our<br><span>Expertise</span></h2>
                 <p><?= get_field('intro') ?></p>
@@ -55,8 +55,7 @@
                     },
                 },
                 type: 'loop',
-                // autoplay: true,
-                autoplay: false,
+                autoplay: true,
                 interval: 3000,
                 perPage: 3,
                 perMove: 1,
