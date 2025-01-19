@@ -99,8 +99,8 @@ $page_for_posts = get_option('page_for_posts');
                 echo '<p>No posts found in this category.</p>';
             }
             ?>
+            <?= understrap_pagination() ?>
         </div>
-        <?= understrap_pagination() ?>
     </div>
     <div class="py-6 bg-grey-100">
         <div class="container-xl">
