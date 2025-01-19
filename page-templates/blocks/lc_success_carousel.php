@@ -1,6 +1,6 @@
 <section class="success_carousel bg-grey-100 py-6">
     <div class="container-xl">
-        <div class="row g-4">
+        <div class="row gy-4">
             <div class="col-md-4" data-aos="fadein">
                 <h2 class="mb-4 fancy">
                     <?= get_field('title') ?>
