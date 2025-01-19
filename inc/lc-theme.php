@@ -439,4 +439,18 @@ function remove_dashboard_widgets()
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
+function add_current_classes_to_menu($classes, $item)
+{
+    if (is_page() && $item->type === 'post_type' && $item->object === 'page') {
+        global $post;
+        $ancestors = get_post_ancestors($post);
+        if (in_array($item->object_id, $ancestors)) {
+            $classes[] = 'current-menu-ancestor';
+        }
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_current_classes_to_menu', 10, 2);
+
+
 ?>
