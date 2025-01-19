@@ -24052,11 +24052,13 @@ header .navbar {
   grid-area: nav;
 }
 header .current-menu-item,
-header .current_page_parent {
+header .current_page_parent,
+header .current-menu-ancestor {
   font-weight: var(--fw-600);
 }
 header .current-menu-item .nav-link::after,
-header .current_page_parent .nav-link::after {
+header .current_page_parent .nav-link::after,
+header .current-menu-ancestor .nav-link::after {
   transform: scaleX(1);
 }
 header .dropdown-toggle::after {

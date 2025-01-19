@@ -50,7 +50,8 @@ header {
     }
 
     .current-menu-item,
-    .current_page_parent {
+    .current_page_parent,
+    .current-menu-ancestor {
         font-weight: var(--fw-600);
         .nav-link::after {
             transform: scaleX(1);
