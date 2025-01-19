@@ -59,7 +59,7 @@
                 interval: 3000,
                 perPage: 3,
                 perMove: 1,
-                gap: '1px', // Add gap between slides
+                gap: '1px',
                 pagination: false, // Disable default pagination
                 arrows: false, // Disable default arrows
             }).mount();
