@@ -1,4 +1,4 @@
-<section class="sub_area_nav p-5 bg-grey-100">
+<section class="sub_area_nav p-3 p-lg-5 bg-grey-100">
     <div class="container-xl">
         <h2 class="fancy"><?= get_field('block_title') ?></h2>
         <?php
