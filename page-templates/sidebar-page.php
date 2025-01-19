@@ -23,7 +23,7 @@ $blocks = parse_blocks($content);
     }
     ?>
     <div class="container-xl">
-        <div class="row">
+        <div class="row g-4">
             <div class="col-lg-3">
                 <?php
                 $sidebar = get_field('sidebar', get_the_ID()) ?? 'Siblings';
