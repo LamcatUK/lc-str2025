@@ -439,18 +439,23 @@ function remove_dashboard_widgets()
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
-function add_current_classes_to_menu($classes, $item)
+function add_ancestor_class_to_dropdown($items, $args)
 {
-    if (is_page() && $item->type === 'post_type' && $item->object === 'page') {
-        global $post;
-        $ancestors = get_post_ancestors($post);
-        if (in_array($item->object_id, $ancestors)) {
-            $classes[] = 'current-menu-ancestor';
+    foreach ($items as &$item) {
+        // Check if the current item has children
+        if (in_array('menu-item-has-children', $item->classes)) {
+            // Loop through the children to see if any are current
+            foreach ($items as $child) {
+                if ($child->menu_item_parent == $item->ID && in_array('current-menu-item', $child->classes)) {
+                    $item->classes[] = 'current-menu-ancestor';
+                }
+            }
         }
     }
-    return $classes;
+    return $items;
 }
-add_filter('nav_menu_css_class', 'add_current_classes_to_menu', 10, 2);
+add_filter('wp_nav_menu_objects', 'add_ancestor_class_to_dropdown', 10, 2);
+
 
 
 ?>
