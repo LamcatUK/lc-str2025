@@ -57,7 +57,7 @@
                 type: 'loop',
                 autoplay: true,
                 interval: 3000,
-                perPage: 1,
+                perPage: 3,
                 perMove: 1,
                 gap: '1px', // Add gap between slides
                 pagination: false, // Disable default pagination
