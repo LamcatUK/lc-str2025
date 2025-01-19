@@ -1,6 +1,6 @@
 <section class="contact py-5">
     <div class="container-xl">
-        <div class="row g-5">
+        <div class="row gy-5">
             <div class="col-lg-5">
                 <h2 class="h3">Contact Us Directly</h2>
                 <ul class="fa-ul mb-4">

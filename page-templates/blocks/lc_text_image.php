@@ -33,7 +33,7 @@ $link = get_field('image_link') ?? null;
 <section
     class="text_image bg-<?= $background ?> <?= $class ?>">
     <div class="container-xl">
-        <div class="row g-5">
+        <div class="row gy-5">
             <div
                 class="<?= $colText ?> <?= $orderText ?> d-flex flex-column justify-content-center" data-aos="fadein">
                 <h2 class="mb-4 fancy">
