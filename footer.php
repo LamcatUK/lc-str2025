@@ -33,6 +33,10 @@ defined('ABSPATH') || exit;
                     <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span> <a class="footer__call mb-4" href="tel:<?= parse_phone(get_field('contact_phone', 'options')) ?>"><?= get_field('contact_phone', 'options') ?></a></li>
                     <li><span class="fa-li"><i class="fa-solid fa-paper-plane"></i></span> <a class="footer__email mb-4" href="mailto:<?= get_field('contact_email', 'options') ?>"><?= get_field('contact_email', 'options') ?></a></li>
                 </ul>
+                <div class="footer__title">Connect on Social Media</div>
+                <div>
+                    <?= do_shortcode('[social_icons]') ?>
+                </div>
             </div>
         </div>
     </div>
