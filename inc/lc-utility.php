@@ -120,6 +120,12 @@ function social_icons($size = null)
     if ($s['twitter_url'] ?? null) {
         $output .= '<a href="' . $s['twitter_url'] . '" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter fa-2x"></i></a>';
     }
+    if ($s['youtube_url'] ?? null) {
+        $output .= '<a href="' . $s['youtube_url'] . '" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube fa-2x"></i></a>';
+    }
+    if ($s['tiktok_url'] ?? null) {
+        $output .= '<a href="' . $s['tiktok_url'] . '" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok fa-2x"></i></a>';
+    }
     $output .= '</div>';
 
     return $output;

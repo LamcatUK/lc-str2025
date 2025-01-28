@@ -24116,6 +24116,12 @@ footer .menu {
   -webkit-padding-start: 0;
   padding-inline-start: 0;
 }
+footer .social_icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: var(--fs-200);
+}
 footer .colophon {
   font-size: var(--fs-100);
   color: var(--col-grey-400);

@@ -32,6 +32,12 @@ footer {
         padding-inline-start: 0;
     }
 
+    .social_icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: var(--fs-200);
+    }
 
     .colophon {
         .container-xl {

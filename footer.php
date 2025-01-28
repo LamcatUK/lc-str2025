@@ -34,9 +34,7 @@ defined('ABSPATH') || exit;
                     <li><span class="fa-li"><i class="fa-solid fa-paper-plane"></i></span> <a class="footer__email mb-4" href="mailto:<?= get_field('contact_email', 'options') ?>"><?= get_field('contact_email', 'options') ?></a></li>
                 </ul>
                 <div class="footer__title">Connect on Social Media</div>
-                <div>
-                    <?= do_shortcode('[social_icons]') ?>
-                </div>
+                <?= do_shortcode('[social_icons]') ?>
             </div>
         </div>
     </div>
