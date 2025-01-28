@@ -81,6 +81,10 @@ defined('ABSPATH') || exit;
         echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'options') . '" />';
     }
     if (is_front_page() || is_page('contact')) {
+        $social_links = get_field('socials', 'option');
+        $filtered_links = array_values(array_filter($social_links, function ($url) {
+            return !empty($url);
+        }));
         ?>
         <script type="application/ld+json">
             {
@@ -89,10 +93,9 @@ defined('ABSPATH') || exit;
                 "name": "Stormcatcher Business Legal Services UK",
                 "url": "https://stormcatcher.co.uk/",
                 "Description": "Stormcatcher Law is a friendly and approachable renowned niche law firm with a leading reputation and enviable track record across a wide range of areas of law, specialising in consumer law and civil dispute resolution, second to none in automotive law, building and construction and contract law. We provide legal advice and services for individuals and businesses. ",
-                "sameAs": ["https://www.facebook.com/stormcatcheruk/",
-                    "https://twitter.com/stormcatcheruk/",
-                    "https://www.linkedin.com/company/stormcatcher/"
-                ],
+                "sameAs": <?php
+                            echo json_encode($filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+                            ?>,
                 "logo": "https://stormcatcher.co.uk/wp-content/uploads/2019/05/stormcatcher-business-lawyers-og-1200x630.jpg",
                 "contactPoint": [{
                     "@type": "ContactPoint",
