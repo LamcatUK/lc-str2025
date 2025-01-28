@@ -96,7 +96,7 @@ defined('ABSPATH') || exit;
                 "sameAs": <?php
                             echo json_encode($filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
                             ?>,
-                "logo": "<?= get_stylesheet_directory_uri() ?>/img/stormcatcher-og-1200x630.png",
+                "logo": "<?= get_stylesheet_directory_uri() ?>/img/stormcatcher-og-696x696.png",
                 "contactPoint": [{
                     "@type": "ContactPoint",
                     "telephone": "+44-3337007676",
