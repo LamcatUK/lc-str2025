@@ -96,7 +96,7 @@ defined('ABSPATH') || exit;
                 "sameAs": <?php
                             echo json_encode($filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
                             ?>,
-                "logo": "https://stormcatcher.co.uk/wp-content/uploads/2019/05/stormcatcher-business-lawyers-og-1200x630.jpg",
+                "logo": "<?= get_stylesheet_directory_uri() ?>/img/stormcatcher-og-1200x630.png",
                 "contactPoint": [{
                     "@type": "ContactPoint",
                     "telephone": "+44-3337007676",
