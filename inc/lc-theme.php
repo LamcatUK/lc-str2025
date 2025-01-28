@@ -179,6 +179,9 @@ function custom_login_logo()
 }
 add_action('login_enqueue_scripts', 'custom_login_logo');
 
+add_action('admin_init', function () {
+    define('DISALLOW_FILE_EDIT', true);
+});
 
 function splide_slider_shortcode($atts)
 {
