@@ -87,14 +87,14 @@ function contact_email($atts)
 add_shortcode('social_in_icon', function () {
     $s = get_field('social', 'options') ?? null;
     if ($s['linkedin_url'] ?? null) {
-        return '<a href="' . get_field('linkedin_url', 'options') . '" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>';
+        return '<a href="' . get_field('linkedin_url', 'options') . '" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>';
     }
     return;
 });
 add_shortcode('social_tw_icon', function () {
     $s = get_field('social', 'options') ?? null;
     if ($s['twitter_url'] ?? null) {
-        return '<a href="' . get_field('twitter_url', 'options') . '" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>';
+        return '<a href="' . get_field('twitter_url', 'options') . '" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>';
     }
     return;
 });
@@ -109,22 +109,22 @@ function social_icons($size = null)
 
     $output = '<div class="social_icons">';
     if ($s['linkedin_url'] ?? null) {
-        $output .= '<a href="' . $s['linkedin_url'] . '" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in fa-2x"></i></a>';
+        $output .= '<a href="' . $s['linkedin_url'] . '" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in fa-2x"></i></a>';
     }
     if ($s['instagram_url'] ?? null) {
-        $output .= '<a href="' . $s['instagram_url'] . '" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram fa-2x"></i></a>';
+        $output .= '<a href="' . $s['instagram_url'] . '" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram fa-2x"></i></a>';
     }
     if ($s['facebook_url'] ?? null) {
-        $output .= '<a href="' . $s['facebook_url'] . '" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f fa-2x"></i></a>';
+        $output .= '<a href="' . $s['facebook_url'] . '" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f fa-2x"></i></a>';
     }
     if ($s['twitter_url'] ?? null) {
-        $output .= '<a href="' . $s['twitter_url'] . '" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter fa-2x"></i></a>';
+        $output .= '<a href="' . $s['twitter_url'] . '" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter fa-2x"></i></a>';
     }
     if ($s['youtube_url'] ?? null) {
-        $output .= '<a href="' . $s['youtube_url'] . '" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube fa-2x"></i></a>';
+        $output .= '<a href="' . $s['youtube_url'] . '" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube fa-2x"></i></a>';
     }
     if ($s['tiktok_url'] ?? null) {
-        $output .= '<a href="' . $s['tiktok_url'] . '" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok fa-2x"></i></a>';
+        $output .= '<a href="' . $s['tiktok_url'] . '" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok fa-2x"></i></a>';
     }
     $output .= '</div>';
 
