@@ -326,6 +326,15 @@ add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
     return $classes;
 }, 10, 4);
 
+function correct_success_stories_canonical($canonical)
+{
+    if (is_singular('success')) {
+        $canonical = home_url('/success-stories/' . get_post_field('post_name', get_queried_object()));
+    }
+    return $canonical;
+}
+add_filter('wpseo_canonical', 'correct_success_stories_canonical');
+
 
 
 function get_sibling_pages_with_sidebar_template($post_id)
