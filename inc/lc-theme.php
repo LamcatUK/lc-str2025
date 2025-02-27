@@ -476,5 +476,11 @@ function force_add_current_menu_ancestor($items)
 }
 add_filter('wp_nav_menu_objects', 'force_add_current_menu_ancestor', 10, 1);
 
+add_filter('wpseo_canonical', function ($canonical) {
+    if (is_singular('success')) {
+        return user_trailingslashit($canonical, 'single');
+    }
+    return $canonical;
+});
 
 ?>
