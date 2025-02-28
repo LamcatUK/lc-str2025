@@ -59,6 +59,15 @@ function acf_blocks()
             'supports' => array('mode' => false),
         ));
         acf_register_block_type(array(
+            'name'                => 'lc_success_by_speciality',
+            'title'                => __('LC Success by Speciality'),
+            'category'            => 'layout',
+            'icon'                => 'cover-image',
+            'render_template'    => 'page-templates/blocks/lc_success_by_speciality.php',
+            'mode'    => 'edit',
+            'supports' => array('mode' => false),
+        ));
+        acf_register_block_type(array(
             'name'                => 'lc_insights',
             'title'                => __('LC Insights'),
             'category'            => 'layout',

@@ -1,80 +1,78 @@
 .success_carousel {
-    &__card {
-      display: block;
-      background-color: var(--col-white);
-      padding: 1rem;
-      margin-block: 1.25rem 0.5rem;
-      margin-inline: 1.5rem;
-      border-radius: var(--border-lg);
-      text-decoration: none;
-      color: var(--col-black);
-      box-shadow: var(--shadow-lg);
-      transition: box-shadow var(--transition), transform var(--transition);
+  &__card {
+    display: block;
+    background-color: var(--col-white);
+    padding: 1rem;
+    margin-block: 1.25rem 0.5rem;
+    margin-inline: 1.5rem;
+    border-radius: var(--border-lg);
+    text-decoration: none;
+    color: var(--col-black);
+    box-shadow: var(--shadow-lg);
+    transition: box-shadow var(--transition), transform var(--transition);
   
-      h3 {
-        font-family: var(--ff-body);
-        font-size: var(--fs-500);
-      }
-  
-      p {
-        display: -webkit-box;          /* Required for line clamping */
-        -webkit-box-orient: vertical;  /* Required for line clamping */
-        -webkit-line-clamp: 3;         /* Limit to three lines */
-        overflow: hidden;              /* Hide the overflow text */
-      }
-  
-      &:hover {
-        box-shadow: var(--shadow-sm);
-        transform: translateY(2px);
-        color: inherit;
-      }
+    h3 {
+      font-family: var(--ff-body);
+      font-size: var(--fs-500);
     }
   
+    p {
+      display: -webkit-box;          /* Required for line clamping */
+      -webkit-box-orient: vertical;  /* Required for line clamping */
+      -webkit-line-clamp: 3;         /* Limit to three lines */
+      overflow: hidden;              /* Hide the overflow text */
+    }
   
-    // Optional: Control styling
-    .splide-controls {
-        display: flex;
-        justify-content: flex-start;
-        gap: 1rem;
-        margin-inline-start: 1.5rem;
-
-        .splide-prev,
-        .splide-next {
-            color: var(--col-black);
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 15;
-            /* Place arrows above all */
-            pointer-events: all;
-            /* Ensure arrows receive clicks */
-            position: relative;
-            transform: translateY(0);   
-            &::after {
-                content: "";
-                position: relative;
-                display: block;
-                // background-color: red;
-                background-size: contain;
-                background-position: center;
-                background-repeat: no-repeat;
-                width: 1rem;
-                height: 1rem;
-            }
-        }
-    
-        .splide-prev::after {
-            // background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55.84 95'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m.02,47.51l4.16-4.16L43.35,4.16l4.16-4.16,8.3,8.33-4.16,4.16L16.63,47.51l35.05,35.02,4.16,4.16-8.33,8.3-4.16-4.16L4.16,51.68l-4.16-4.16h.02Z'/%3E%3C/svg%3E");
-            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.09 18'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m8.47.53l.53-.53,1.07,1.07-.53.53-6.64,6.64h18.2v1.51H2.89l6.64,6.64.53.53-1.07,1.07-.53-.53L.53,9.53l-.53-.53.53-.53L8.47.53Z'/%3E%3C/svg%3E");
-        }
-    
-        .splide-next::after {
-            // background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55.84 95'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m55.81,47.49l-4.16,4.16L12.49,90.84l-4.16,4.16L.02,86.67l4.16-4.16,35.02-35.02L4.16,12.47,0,8.3,8.33,0l4.16,4.16,39.19,39.16,4.16,4.16h-.02Z'/%3E%3C/svg%3E");
-            background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.09 18'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m12.62,17.47l-.53.53-1.07-1.07.53-.53,6.64-6.64H0v-1.51h18.2L11.55,1.6l-.53-.53,1.07-1.07.53.53,7.93,7.93.53.53-.53.53-7.93,7.93Z'/%3E%3C/svg%3E");
-        }
-    }    
-
+    &:hover {
+      box-shadow: var(--shadow-sm);
+      transform: translateY(2px);
+      color: inherit;
+    }
   }
+      
+}
+// Optional: Control styling
+.splide-controls {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-inline-start: 1.5rem;
+
+    .splide-prev,
+    .splide-next {
+        color: var(--col-black);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 15;
+        /* Place arrows above all */
+        pointer-events: all;
+        /* Ensure arrows receive clicks */
+        position: relative;
+        transform: translateY(0);   
+        &::after {
+            content: "";
+            position: relative;
+            display: block;
+            // background-color: red;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+
+    .splide-prev::after {
+        // background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55.84 95'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m.02,47.51l4.16-4.16L43.35,4.16l4.16-4.16,8.3,8.33-4.16,4.16L16.63,47.51l35.05,35.02,4.16,4.16-8.33,8.3-4.16-4.16L4.16,51.68l-4.16-4.16h.02Z'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.09 18'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m8.47.53l.53-.53,1.07,1.07-.53.53-6.64,6.64h18.2v1.51H2.89l6.64,6.64.53.53-1.07,1.07-.53-.53L.53,9.53l-.53-.53.53-.53L8.47.53Z'/%3E%3C/svg%3E");
+    }
+
+    .splide-next::after {
+        // background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55.84 95'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m55.81,47.49l-4.16,4.16L12.49,90.84l-4.16,4.16L.02,86.67l4.16-4.16,35.02-35.02L4.16,12.47,0,8.3,8.33,0l4.16,4.16,39.19,39.16,4.16,4.16h-.02Z'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.09 18'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B stroke-width: 0px; %7D %3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='m12.62,17.47l-.53.53-1.07-1.07.53-.53,6.64-6.64H0v-1.51h18.2L11.55,1.6l-.53-.53,1.07-1.07.53.53,7.93,7.93.53.53-.53.53-7.93,7.93Z'/%3E%3C/svg%3E");
+    }
+}    
