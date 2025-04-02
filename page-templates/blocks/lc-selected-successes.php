@@ -7,9 +7,23 @@
  * @package lc-str2025
  */
 
+$bg_size = get_field( 'bg_size' ) ?? null;
+
+$background = 'bg-grey-100';
+$bg_inner   = '';
+$bg_outer   = '';
+
+if ( 'Full Width' === $bg_size ) {
+	$bg_outer = $background;
+	$bg_inner = '';
+} else {
+	$bg_outer = '';
+	$bg_inner = $background . ' px-5';
+}
+
 ?>
-<section class="success_carousel bg-grey-100 py-6">
-    <div class="container-xl" data-aos="fadein" data-aos-delay="200">
+<section class="success_carousel <?= esc_attr( $bg_outer ); ?>  py-4">
+    <div class="container-xl <?= esc_attr( $bg_inner ); ?> py-4" data-aos="fadein" data-aos-delay="200">
 		<?php
 		if ( get_field( 'title' ) ) {
 			?>
