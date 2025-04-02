@@ -13,6 +13,17 @@ defined( 'ABSPATH' ) || exit;
 function acf_blocks() {
     if ( function_exists( 'acf_register_block_type' ) ) {
 
+        acf_register_block_type(array(
+            'name'                => 'lc-selected-successes',
+            'title'               => __('LC Selected Successes'),
+            'category'            => 'layout',
+            'icon'                => 'cover-image',
+            'render_template'     => 'page-templates/blocks/lc-selected-successes.php',
+            'mode'                => 'edit',
+            'supports'            => array('mode' => false, 'anchor' => true, 'className' => true),
+        ));
+
+
         acf_register_block_type(
             array(
                 'name'            => 'lc-video-feature',

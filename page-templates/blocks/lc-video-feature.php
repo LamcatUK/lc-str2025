@@ -68,7 +68,7 @@ $featured_watch_url = 'https://www.youtube.com/watch?v=' . get_field( 'featured_
 									<iframe
 										src="<?= esc_url( $video_url ); ?>"
 										title=""
-										allowfullscreen
+										allowfullscreenQ
 									></iframe>
 								</div>
 							</li>

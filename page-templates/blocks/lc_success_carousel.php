@@ -1,12 +1,22 @@
+<?php
+/**
+ * Success Carousel Template
+ *
+ * This template displays a success carousel with a title, content, and a list of success stories.
+ *
+ * @package lc-str2025
+ */
+
+?>
 <section class="success_carousel bg-grey-100 py-6">
     <div class="container-xl">
         <div class="row gy-4">
             <div class="col-md-4" data-aos="fadein">
                 <h2 class="mb-4 fancy">
-                    <?= get_field('title') ?>
+                    <?= esc_html( get_field( 'title' ) ); ?>
                 </h2>
                 <div class="mb-4">
-                    <?= get_field('content') ?>
+                    <?= wp_kses_post( get_field( 'content' ) ); ?>
                 </div>
                 <a href="/success-stories/" class="button button-primary">Read more</a>
             </div>
@@ -19,15 +29,15 @@
                     <div class="splide__track">
                         <ul class="splide__list pb-4">
                             <?php
-                            foreach (get_field('successes') as $s) {
-                            ?>
+                            foreach ( get_field( 'successes' ) as $success ) {
+                                ?>
                                 <li class="splide__slide">
-                                    <a class="success_carousel__card" href="<?= get_the_permalink($s) ?>">
-                                        <h3><?= get_the_title($s) ?></h3>
-                                        <p><?= wp_trim_words(get_the_content(null, false, $s), 30) ?></p>
+                                    <a class="success_carousel__card" href="<?= esc_url( get_the_permalink( $success ) ); ?>">
+                                        <h3><?= esc_html( get_the_title( $success ) ); ?></h3>
+                                        <p><?= wp_kses_post( wp_trim_words( get_the_content( null, false, $success ), 30 ) ); ?></p>
                                     </a>
                                 </li>
-                            <?php
+                                <?php
                             }
                             ?>
                         </ul>
