@@ -13,7 +13,7 @@
         <div class="row gy-4">
             <div class="col-md-4" data-aos="fadein">
                 <h2 class="mb-4 fancy">
-                    <?= esc_html( get_field( 'title' ) ); ?>
+                    <?= wp_kses_post( get_field( 'title' ) ); ?>
                 </h2>
                 <div class="mb-4">
                     <?= wp_kses_post( get_field( 'content' ) ); ?>
