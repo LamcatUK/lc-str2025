@@ -28,8 +28,10 @@ if ( $colour ) {
 
 $featured_video     = get_field( 'featured_video_id' );
 $featured_video_url = 'https://www.youtube.com/embed/' . get_field( 'featured_video_id' ) . '?rel=0';
-
 $featured_watch_url = 'https://www.youtube.com/watch?v=' . get_field( 'featured_video_id' ) . '&embeds_referring_euri=https%3A%2F%2Fstormcatcher.co.uk%2F';
+$video_title        = get_field( 'featured_video_title' );
+$video_description  = get_field( 'featured_video_description' );
+$video_thumbnail    = get_field( 'featured_video_thumbnail' );
 ?>
 <section class="video_feature <?= esc_attr( trim( "$bg_outer $pad_outer" ) ); ?>">
 	<div class="<?= esc_attr( trim( "$bg_inner $pad_inner" ) ); ?>">
@@ -84,7 +86,26 @@ $featured_watch_url = 'https://www.youtube.com/watch?v=' . get_field( 'featured_
 		?>
 	</div>
 </section>
-
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "<?= esc_js( $video_title ); ?>",
+    "description": "<?= esc_js( $video_description ); ?>",
+    "thumbnailUrl": "<?= esc_url( $video_thumbnail ); ?>",
+    "uploadDate": "<?= date( 'c', strtotime( get_field( 'video_upload_date' ) ) ); ?>",
+    "contentUrl": "<?= esc_url( $featured_watch_url ); ?>",
+    "embedUrl": "<?= esc_url( $featured_video_url ); ?>",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Stormcatcher",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "<?= esc_url( get_stylesheet_directory_uri() . '/img/stormcatcher--dk.svg' ); ?>"
+        }
+    }
+}
+</script>
 <?php
 add_action(
 	'wp_footer',
