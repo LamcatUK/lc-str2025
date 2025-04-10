@@ -24020,7 +24020,10 @@ header.hidden {
 }
 header img {
   max-width: 312px;
-  width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  aspect-ratio: 312/58;
 }
 @media (min-width: 992px) {
   header .header__grid {
@@ -24031,14 +24034,18 @@ header img {
     grid-template-areas: "logo phone" "logo nav";
     grid-template-columns: auto 1fr;
   }
+  header .header__grid .logo {
+    min-width: 312px;
+  }
 }
 header .logo {
   grid-area: logo;
   align-content: center;
 }
 header .logo a {
-  display: grid;
-  place-content: center;
+  display: block;
+  width: 100%;
+  margin-block: auto;
 }
 header .phone {
   grid-area: phone;

@@ -129,7 +129,7 @@ defined('ABSPATH') || exit;
     <header class="pb-2 pt-2 pb-lg-0">
         <div class="container-xl header__grid">
             <div class="logo d-flex justify-content-between">
-                <a href="/" title="Stormcatcher"><img src="<?= get_stylesheet_directory_uri() ?>/img/stormcatcher--dk.svg" alt="Stormcatcher" width="1163" height="215"></a>
+                <a href="/" title="Stormcatcher"><img src="<?= get_stylesheet_directory_uri() ?>/img/stormcatcher--dk.svg" alt="Stormcatcher" width="312" height="58"></a>
                 <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>

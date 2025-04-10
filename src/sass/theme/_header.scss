@@ -1,91 +1,97 @@
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
+  max-width: 100dvw;
 
-    max-width: 100dvw;
+  transition: transform var(--transition);
 
-    transition: transform var(--transition);
+  &.hidden {
+    transform: translateY(-100%);
+  }
 
-    &.hidden {
-        transform: translateY(-100%);
+  background-color: var(--col-grey-100);
+  img {
+    max-width: 312px;
+    width: auto;
+    height: auto;
+    display: block;
+    aspect-ratio: 312 / 58;
+  }
+
+  .header__grid {
+    @media (min-width: 992px) {
+      display: grid;
+      column-gap: 1.5rem;
+      row-gap: 0.5rem;
+      grid-template-areas: "logo phone" "logo nav";
+      grid-template-columns: auto 1fr;
+      .logo {
+        min-width: 312px; // Ensure the logo column doesn't collapse
+      }
+    }
+  }
+
+  .logo {
+    grid-area: logo;
+    align-content: center;
+    a {
+      display: block;
+      width: 100%;
+      margin-block: auto;
+    }
+  }
+  .phone {
+    grid-area: phone;
+    span a {
+      color: var(--col-black);
+      &:hover {
+        color: var(--col-accent-400);
+      }
+    }
+  }
+  .navbar {
+    grid-area: nav;
+  }
+
+  .current-menu-item,
+  .current_page_parent,
+  .current-menu-ancestor {
+    font-weight: var(--fw-600);
+    .nav-link::after {
+      transform: scaleX(1);
+    }
+  }
+
+  .dropdown-toggle::after {
+    margin-left: 0;
+  }
+
+  .nav-link {
+    color: var(--col-black);
+    position: relative;
+    width: max-content;
+    &::after {
+      position: absolute;
+      content: "";
+      background-color: var(--col-secondary-400);
+      height: 5px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      transform-origin: bottom center;
+      transform: scale(0);
+      transition: transform var(--transition);
+      border: none !important;
     }
 
-    background-color: var(--col-grey-100);
-    img {
-        max-width: 312px;
-        width: 100%;
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+      }
     }
-
-    .header__grid {
-        @media (min-width:992px) {
-            display: grid;
-            column-gap: 1.5rem;
-            row-gap: 0.5rem;
-            grid-template-areas: 'logo phone' 'logo nav';
-            grid-template-columns: auto 1fr;
-        }
-    }
-
-    .logo {
-        grid-area: logo;
-        align-content: center;
-        a {
-            display: grid;
-            place-content: center;
-        }
-    }
-    .phone {
-        grid-area: phone;
-        span a {
-            color: var(--col-black);
-            &:hover {
-                color: var(--col-accent-400);
-            }
-        }
-    }
-    .navbar {
-        grid-area: nav;
-    }
-
-    .current-menu-item,
-    .current_page_parent,
-    .current-menu-ancestor {
-        font-weight: var(--fw-600);
-        .nav-link::after {
-            transform: scaleX(1);
-        }
-    }
-
-    .dropdown-toggle::after {
-        margin-left: 0;
-    }
-
-    .nav-link {
-        color: var(--col-black);
-        position: relative;
-        width: max-content;
-        &::after {
-            position: absolute;
-            content: '';
-            background-color: var(--col-secondary-400);
-            height: 5px;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            transform-origin: bottom center;
-            transform: scale(0);
-            transition: transform var(--transition);
-            border: none !important;
-        }
-
-        &:hover {
-            &::after {
-                transform: scaleX(1);
-            }
-        }
-    }
+  }
 }
