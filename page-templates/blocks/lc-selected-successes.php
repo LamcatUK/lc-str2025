@@ -18,7 +18,7 @@ if ( 'Full Width' === $bg_size ) {
 	$bg_inner = '';
 } else {
 	$bg_outer = '';
-	$bg_inner = $background . ' px-5';
+	$bg_inner = $background . ' px-md-5';
 }
 
 ?>
