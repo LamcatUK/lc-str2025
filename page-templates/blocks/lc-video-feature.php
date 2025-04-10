@@ -5,43 +5,44 @@
  * @package lc-str2025
  */
 
-$colour     = strtolower( get_field( 'background' ) ) ?? null;
-$background = 'bg-' . $colour;
-
+$colour  = strtolower( get_field( 'background' ) ) ?? null;
 $bg_size = get_field( 'bg_size' ) ?? null;
 
-$bg_inner = '';
-$bg_outer = '';
+$bg_inner  = '';
+$bg_outer  = '';
+$pad_inner = '';
+$pad_outer = '';
 
-if ( 'Full Width' === $bg_size ) {
-	$bg_outer = $background;
-} else {
-	$bg_inner = $background;
+if ( $colour ) {
+    if ( 'Full Width' === $bg_size ) {
+        $bg_outer  = 'bg-' . $colour;
+        $pad_inner = 'py-4';
+    } else {
+        $bg_inner  = 'bg-' . $colour;
+        $pad_inner = 'p-4';
+    }
+} elseif ( 'Full Width' !== $bg_size ) {
+	$pad_inner = '';
 }
+
 
 $featured_video     = get_field( 'featured_video_id' );
 $featured_video_url = 'https://www.youtube.com/embed/' . get_field( 'featured_video_id' ) . '?rel=0';
 
 $featured_watch_url = 'https://www.youtube.com/watch?v=' . get_field( 'featured_video_id' ) . '&embeds_referring_euri=https%3A%2F%2Fstormcatcher.co.uk%2F';
 ?>
-<section class="video_feature <?= esc_attr( $bg_outer ); ?> py-4">
-	<div class="container-xl <?= esc_attr( $bg_inner ); ?> p-4">
-		<div class="row g-5">
-			<div class="col-md-6">
-				<div class="ratio ratio-16x9">
-					<iframe 
-						src="<?= esc_url( $featured_video_url ); ?>" 
-						title="<?= esc_html( get_field( 'featured_video_title' ) ); ?>" 
-						allowfullscreen>
-					</iframe>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<h2><?= esc_html( get_field( 'featured_video_title' ) ); ?></h2>
-				<p><?= esc_html( get_field( 'featured_video_description' ) ); ?></p>
-				<a href="<?= esc_url( $featured_watch_url ); ?>" target="_blank" class="button button-primary">Watch on YouTube</a>
-			</div>
+<section class="video_feature <?= esc_attr( trim( "$bg_outer $pad_outer" ) ); ?>">
+	<div class="<?= esc_attr( trim( "$bg_inner $pad_inner" ) ); ?>">
+		<h2 class="h3 mb-4"><?= esc_html( get_field( 'featured_video_title' ) ); ?></h2>
+		<div class="ratio ratio-16x9 mb-4">
+			<iframe 
+				src="<?= esc_url( $featured_video_url ); ?>" 
+				title="<?= esc_html( get_field( 'featured_video_title' ) ); ?>" 
+				allowfullscreen>
+			</iframe>
 		</div>
+		<p><?= esc_html( get_field( 'featured_video_description' ) ); ?></p>
+		<a href="<?= esc_url( $featured_watch_url ); ?>" target="_blank" class="button button-primary">Watch on YouTube</a>
 
 		<?php
 		if ( get_field( 'additional_videos' ) ) {
@@ -49,7 +50,7 @@ $featured_watch_url = 'https://www.youtube.com/watch?v=' . get_field( 'featured_
 			<?php
 			if ( get_field( 'additional_videos_title' ) ) {
 				?>
-				<h2 class="h3 mt-4 mb-0"><?= esc_html( get_field( 'additional_videos_title' ) ); ?></h2>
+				<h2 class="h4 mt-5 mb-0"><?= esc_html( get_field( 'additional_videos_title' ) ); ?></h2>
 				<?php
 			}
 			?>
