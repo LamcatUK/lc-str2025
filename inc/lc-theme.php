@@ -1,87 +1,112 @@
 <?php
-defined('ABSPATH') || exit;
+/**
+ * LC Theme Functions
+ *
+ * This file contains the main functions and hooks for the LC Theme.
+ * It includes widget initialization, theme support, custom shortcodes,
+ * and other WordPress customizations.
+ *
+ * @package lc-str2025
+ */
 
-// require_once get_theme_file_path('inc/class-bs-collapse-navwalker.php');
+defined( 'ABSPATH' ) || exit;
 
 require_once LC_THEME_DIR . '/inc/lc-utility.php';
 require_once LC_THEME_DIR . '/inc/lc-blocks.php';
 
-function widgets_init()
-{
+/**
+ * Initializes widgets and registers navigation menus.
+ *
+ * This function sets up theme support, registers navigation menus,
+ * and unregisters default sidebars and menus.
+ */
+function widgets_init() {
 
-    register_nav_menus(array(
-        'primary_nav' => 'Primary Nav',
-        'footer_menu_1' => 'Footer Expertise',
-        'footer_menu_2' => 'Footer Links',
-    ));
+    register_nav_menus(
+        array(
+            'primary_nav'   => 'Primary Nav',
+            'footer_menu_1' => 'Footer Expertise',
+            'footer_menu_2' => 'Footer Links',
+        )
+    );
 
-    unregister_sidebar('hero');
-    unregister_sidebar('herocanvas');
-    unregister_sidebar('statichero');
-    unregister_sidebar('left-sidebar');
-    unregister_sidebar('right-sidebar');
-    unregister_sidebar('footerfull');
-    unregister_nav_menu('primary');
+    unregister_sidebar( 'hero' );
+    unregister_sidebar( 'herocanvas' );
+    unregister_sidebar( 'statichero' );
+    unregister_sidebar( 'left-sidebar' );
+    unregister_sidebar( 'right-sidebar' );
+    unregister_sidebar( 'footerfull' );
+    unregister_nav_menu( 'primary' );
 
-    add_theme_support('disable-custom-colors');
+    add_theme_support( 'disable-custom-colors' );
     add_theme_support(
         'editor-color-palette',
         array(
             array(
-                'name' => 'Black',
-                'slug' => 'black',
-                'color' => '#313747'
+                'name'  => 'Black',
+                'slug'  => 'black',
+                'color' => '#313747',
             ),
             array(
-                'name' => 'White',
-                'slug' => 'white',
-                'color' => '#ffffff'
+                'name'  => 'White',
+                'slug'  => 'white',
+                'color' => '#ffffff',
             ),
             array(
-                'name' => 'Light Grey',
-                'slug' => 'grey-100',
-                'color' => '#f4f4f4'
+                'name'  => 'Light Grey',
+                'slug'  => 'grey-100',
+                'color' => '#f4f4f4',
             ),
             array(
-                'name' => 'Mid Grey',
-                'slug' => 'grey-400',
-                'color' => '#e6e6e6'
+                'name'  => 'Mid Grey',
+                'slug'  => 'grey-400',
+                'color' => '#e6e6e6',
             ),
             array(
-                'name' => 'Ocean Tide',
-                'slug' => 'primary-400',
-                'color' => '#00555a'
+                'name'  => 'Ocean Tide',
+                'slug'  => 'primary-400',
+                'color' => '#00555a',
             ),
             array(
-                'name' => 'Deep Sea',
-                'slug' => 'secondary-400',
-                'color' => '#003349'
+                'name'  => 'Deep Sea',
+                'slug'  => 'secondary-400',
+                'color' => '#003349',
             ),
         )
     );
 }
-add_action('widgets_init', 'widgets_init', 11);
+add_action( 'widgets_init', 'widgets_init', 11 );
 
-remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
-remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
 
-//Custom Dashboard Widget
-add_action('wp_dashboard_setup', 'register_lc_dashboard_widget');
-function register_lc_dashboard_widget()
-{
+
+/**
+ * Registers a custom dashboard widget for the WordPress admin area.
+ *
+ * This widget displays a custom message and contact information
+ * for the Lamcat theme.
+ */
+function register_lc_dashboard_widget() {
     wp_add_dashboard_widget(
         'lc_dashboard_widget',
         'Lamcat',
         'lc_dashboard_widget_display'
     );
 }
+add_action( 'wp_dashboard_setup', 'register_lc_dashboard_widget' );
 
-function lc_dashboard_widget_display()
-{
-?>
+/**
+ * Displays the content of the custom dashboard widget.
+ *
+ * This function outputs the HTML for the Lamcat dashboard widget,
+ * including an image, a contact button, and a message.
+ */
+function lc_dashboard_widget_display() {
+    ?>
     <div style="display: flex; align-items: center; justify-content: space-around;">
         <img style="width: 50%;"
-            src="<?= get_stylesheet_directory_uri() . '/img/lc-full.jpg'; ?>">
+            src="<?= esc_url( get_stylesheet_directory_uri() . '/img/lc-full.jpg' ); ?>">
         <a class="button button-primary" target="_blank" rel="noopener nofollow noreferrer"
             href="mailto:hello@lamcat.co.uk">Contact</a>
     </div>
@@ -91,78 +116,86 @@ function lc_dashboard_widget_display()
         <p>Got a problem with your site, or want to make some changes & need us to take a look for you?</p>
         <p>Use the link above to get in touch and we'll get back to you ASAP.</p>
     </div>
-<?php
+    <?php
 }
 
 
-function lc_theme_enqueue()
-{
+/**
+ * Enqueues theme styles and scripts.
+ *
+ * This function deregisters jQuery, enqueues external libraries like Splide and AOS,
+ * and includes the theme's custom styles and scripts with versioning based on file modification time.
+ */
+function lc_theme_enqueue() {
     $the_theme = wp_get_theme();
-    $theme_version = $the_theme->get('Version');
+    $theme_version = $the_theme->get( 'Version' );
 
-    $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+    $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
     // Grab asset urls.
     $theme_styles  = "/css/child-theme{$suffix}.css";
     $theme_scripts = "/js/child-theme{$suffix}.js";
 
-    $css_version = $theme_version . '.' . filemtime(get_stylesheet_directory() . $theme_styles);
+    // $css_version = $theme_version . '.' . filemtime( get_stylesheet_directory() . $theme_styles ); // phpcs.ignore
+    $css_version = $theme_version;
 
-    wp_deregister_script('jquery');
+    wp_deregister_script( 'jquery' );
 
-    wp_enqueue_script('splide', "https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js", array(), null, true);
-    wp_enqueue_style('splide-style', "https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css", array());
+    wp_enqueue_script( 'splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js', array(), null, true );
+    wp_enqueue_style( 'splide-style', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css', array() );
 
-    wp_enqueue_script('aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true);
-    wp_enqueue_style('aos-style', "https://unpkg.com/aos@2.3.1/dist/aos.css", array());
+    wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true );
+    wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() );
 
-    wp_enqueue_style('child-understrap-styles', get_stylesheet_directory_uri() . $theme_styles, array(), $css_version);
+    wp_enqueue_style( 'child-understrap-styles', get_stylesheet_directory_uri() . $theme_styles, array(), $css_version );
 
-    $js_version = $theme_version . '.' . filemtime(get_stylesheet_directory() . $theme_scripts);
+    // $js_version = $theme_version . '.' . filemtime(get_stylesheet_directory() . $theme_scripts); // phpcs.ignore
+    $js_version = $theme_version;
 
-    wp_enqueue_script('child-understrap-scripts', get_stylesheet_directory_uri() . $theme_scripts, array(), $js_version, true);
+    wp_enqueue_script( 'child-understrap-scripts', get_stylesheet_directory_uri() . $theme_scripts, array(), $js_version, true );
 }
-add_action('wp_enqueue_scripts', 'lc_theme_enqueue');
+add_action( 'wp_enqueue_scripts', 'lc_theme_enqueue' );
 
-// function custom_gutenberg_scripts()
-// {
-//     wp_enqueue_script(
-//         'custom-gutenberg',
-//         get_stylesheet_directory_uri() . '/js/custom-gutenberg.js',
-//         array('wp-blocks', 'wp-dom-ready', 'wp-edit-post'),
-//         filemtime(get_stylesheet_directory() . '/js/custom-gutenberg.js'),
-//         true
-//     );
-// }
-// add_action('enqueue_block_editor_assets', 'custom_gutenberg_scripts');
 
-add_filter('wpcf7_autop_or_not', '__return_false');
+add_filter( 'wpcf7_autop_or_not', '__return_false' );
 
-add_action('admin_head', function () {
-    echo '<style>
-   .block-editor-page #wpwrap {
-       overflow-y: auto !important;
-   }
-   </style>';
-});
+add_action(
+    'admin_head',
+    function () {
+        echo '<style>
+    .block-editor-page #wpwrap {
+        overflow-y: auto !important;
+    }
+    </style>';
+    }
+);
 
-function add_search_to_nav($items, $args)
-{
-    if ($args->theme_location != 'primary_nav') {
+/**
+ * Adds a search icon to the primary navigation menu.
+ *
+ * @param string $items The HTML list content for the menu items.
+ * @param object $args  An object containing wp_nav_menu() arguments.
+ * @return string Modified HTML list content with the search icon.
+ */
+function add_search_to_nav( $items, $args ) {
+    if ( 'primary_nav' !== $args->theme_location ) {
         return $items;
     }
 
-    $link  = '<li class="menu-item nav-item"><a href="/search/" class="nav-link" title="Search"><i class="fas fa-magnifying-glass"></i></a>';
-
+    $link   = '<li class="menu-item nav-item"><a href="/search/" class="nav-link" title="Search"><i class="fas fa-magnifying-glass"></i></a>';
     $items .= $link;
 
     return $items;
 }
-add_action('wp_nav_menu_items', 'add_search_to_nav', 10, 2);
+add_action( 'wp_nav_menu_items', 'add_search_to_nav', 10, 2 );
 
 
-// cb branding on wp-login.php
-function custom_login_logo()
-{
+/**
+ * Customizes the WordPress login page logo.
+ *
+ * This function replaces the default WordPress login logo with a custom logo
+ * specified by the `$custom_logo_url` variable.
+ */
+function custom_login_logo() {
     $custom_logo_url = '/wp-content/themes/lc-str2025/img/stormcatcher--dk.svg';
     echo '
         <style type="text/css">
@@ -177,32 +210,40 @@ function custom_login_logo()
         </style>
     ';
 }
-add_action('login_enqueue_scripts', 'custom_login_logo');
+add_action( 'login_enqueue_scripts', 'custom_login_logo' );
 
-add_action('admin_init', function () {
-    define('DISALLOW_FILE_EDIT', true);
-});
+add_action(
+    'admin_init',
+    function () {
+        define( 'DISALLOW_FILE_EDIT', true );
+    }
+);
 
-function splide_slider_shortcode($atts)
-{
-    // Parse the attributes passed to the shortcode
+/**
+ * Generates a Splide slider based on provided image IDs.
+ *
+ * @param array $atts Shortcode attributes, including 'ids' for image IDs.
+ * @return string HTML content for the Splide slider or a fallback message.
+ */
+function splide_slider_shortcode($atts) {
+    // Parse the attributes passed to the shortcode.
     $atts = shortcode_atts(
         array(
-            'ids' => '', // List of image IDs, default is empty
+            'ids' => '', // List of image IDs, default is empty.
         ),
         $atts,
         'splide_slider'
     );
 
-    // Convert the comma-separated IDs into an array
-    $image_ids = array_filter(array_map('trim', explode(',', $atts['ids'])));
+    // Convert the comma-separated IDs into an array.
+    $image_ids = array_filter( array_map( 'trim', explode( ',', $atts['ids'] ) ) );
 
-    if (empty($image_ids)) {
-        return '<p>No images provided for the slider.</p>'; // Fallback if no IDs are passed
+    if ( empty( $image_ids ) ) {
+        return '<p>No images provided for the slider.</p>'; // Fallback if no IDs are passed.
     }
 
-    // Start building the HTML for the Splide slider
-    ob_start(); // Start output buffering to capture the slider HTML
+    // Start building the HTML for the Splide slider.
+    ob_start(); // Start output buffering to capture the slider HTML.
     $unique_id = 'splide-slider-' . uniqid();
 ?>
     <div id="<?= $unique_id ?>" class="splide splide-shortcode">
@@ -444,10 +485,10 @@ add_action('pre_get_posts', 'modify_search_results_per_page');
 
 function remove_dashboard_widgets()
 {
-    remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // At a Glance
-    remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // Activity
-    remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Quick Draft
-    remove_meta_box('dashboard_primary', 'dashboard', 'side'); // WordPress News and Events
+    remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' ); // At a Glance.
+    remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' ); // Activity.
+    remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' ); // Quick Draft.
+    remove_meta_box( 'dashboard_primary', 'dashboard', 'side' ); // WordPress News and Events.
 }
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
@@ -482,5 +523,87 @@ add_filter('wpseo_canonical', function ($canonical) {
     }
     return $canonical;
 });
+
+/**
+ * Retrieves and displays Phil's bio from the 'phil_bio' custom field.
+ *
+ * @return string HTML content of Phil's bio or an empty string if not available.
+ */
+function phil_bio() {
+    $bio = get_field( 'phil_bio', 'option' );
+    $img = get_field( 'phil_photo', 'option' );
+    if ( $bio ) {
+        return '<div class="bio"><div class="row"><div class="col-md-2">' . 
+            wp_get_attachment_image( $img, 'medium', false, array( 'class' => 'bio-image' ) ) .
+            '</div><div class="col-md-10"><h2>About Philip Harmer</h2>' .
+            convert_h3_p_to_accordion( $bio, 'philBioAccordion' ) .
+            '</div></div></div>';
+    }
+    return '';
+}
+
+/**
+ * Converts HTML content with <h3> and <p> tags into a Bootstrap accordion structure.
+ *
+ * @param string $html The HTML content to be converted.
+ * @param string $accordion_id The ID for the accordion container (default: 'accordionExample').
+ * @return string The generated HTML for the Bootstrap accordion.
+ */
+function convert_h3_p_to_accordion( $html, $accordion_id = 'philBioAccordion' ) {
+    $dom = new DOMDocument();
+    libxml_use_internal_errors(true); // Suppress warnings for bad HTML
+    $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+    libxml_clear_errors();
+
+    $body = $dom->getElementsByTagName('body')->item(0);
+    $elements = $body->childNodes;
+
+    $accordion = '<div class="accordion" id="' . htmlspecialchars($accordion_id) . '">' . PHP_EOL;
+    $index = 0;
+    $openItem = false;
+
+    foreach ($elements as $element) {
+        if ($element->nodeType !== XML_ELEMENT_NODE) {
+            continue;
+        }
+
+        if ($element->tagName === 'h3') {
+            // Close previous item if open
+            if ($openItem) {
+                $accordion .= '    </div>' . PHP_EOL; // Close accordion-body
+                $accordion .= '  </div>' . PHP_EOL; // Close accordion-collapse
+                $accordion .= '</div>' . PHP_EOL; // Close accordion-item
+            }
+
+            $index++;
+            $heading_id = 'heading-' . $index;
+            $collapse_id = 'collapse-' . $index;
+
+            $accordion .= '<div class="accordion-item">' . PHP_EOL;
+            $accordion .= '  <h3 class="accordion-header" id="' . $heading_id . '">' . PHP_EOL;
+            $accordion .= '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' . $collapse_id . '" aria-expanded="false" aria-controls="' . $collapse_id . '">' . PHP_EOL;
+            $accordion .= '      ' . htmlspecialchars($element->textContent) . PHP_EOL;
+            $accordion .= '    </button>' . PHP_EOL;
+            $accordion .= '  </h3>' . PHP_EOL;
+            $accordion .= '  <div id="' . $collapse_id . '" class="accordion-collapse collapse" aria-labelledby="' . $heading_id . '" data-bs-parent="#' . htmlspecialchars($accordion_id) . '">' . PHP_EOL;
+            $accordion .= '    <div class="accordion-body">' . PHP_EOL;
+
+            $openItem = true;
+        } elseif ($element->tagName === 'p' && $openItem) {
+            $accordion .= '      ' . trim($dom->saveHTML($element)) . PHP_EOL;
+        }
+    }
+
+    // Close last open item
+    if ($openItem) {
+        $accordion .= '    </div>' . PHP_EOL; // Close accordion-body
+        $accordion .= '  </div>' . PHP_EOL; // Close accordion-collapse
+        $accordion .= '</div>' . PHP_EOL; // Close accordion-item
+    }
+
+    $accordion .= '</div>' . PHP_EOL; // Close accordion wrapper
+
+    return $accordion;
+}
 
 ?>
