@@ -529,18 +529,34 @@ add_filter('wpseo_canonical', function ($canonical) {
  *
  * @return string HTML content of Phil's bio or an empty string if not available.
  */
-function phil_bio() {
-    $bio = get_field( 'phil_bio', 'option' );
-    $img = get_field( 'phil_photo', 'option' );
+function phil_bio( $cat = null ) {
+
+    $cat = preg_replace( '/-/', '_', $cat );
+    $bio = get_field( $cat, 'option' ) ?? null;
+
     if ( $bio ) {
+        $img = get_field( 'phil_photo', 'option' );
         return '<div class="bio"><div class="row"><div class="col-md-2">' . 
             wp_get_attachment_image( $img, 'medium', false, array( 'class' => 'bio-image' ) ) .
             '</div><div class="col-md-10"><h2>About Philip Harmer</h2>' .
-            convert_h3_p_to_accordion( $bio, 'philBioAccordion' ) .
+            $bio .
             '</div></div></div>';
     }
+
     return '';
 }
+// function phil_bio() {
+//     $bio = get_field( 'phil_bio', 'option' );
+//     $img = get_field( 'phil_photo', 'option' );
+//     if ( $bio ) {
+//         return '<div class="bio"><div class="row"><div class="col-md-2">' . 
+//             wp_get_attachment_image( $img, 'medium', false, array( 'class' => 'bio-image' ) ) .
+//             '</div><div class="col-md-10"><h2>About Philip Harmer</h2>' .
+//             convert_h3_p_to_accordion( $bio, 'philBioAccordion' ) .
+//             '</div></div></div>';
+//     }
+//     return '';
+// }
 
 /**
  * Converts HTML content with <h3> and <p> tags into a Bootstrap accordion structure.

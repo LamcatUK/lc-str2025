@@ -55,7 +55,12 @@ get_header();
                     echo apply_filters( 'the_content', render_block( $block ) );
                 }
 
-                echo phil_bio();
+                $categories = get_the_category( $post_id );
+
+                if ( ! empty( $categories ) ) {
+                    $first_category = $categories[0]; // This is a WP_Term object
+                    echo wp_kses_post( phil_bio( $first_category->slug ) );
+                }
                 ?>
             </div>
             <div class="col-lg-3 order-1 order-lg-2">
