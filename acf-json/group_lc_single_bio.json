@@ -1,0 +1,76 @@
+{
+    "key": "group_lc_single_bio",
+    "title": "LC Single Bio",
+    "fields": [
+        {
+            "key": "field_lc_single_bio_title",
+            "label": "LC Single Bio",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "esc_html": 0,
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_68238133e1612",
+            "label": "Biography",
+            "name": "biography",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Bio blocks defined in Site-Wide Settings",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "business_law": "Business Law",
+                "car_sales_law": "Car Sales Law",
+                "construction_law": "Construction Law",
+                "consumer_rights": "Consumer Rights",
+                "dispute_resolution": "Dispute Resolution",
+                "motor_trade_employment_law": "Motor Trade Employment Law",
+                "motor_trade_law": "Motor Trade Law",
+                "small_claims": "Small Claims"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/lc-single-bio"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1747157458
+}
