@@ -113,12 +113,12 @@ defined( 'ABSPATH' ) || exit;
     <?php
     do_action('wp_body_open');
 
-    if ( get_field( 'gtm_property', 'options' ) ) {
+    if ( get_field( 'gtm_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
             ?>
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe
-                    src="https://www.googletagmanager.com/ns.html?id=<?= get_field( 'gtm_property', 'options' ) ?>"
+                    src="https://www.googletagmanager.com/ns.html?id=<?= get_field( 'gtm_property', 'option' ) ?>"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- End Google Tag Manager (noscript) -->
             <?php
