@@ -27,7 +27,7 @@ $page_for_posts = get_option( 'page_for_posts' );
         <div class="row">
             <div class="col-md-3 order-2 order-md-1">
                 <div class="sidebar-success">
-                    <div class="success-nav">
+                    <div class="sidebar">
                         <h3 class="h5">Our Expertise</h3>
                         <?php wp_nav_menu( array( 'theme_location' => 'success_menu' ) ); ?>
                     </div>
