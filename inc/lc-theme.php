@@ -11,6 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once LC_THEME_DIR . '/inc/lc-posttypes.php';
 require_once LC_THEME_DIR . '/inc/lc-utility.php';
 require_once LC_THEME_DIR . '/inc/lc-blocks.php';
 
@@ -536,27 +537,41 @@ function phil_bio( $cat = null ) {
 
     if ( $bio ) {
         $img = get_field( 'phil_photo', 'option' );
-        return '<div class="bio"><div class="row"><div class="col-md-2">' . 
-            wp_get_attachment_image( $img, 'medium', false, array( 'class' => 'bio-image' ) ) .
-            '</div><div class="col-md-10"><h2>About Philip Harmer</h2>' .
-            $bio .
-            '</div></div></div>';
+        ob_start();
+        ?>
+<div class="bio">
+    <div class="bio__top">
+        <div class="row">
+            <div class="col-md-2 text-center text-md-start mb-3 mb-md-0">
+                <?= wp_get_attachment_image( $img, 'medium', false, array( 'class' => 'bio-image' ) ); ?>
+            </div>
+            <div class="col-md-10">
+                <h2 class="bio-heading">About Philip Harmer</h2>
+                <?= wp_kses_post( $bio ); ?>
+                <div class="text-end">
+                    <a class="fw-600" href="/about-us/">Read more about Philip</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bio__middle text-center">
+        <h3>Contact Stormcatcher for First Free Advice</h3>
+        <div class="d-flex gap-2 justify-content-center align-items-center mb-3 flex-wrap">
+            <a href="<?= esc_url( 'tel:' . parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-phone"></i> Call</a>
+            <a href="<?= esc_url( 'mailto:' . antispambot( get_field( 'contact_email', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-paper-plane"></i> Email</a>
+        </div>
+    </div>
+    <div class="bio__bottom text-center">
+        <div class="">Not ready to get in touch?</div>
+        <a class="fs-500 fw-600" href="/success-stories/">Read our Client Success Stories</a>
+    </div>
+</div>
+        <?php
+        return ob_get_clean();
     }
 
     return '';
 }
-// function phil_bio() {
-//     $bio = get_field( 'phil_bio', 'option' );
-//     $img = get_field( 'phil_photo', 'option' );
-//     if ( $bio ) {
-//         return '<div class="bio"><div class="row"><div class="col-md-2">' . 
-//             wp_get_attachment_image( $img, 'medium', false, array( 'class' => 'bio-image' ) ) .
-//             '</div><div class="col-md-10"><h2>About Philip Harmer</h2>' .
-//             convert_h3_p_to_accordion( $bio, 'philBioAccordion' ) .
-//             '</div></div></div>';
-//     }
-//     return '';
-// }
 
 /**
  * Converts HTML content with <h3> and <p> tags into a Bootstrap accordion structure.
