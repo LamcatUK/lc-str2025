@@ -20,18 +20,18 @@ defined('ABSPATH') || exit;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="preload"
-        href="<?= get_stylesheet_directory_uri() ?>/fonts/poppins-v21-latin-300.woff2"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/poppins-v21-latin-300.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload"
-        href="<?= get_stylesheet_directory_uri() ?>/fonts/poppins-v21-latin-600.woff2"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/poppins-v21-latin-600.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload"
-        href="<?= get_stylesheet_directory_uri() ?>/fonts/playfair-display-v37-latin-600.woff2"
+        href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/playfair-display-v37-latin-600.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <?php
-    if (get_field('gtm_property', 'options')) {
-        if (!is_user_logged_in()) {
-    ?>
+    if ( get_field( 'gtm_property', 'option' ) ) {
+        if ( ! is_user_logged_in() ) {
+            ?>
             <!-- Google Tag Manager -->
             <script>
                 (function(w, d, s, l, i) {
@@ -47,18 +47,18 @@ defined('ABSPATH') || exit;
                     j.src =
                         'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
                     f.parentNode.insertBefore(j, f);
-                })(window, document, 'script', 'dataLayer', '<?= get_field('gtm_property', 'options') ?>');
+                })(window, document, 'script', 'dataLayer', '<?= esc_attr( get_field( 'gtm_property', 'option' ) ); ?>');
             </script>
             <!-- End Google Tag Manager -->
-        <?php
+            <?php
         }
     }
-    if (get_field('ga_property', 'options')) {
-        if (!is_user_logged_in()) {
-        ?>
+    if ( get_field( 'ga_property', 'option' ) ) {
+        if ( ! is_user_logged_in() ) {
+            ?>
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async
-                src="https://www.googletagmanager.com/gtag/js?id=<?= get_field('ga_property', 'options') ?>">
+                src="<?= esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . get_field('ga_property', 'option') ?>">
             </script>
             <script>
                 window.dataLayer = window.dataLayer || [];
@@ -68,17 +68,17 @@ defined('ABSPATH') || exit;
                 }
                 gtag('js', new Date());
                 gtag('config',
-                    '<?= get_field('ga_property', 'options') ?>'
+                    '<?= esc_attr( get_field( 'ga_property', 'option' ) ); ?>'
                 );
             </script>
         <?php
         }
     }
-    if (get_field('google_site_verification', 'options')) {
-        echo '<meta name="google-site-verification" content="' . get_field('google_site_verification', 'options') . '" />';
+    if (get_field('google_site_verification', 'option')) {
+        echo '<meta name="google-site-verification" content="' . get_field('google_site_verification', 'option') . '" />';
     }
-    if (get_field('bing_site_verification', 'options')) {
-        echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'options') . '" />';
+    if (get_field('bing_site_verification', 'option')) {
+        echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'option') . '" />';
     }
     if (is_front_page() || is_page('contact')) {
         $social_links = get_field('socials', 'option');
@@ -104,7 +104,7 @@ defined('ABSPATH') || exit;
                 }]
             }
         </script>
-    <?php
+        <?php
     }
     ?>
     <?php wp_head(); ?>
