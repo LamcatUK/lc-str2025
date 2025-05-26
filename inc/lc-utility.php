@@ -421,5 +421,22 @@ function sort_page_template_column($query)
 }
 add_action('pre_get_posts', 'sort_page_template_column');
 
+function get_first_paragraphs_min_words( $content, $min_words = 20 ) {
+    $content = apply_filters( 'the_content', $content );
+    $content = str_replace( ']]>', ']]&gt;', $content );
+    preg_match_all( '/<p>(.*?)<\/p>/is', $content, $matches );
+    $paragraphs = $matches[0] ?? [];
+    $output = '';
+    $word_count = 0;
+
+    foreach ( $paragraphs as $p ) {
+        $output .= $p;
+        $word_count += str_word_count( wp_strip_all_tags( $p ) );
+        if ( $word_count >= $min_words ) {
+            break;
+        }
+    }
+    return $output;
+}
 
 ?>

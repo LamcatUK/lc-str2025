@@ -28,6 +28,7 @@ function widgets_init() {
             'primary_nav'   => 'Primary Nav',
             'footer_menu_1' => 'Footer Expertise',
             'footer_menu_2' => 'Footer Links',
+            'success_menu'  => 'Succsees Stories Sidebar Menu',
         )
     );
 

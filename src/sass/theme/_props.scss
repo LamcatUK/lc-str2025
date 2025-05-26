@@ -1,57 +1,57 @@
 :root {
+  --col-black: #313747;
+  --col-white: #ffffff;
 
-    --col-black: #313747;
-    --col-white: #FFFFFF;
+  --col-grey-100: #f4f4f4;
+  --col-grey-400: #e6e6e6;
+  --col-grey-600: #8f8f8f;
 
-    --col-grey-100: #f4f4f4;
-    --col-grey-400: #e6e6e6;
-    --col-grey-600: #8f8f8f;
+  --hsl-primary-400: 183 100% 18%;
+  --col-primary-400: hsl(var(--hsl-primary-400)); // #00555a;
 
-    --hsl-primary-400: 183 100% 18%;
-    --col-primary-400: hsl(var(--hsl-primary-400)); // #00555a;
+  --hsl-secondary-400: 198 100% 14%;
+  --col-secondary-400: hsl(var(--hsl-secondary-400)); // #003349;
+  --col-secondary-200: hsl(198, 100%, 30%);
 
-    --hsl-secondary-400: 198 100% 14%;
-    --col-secondary-400: hsl(var(--hsl-secondary-400)); // #003349;
-    --col-secondary-200: hsl(198, 100%, 30%);
-    
-    // --col-accent-400: #72BDA3; //#FFA931;
-    // --col-accent-200: #8ECCB2; //#FFD6A5;
-    
-    --col-accent-400: #dda46f;
-    --col-accent-200: #FFD6A5;
+  // --col-accent-400: #72BDA3; //#FFA931;
+  // --col-accent-200: #8ECCB2; //#FFD6A5;
 
-    --ff-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --ff-heading: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
-    --ff-fa: 'Font Awesome 6 Free';
+  --col-accent-400: #dda46f;
+  --col-accent-200: #ffd6a5;
 
-    --fw-400: 300;
-    --fw-600: 600;
-    --fw-900: 600;
+  --ff-body: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --ff-heading: "Playfair Display", "Georgia", "Times New Roman", serif;
+  --ff-fa: "Font Awesome 6 Free";
 
-    --fs-100: 0.64rem; /* ~12px */
-    --fs-200: 0.8rem; /* ~14px */
-    --fs-300: 0.89rem; /* ~16px */
-    --fs-400: 1rem; /* 18px */
+  --fw-400: 300;
+  --fw-600: 600;
+  --fw-900: 600;
 
-    --fs-500: clamp(1.1rem, 1rem + 0.2vw, 1.25rem); /* ~16px to ~22.5px */
-    --fs-600: clamp(1.25rem, 1.2rem + 0.4vw, 1.56rem); /* ~20px to ~25px */
-    --fs-700: clamp(1.5rem, 1.3rem + 0.6vw, 1.95rem); /* ~24px to ~31px */
-    --fs-800: clamp(1.9rem, 1.7rem + 0.8vw, 2.44rem); /* ~30px to ~39px */
-    --fs-900: clamp(2.4rem, 2rem + 1vw, 3.05rem); /* ~38px to ~48.8px */
-    --fs-950: clamp(2.5rem, 2.3rem + 1.2vw, 3rem); /* ~40px to ~48px */
+  --fs-100: 0.64rem; /* ~12px */
+  --fs-200: 0.8rem; /* ~14px */
+  --fs-300: 0.89rem; /* ~16px */
+  --fs-400: 1rem; /* 18px */
 
+  --fs-500: clamp(1.1rem, 1rem + 0.2vw, 1.25rem); /* ~16px to ~22.5px */
+  --fs-600: clamp(1.25rem, 1.2rem + 0.4vw, 1.56rem); /* ~20px to ~25px */
+  --fs-700: clamp(1.5rem, 1.3rem + 0.6vw, 1.95rem); /* ~24px to ~31px */
+  --fs-800: clamp(1.9rem, 1.7rem + 0.8vw, 2.44rem); /* ~30px to ~39px */
+  --fs-900: clamp(2.4rem, 2rem + 1vw, 3.05rem); /* ~38px to ~48.8px */
+  --fs-950: clamp(2.5rem, 2.3rem + 1.2vw, 3rem); /* ~40px to ~48px */
 
-    --shadow-lg: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    --shadow-sm: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  --shadow-lg: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  --shadow-sm: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
-    --transition: 200ms ease-in;
+  --transition: 150ms ease-in;
 
-    --border-sm: 0.25rem;
-    --border-lg: 0.5rem;
+  --border-sm: 0.25rem;
+  --border-lg: 0.5rem;
 
-    --fa-li-margin: 1.5rem;
+  --fa-li-margin: 1.5rem;
 
-    --h-top: 55px;
-    --h-top-lg: 70px;
-
+  --h-top: 55px;
+  --h-top-lg: 70px;
 }
