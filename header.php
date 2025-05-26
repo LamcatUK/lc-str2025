@@ -28,7 +28,42 @@ defined( 'ABSPATH' ) || exit;
         as="font" type="font/woff2" crossorigin="anonymous">
     <?php
 
-    if ( get_field( 'gtm_property', 'option' ) ) {
+    if (get_field('google_site_verification', 'option')) {
+        echo '<meta name="google-site-verification" content="' . get_field('google_site_verification', 'option') . '" />';
+    }
+    if (get_field('bing_site_verification', 'option')) {
+        echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'option') . '" />';
+    }
+    if (is_front_page() || is_page('contact')) {
+        $social_links = get_field('socials', 'option');
+        $filtered_links = array_values(array_filter($social_links, function ($url) {
+            return !empty($url);
+        }));
+        ?>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "name": "Stormcatcher Business Legal Services UK",
+                "url": "https://stormcatcher.co.uk/",
+                "Description": "Stormcatcher Law is a friendly and approachable renowned niche law firm with a leading reputation and enviable track record across a wide range of areas of law, specialising in consumer law and civil dispute resolution, second to none in automotive law, building and construction and contract law. We provide legal advice and services for individuals and businesses. ",
+                "sameAs": <?php
+                            echo json_encode($filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+                            ?>,
+                "logo": "<?= get_stylesheet_directory_uri() ?>/img/stormcatcher-og-696x696.png",
+                "contactPoint": [{
+                    "@type": "ContactPoint",
+                    "telephone": "+44-3337007676",
+                    "contactType": "enquiries"
+                }]
+            }
+        </script>
+        <?php
+    }
+    ?>
+    <?php wp_head(); ?>
+    <?php
+        if ( get_field( 'gtm_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
             echo '<meta name="gtm-tag" content="' . esc_attr( get_field( 'gtm_property', 'option' ) ) . '" />';
             ?>
@@ -72,40 +107,7 @@ defined( 'ABSPATH' ) || exit;
             <?php
         }
     }
-    if (get_field('google_site_verification', 'option')) {
-        echo '<meta name="google-site-verification" content="' . get_field('google_site_verification', 'option') . '" />';
-    }
-    if (get_field('bing_site_verification', 'option')) {
-        echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'option') . '" />';
-    }
-    if (is_front_page() || is_page('contact')) {
-        $social_links = get_field('socials', 'option');
-        $filtered_links = array_values(array_filter($social_links, function ($url) {
-            return !empty($url);
-        }));
-        ?>
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "Organization",
-                "name": "Stormcatcher Business Legal Services UK",
-                "url": "https://stormcatcher.co.uk/",
-                "Description": "Stormcatcher Law is a friendly and approachable renowned niche law firm with a leading reputation and enviable track record across a wide range of areas of law, specialising in consumer law and civil dispute resolution, second to none in automotive law, building and construction and contract law. We provide legal advice and services for individuals and businesses. ",
-                "sameAs": <?php
-                            echo json_encode($filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-                            ?>,
-                "logo": "<?= get_stylesheet_directory_uri() ?>/img/stormcatcher-og-696x696.png",
-                "contactPoint": [{
-                    "@type": "ContactPoint",
-                    "telephone": "+44-3337007676",
-                    "contactType": "enquiries"
-                }]
-            }
-        </script>
-        <?php
-    }
     ?>
-    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
