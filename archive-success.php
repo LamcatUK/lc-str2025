@@ -126,7 +126,7 @@ $page_for_posts = get_option( 'page_for_posts' );
                         <div class="success_card__content">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <h2 class="success_card__title h5"><?= esc_html( get_the_title() ); ?></h2>
-                                <div class="success_card__pill success_card__pill--grey"><?= $first_category->name ?></div>
+                                <div class="success_card__pill success_card__pill--grey"><?= esc_html( $first_category->name ); ?></div>
                             </div>
                             <p class="success_card__text">
                                 <?= wp_kses_post( wp_trim_words( get_the_excerpt(), 20 ) ); ?>
@@ -147,8 +147,8 @@ $page_for_posts = get_option( 'page_for_posts' );
             </div>
         <?php
             wp_reset_postdata();
-            ?>
-            </div>
+        ?>
+        </div>
     </div>
     <?php
     get_template_part( 'page-templates/blocks/lc_insights' );
