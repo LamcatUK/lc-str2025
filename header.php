@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
         as="font" type="font/woff2" crossorigin="anonymous">
     <?php
     if ( get_field( 'gtm_property', 'option' ) ) {
-        if ( ! is_user_logged_in() ) {
+        // if ( ! is_user_logged_in() ) {
             ?>
             <!-- Google Tag Manager -->
             <script>
@@ -49,7 +49,7 @@ defined( 'ABSPATH' ) || exit;
             </script>
             <!-- End Google Tag Manager -->
             <?php
-        }
+        // }
     }
     if ( get_field( 'ga_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
