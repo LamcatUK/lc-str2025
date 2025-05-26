@@ -128,7 +128,7 @@ function lc_dashboard_widget_display() {
  * and includes the theme's custom styles and scripts with versioning based on file modification time.
  */
 function lc_theme_enqueue() {
-    $the_theme = wp_get_theme();
+    $the_theme     = wp_get_theme();
     $theme_version = $the_theme->get( 'Version' );
 
     $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
@@ -201,7 +201,7 @@ function custom_login_logo() {
     echo '
         <style type="text/css">
             #login h1 a, .login h1 a {
-                background-image: url(' . $custom_logo_url . ');
+                background-image: url(' . esc_url( $custom_logo_url ) . ');
                 width: 302px;
                 height: 64px;
                 background-size: contain;
@@ -226,7 +226,7 @@ add_action(
  * @param array $atts Shortcode attributes, including 'ids' for image IDs.
  * @return string HTML content for the Splide slider or a fallback message.
  */
-function splide_slider_shortcode($atts) {
+function splide_slider_shortcode( $atts ) {
     // Parse the attributes passed to the shortcode.
     $atts = shortcode_atts(
         array(
@@ -246,24 +246,28 @@ function splide_slider_shortcode($atts) {
     // Start building the HTML for the Splide slider.
     ob_start(); // Start output buffering to capture the slider HTML.
     $unique_id = 'splide-slider-' . uniqid();
-?>
-    <div id="<?= $unique_id ?>" class="splide splide-shortcode">
+    ?>
+    <div id="<?= esc_attr( $unique_id ); ?>" class="splide splide-shortcode">
         <div class="splide__track">
             <ul class="splide__list">
-                <?php foreach ($image_ids as $image_id) :
-                    $image_url = wp_get_attachment_image_url($image_id, 'full'); // Get image URL by ID
-                    if ($image_url) : ?>
+                <?php
+                foreach ( $image_ids as $image_id ) {
+                    $image_url = wp_get_attachment_image_url( $image_id, 'full' );
+                    if ( $image_url ) {
+                        ?>
                         <li class="splide__slide">
-                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_post_meta($image_id, '_wp_attachment_image_alt', true)); ?>">
+                            <img src="<?= esc_url( $image_url ); ?>" alt="<?= esc_attr( get_post_meta( $image_id, '_wp_attachment_image_alt', true ) ); ?>">
                         </li>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                        <?php
+                    }
+                }
+                ?>
             </ul>
         </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            new Splide('#<?= $unique_id ?>', {
+            new Splide('#<?= esc_attr( $unique_id ); ?>', {
                 type: 'loop',
                 perPage: 3,
                 perMove: 1,
@@ -289,140 +293,124 @@ function splide_slider_shortcode($atts) {
             }).mount();
         });
     </script>
-<?php
-    return ob_get_clean(); // Return the captured HTML
+    <?php
+    return ob_get_clean(); // Return the captured HTML.
 }
-add_shortcode('splide_slider', 'splide_slider_shortcode');
+add_shortcode( 'splide_slider', 'splide_slider_shortcode' );
 
-add_filter('wpseo_breadcrumb_links', 'add_expertise_breadcrumb');
-function add_expertise_breadcrumb($links)
-{
-    // Define the pages where 'Expertise' should be added
-    $expertise_pages = [
+add_filter( 'wpseo_breadcrumb_links', 'add_expertise_breadcrumb' );
+function add_expertise_breadcrumb( $links ) {
+    // Define the pages where 'Expertise' should be added.
+    $expertise_pages = array(
         'automotive-law',
         'consumer-law',
         'construction-law',
         'civil-fraud',
         'dispute-resolution-lawyers',
-        'yacht-law'
-    ];
+        'yacht-law',
+    );
 
-    // Get the current post object
+    // Get the current post object.
     global $post;
 
-    if ($post) {
-        // Get the top-level parent or the current post's slug
-        $top_level_slug = get_post_field('post_name', get_post_ancestors($post->ID)[0] ?? $post->ID);
+    if ( $post ) {
+        // Get the top-level parent or the current post's slug.
+        $top_level_slug = get_post_field( 'post_name', get_post_ancestors( $post->ID )[0] ?? $post->ID );
 
-        // Check if the current page or one of its ancestors is in the list
-        if (in_array($top_level_slug, $expertise_pages)) {
-            // Create the 'Expertise' breadcrumb link
-            $expertise_link = [
-                'url' => home_url('/expertise/'),
-                'text' => 'Expertise'
-            ];
+        // Check if the current page or one of its ancestors is in the list.
+        if ( in_array( $top_level_slug, $expertise_pages ) ) {
+            // Create the 'Expertise' breadcrumb link.
+            $expertise_link = array(
+                'url'  => home_url( '/expertise/' ),
+                'text' => 'Expertise',
+            );
 
-            // Insert the 'Expertise' link before the current page link
-            array_splice($links, 1, 0, [$expertise_link]);
+            // Insert the 'Expertise' link before the current page link.
+            array_splice( $links, 1, 0, array( $expertise_link ) );
         }
     }
 
     return $links;
 }
 
-// function add_success_cpt_to_yoast_breadcrumbs($links)
-// {
-//     // Check if we're on a single "success" post
-//     if (is_singular('success')) {
-//         // Get the archive link for the custom post type
-//         $post_type_archive = get_post_type_archive_link('success');
+add_filter(
+    'nav_menu_css_class',
+    function ( $classes, $item, $args, $depth ) {
+        // Check if we're on the "Success" archive or a single "Success" post.
+        if ( is_post_type_archive( 'success' ) || is_singular( 'success' ) ) {
+            // Get the blog page ID.
+            $blog_page_id = get_option( 'page_for_posts' );
 
-//         // Add a new breadcrumb link for the custom post type archive
-//         $breadcrumb = [
-//             'url'  => home_url('/success-stories/'),
-//             'text' => 'Success Stories',
-//         ];
-
-//         // Insert the new breadcrumb before the current post breadcrumb
-//         array_splice($links, -1, 0, [$breadcrumb]);
-//     }
-
-//     return $links;
-// }
-// add_filter('wpseo_breadcrumb_links', 'add_success_cpt_to_yoast_breadcrumbs');
-
-add_filter('nav_menu_css_class', function ($classes, $item, $args, $depth) {
-    // Check if we're on the "Success" archive or a single "Success" post
-    if (is_post_type_archive('success') || is_singular('success')) {
-        // Get the blog page ID
-        $blog_page_id = get_option('page_for_posts');
-
-        // Forcefully remove current_page_parent from the blog menu item
-        if (isset($item->object_id) && $item->object_id == $blog_page_id) {
-            $classes = array_filter($classes, function ($class) {
-                return $class !== 'current_page_parent';
-            });
+            // Forcefully remove current_page_parent from the blog menu item.
+            if ( isset( $item->object_id ) && $item->object_id === $blog_page_id ) {
+                $classes = array_filter(
+                    $classes,
+                    function ( $css_class ) {
+                        return 'current_page_parent' !== $css_class;
+                    }
+                );
+            }
         }
-    }
 
-    return $classes;
-}, 10, 4);
+        return $classes;
+    },
+    10,
+    4
+);
 
-function correct_success_stories_canonical($canonical)
-{
-    if (is_singular('success')) {
-        $canonical = home_url('/success-stories/' . get_post_field('post_name', get_queried_object()));
+function correct_success_stories_canonical( $canonical ) {
+    if ( is_singular( 'success' ) ) {
+        $canonical = home_url( '/success-stories/' . get_post_field( 'post_name', get_queried_object() ) );
     }
     return $canonical;
 }
-add_filter('wpseo_canonical', 'correct_success_stories_canonical');
+add_filter( 'wpseo_canonical', 'correct_success_stories_canonical' );
 
+function get_sibling_pages_with_sidebar_template( $post_id ) {
+    // Get the parent of the current page.
+    $parent_id = wp_get_post_parent_id( $post_id );
 
-
-function get_sibling_pages_with_sidebar_template($post_id)
-{
-    // Get the parent of the current page
-    $parent_id = wp_get_post_parent_id($post_id);
-
-    // If no parent, consider it a top-level page
+    // If no parent, consider it a top-level page.
     $parent_id = $parent_id ? $parent_id : $post_id;
 
-    $args = [
+    $args = array(
         'post_type'      => 'page',
         'post_status'    => 'publish',
         'post_parent'    => $parent_id,
-        'posts_per_page' => -1, // Fetch all children
+        'posts_per_page' => -1,
         'orderby'        => 'menu_order',
         'order'          => 'ASC',
-    ];
+    );
 
-    $query = new WP_Query($args);
+    $query = new WP_Query( $args );
 
-    // Filter siblings to include only those with the 'sidebar-page.php' template
-    $sidebar_pages = array_filter($query->posts, function ($page) {
-        return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
-    });
+    // Filter siblings to include only those with the 'sidebar-page.php' template.
+    $sidebar_pages = array_filter(
+        $query->posts,
+        function ( $page ) {
+            return get_page_template_slug( $page->ID ) === 'page-templates/sidebar-page.php';
+        }
+    );
 
     return $sidebar_pages;
 }
 
-function display_sibling_pages_with_sidebar_template($post_id)
-{
-    // Get sibling pages using the function
-    $siblings = get_sibling_pages_with_sidebar_template($post_id);
+function display_sibling_pages_with_sidebar_template( $post_id ) {
+    // Get sibling pages using the function.
+    $siblings = get_sibling_pages_with_sidebar_template( $post_id );
 
-    $parent_id = wp_get_post_parent_id($post_id);
+    $parent_id = wp_get_post_parent_id( $post_id );
 
-    // If no parent, consider it a top-level page
+    // If no parent, consider it a top-level page.
     $parent_id = $parent_id ? $parent_id : $post_id;
 
-    if (!empty($siblings)) {
+    if ( ! empty( $siblings ) ) {
         echo '<div class="sidebar sibling-pages">';
-        echo '<h3><a href="' . get_the_permalink($parent_id) . '">' . get_the_title($parent_id) . '</a></h3>';
+        echo '<h3><a href="' . esc_url( get_the_permalink( $parent_id ) ) . '">' . esc_html( get_the_title( $parent_id ) ) . '</a></h3>';
         echo '<ul>';
-        foreach ($siblings as $sibling) {
-            $active = ($sibling->ID == get_the_ID()) ? 'active' : '';
-            echo '<li><a href="' . esc_url(get_permalink($sibling->ID)) . '" class="' . $active . '">' . esc_html($sibling->post_title) . '</a></li>';
+        foreach ( $siblings as $sibling ) {
+            $active = ( get_the_ID() === $sibling->ID ) ? 'active' : '';
+            echo '<li><a href="' . esc_url( get_permalink( $sibling->ID ) ) . '" class="' . esc_attr( $active ) . '">' . esc_html( $sibling->post_title ) . '</a></li>';
         }
         echo '</ul></div>';
     } else {
@@ -430,85 +418,81 @@ function display_sibling_pages_with_sidebar_template($post_id)
     }
 }
 
-function get_child_pages_with_sidebar_template($post_id)
-{
+function get_child_pages_with_sidebar_template( $post_id ) {
 
-    $args = [
+    $args = array(
         'post_type'      => 'page',
         'post_status'    => 'publish',
         'post_parent'    => $post_id,
-        'posts_per_page' => -1, // Fetch all children
+        'posts_per_page' => -1,
         'orderby'        => 'menu_order',
         'order'          => 'ASC',
-    ];
+    );
 
-    $query = new WP_Query($args);
+    $query = new WP_Query( $args );
 
-    $sidebar_children = array_filter($query->posts, function ($page) {
-        return get_page_template_slug($page->ID) === 'page-templates/sidebar-page.php';
-    });
+    $sidebar_children = array_filter(
+        $query->posts,
+        function ( $page ) {
+            return get_page_template_slug( $page->ID ) === 'page-templates/sidebar-page.php';
+        }
+    );
 
-    // Reset post data after custom query
     wp_reset_postdata();
 
     return $sidebar_children;
 }
 
-function display_child_pages_with_sidebar_template($post_id)
-{
-    // Get child pages using the function
-    $children = get_child_pages_with_sidebar_template($post_id);
+function display_child_pages_with_sidebar_template( $post_id ) {
+    // Get child pages using the function.
+    $children = get_child_pages_with_sidebar_template( $post_id );
 
-    if (!empty($children)) {
-        $output = '<div class="sidebar child-pages">';
-        $output .= '<h3><a href="' . get_the_permalink($post_id) . '">' . get_the_title($post_id) . '</a></h3>';
+    if ( ! empty( $children ) ) {
+        $output  = '<div class="sidebar child-pages">';
+        $output .= '<h3><a href="' . esc_url( get_the_permalink( $post_id ) ) . '">' . get_the_title( $post_id ) . '</a></h3>';
         $output .= '<ul>';
-        foreach ($children as $child) {
-            $output .= '<li><a href="' . esc_url(get_permalink($child->ID)) . '">' . esc_html($child->post_title) . '</a></li>';
+        foreach ( $children as $child ) {
+            $output .= '<li><a href="' . esc_url( get_permalink( $child->ID ) ) . '">' . esc_html( $child->post_title ) . '</a></li>';
         }
         $output .= '</ul></div>';
 
         return $output;
     } else {
-        // echo '<p>No child pages found with the sidebar template.</p>';
         return null;
     }
 }
 
-function modify_search_results_per_page($query)
-{
-    // Check if it's the main query and a search query
-    if ($query->is_main_query() && $query->is_search()) {
-        $query->set('posts_per_page', 10); // Set the desired number of results per page
+function modify_search_results_per_page( $query ) {
+    // Check if it's the main query and a search query.
+    if ( $query->is_main_query() && $query->is_search() ) {
+        $query->set( 'posts_per_page', 10 ); // Set the desired number of results per page.
     }
 }
-add_action('pre_get_posts', 'modify_search_results_per_page');
+add_action( 'pre_get_posts', 'modify_search_results_per_page' );
 
-function remove_dashboard_widgets()
-{
+function remove_dashboard_widgets() {
     remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' ); // At a Glance.
     remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' ); // Activity.
     remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' ); // Quick Draft.
     remove_meta_box( 'dashboard_primary', 'dashboard', 'side' ); // WordPress News and Events.
 }
-add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
+add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets' );
 
-function force_add_current_menu_ancestor($items)
-{
+function force_add_current_menu_ancestor( $items ) {
     global $post;
 
-    if (isset($post->ID)) {
+    if ( isset( $post->ID ) ) {
         $current_page_id = $post->ID;
-        $ancestor_ids = get_post_ancestors($current_page_id);
+        $ancestor_ids    = get_post_ancestors( $current_page_id );
 
-        foreach ($items as &$item) {
-            // Check if the menu item's object ID is in the current page's ancestor list
-            if (in_array($item->object_id, $ancestor_ids)) {
+        foreach ( $items as &$item ) {
+            // Check if the menu item's object ID is in the current page's ancestor list.
+            if ( in_array( $item->object_id, $ancestor_ids ) ) {
                 $item->classes[] = 'current-menu-ancestor';
             }
 
-            // Optionally add a class to the direct parent
-            if ($item->object_id == $post->post_parent) {
+            // Optionally add a class to the direct parent.
+            if ( $item->object_id === $post->post_parent ) {
                 $item->classes[] = 'current-menu-parent';
             }
         }
@@ -516,18 +500,22 @@ function force_add_current_menu_ancestor($items)
 
     return $items;
 }
-add_filter('wp_nav_menu_objects', 'force_add_current_menu_ancestor', 10, 1);
+add_filter( 'wp_nav_menu_objects', 'force_add_current_menu_ancestor', 10, 1 );
 
-add_filter('wpseo_canonical', function ($canonical) {
-    if (is_singular('success')) {
-        return user_trailingslashit($canonical, 'single');
+add_filter(
+    'wpseo_canonical',
+    function ( $canonical ) {
+        if ( is_singular( 'success' ) ) {
+            return user_trailingslashit( $canonical, 'single' );
+        }
+        return $canonical;
     }
-    return $canonical;
-});
+);
 
 /**
  * Retrieves and displays Phil's bio from the 'phil_bio' custom field.
  *
+ * @param string|null $cat The category slug to retrieve the corresponding bio.
  * @return string HTML content of Phil's bio or an empty string if not available.
  */
 function phil_bio( $cat = null ) {
@@ -573,68 +561,5 @@ function phil_bio( $cat = null ) {
     return '';
 }
 
-/**
- * Converts HTML content with <h3> and <p> tags into a Bootstrap accordion structure.
- *
- * @param string $html The HTML content to be converted.
- * @param string $accordion_id The ID for the accordion container (default: 'accordionExample').
- * @return string The generated HTML for the Bootstrap accordion.
- */
-function convert_h3_p_to_accordion( $html, $accordion_id = 'philBioAccordion' ) {
-    $dom = new DOMDocument();
-    libxml_use_internal_errors(true); // Suppress warnings for bad HTML
-    $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
-    libxml_clear_errors();
-
-    $body = $dom->getElementsByTagName('body')->item(0);
-    $elements = $body->childNodes;
-
-    $accordion = '<div class="accordion" id="' . htmlspecialchars($accordion_id) . '">' . PHP_EOL;
-    $index = 0;
-    $openItem = false;
-
-    foreach ($elements as $element) {
-        if ($element->nodeType !== XML_ELEMENT_NODE) {
-            continue;
-        }
-
-        if ($element->tagName === 'h3') {
-            // Close previous item if open
-            if ($openItem) {
-                $accordion .= '    </div>' . PHP_EOL; // Close accordion-body
-                $accordion .= '  </div>' . PHP_EOL; // Close accordion-collapse
-                $accordion .= '</div>' . PHP_EOL; // Close accordion-item
-            }
-
-            $index++;
-            $heading_id = 'heading-' . $index;
-            $collapse_id = 'collapse-' . $index;
-
-            $accordion .= '<div class="accordion-item">' . PHP_EOL;
-            $accordion .= '  <h3 class="accordion-header" id="' . $heading_id . '">' . PHP_EOL;
-            $accordion .= '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' . $collapse_id . '" aria-expanded="false" aria-controls="' . $collapse_id . '">' . PHP_EOL;
-            $accordion .= '      ' . htmlspecialchars($element->textContent) . PHP_EOL;
-            $accordion .= '    </button>' . PHP_EOL;
-            $accordion .= '  </h3>' . PHP_EOL;
-            $accordion .= '  <div id="' . $collapse_id . '" class="accordion-collapse collapse" aria-labelledby="' . $heading_id . '" data-bs-parent="#' . htmlspecialchars($accordion_id) . '">' . PHP_EOL;
-            $accordion .= '    <div class="accordion-body">' . PHP_EOL;
-
-            $openItem = true;
-        } elseif ($element->tagName === 'p' && $openItem) {
-            $accordion .= '      ' . trim($dom->saveHTML($element)) . PHP_EOL;
-        }
-    }
-
-    // Close last open item
-    if ($openItem) {
-        $accordion .= '    </div>' . PHP_EOL; // Close accordion-body
-        $accordion .= '  </div>' . PHP_EOL; // Close accordion-collapse
-        $accordion .= '</div>' . PHP_EOL; // Close accordion-item
-    }
-
-    $accordion .= '</div>' . PHP_EOL; // Close accordion wrapper
-
-    return $accordion;
-}
 
 ?>
