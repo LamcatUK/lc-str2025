@@ -27,12 +27,9 @@ defined( 'ABSPATH' ) || exit;
         href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/playfair-display-v37-latin-600.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <?php
-    echo '<meta name="debug" content"GTM Property: ';
-    var_dump( get_field('gtm_property', 'option') );
-    echo '"';
 
     if ( get_field( 'gtm_property', 'option' ) ) {
-        // if ( ! is_user_logged_in() ) {
+        if ( ! is_user_logged_in() ) {
             ?>
             <!-- Google Tag Manager -->
             <script>
@@ -53,14 +50,14 @@ defined( 'ABSPATH' ) || exit;
             </script>
             <!-- End Google Tag Manager -->
             <?php
-        // }
+        }
     }
     if ( get_field( 'ga_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
             ?>
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async
-                src="<?= esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . get_field('ga_property', 'option') ); ?>">
+                src="<?= esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . get_field( 'ga_property', 'option' ) ); ?>">
             </script>
             <script>
                 window.dataLayer = window.dataLayer || [];
@@ -116,15 +113,15 @@ defined( 'ABSPATH' ) || exit;
     <?php
     do_action('wp_body_open');
 
-    if (get_field('gtm_property', 'options')) {
-        if (!is_user_logged_in()) {
-    ?>
+    if ( get_field( 'gtm_property', 'options' ) ) {
+        if ( ! is_user_logged_in() ) {
+            ?>
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe
-                    src="https://www.googletagmanager.com/ns.html?id=<?= get_field('gtm_property', 'options') ?>"
+                    src="https://www.googletagmanager.com/ns.html?id=<?= get_field( 'gtm_property', 'options' ) ?>"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- End Google Tag Manager (noscript) -->
-    <?php
+            <?php
         }
     }
     ?>
