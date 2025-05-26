@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The header for the theme
  *
@@ -8,8 +7,7 @@
  * @package lc-str2025
  */
 
-// Exit if accessed directly.
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -58,7 +56,7 @@ defined('ABSPATH') || exit;
             ?>
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async
-                src="<?= esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . get_field('ga_property', 'option') ?>">
+                src="<?= esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . get_field('ga_property', 'option') ); ?>">
             </script>
             <script>
                 window.dataLayer = window.dataLayer || [];
@@ -71,7 +69,7 @@ defined('ABSPATH') || exit;
                     '<?= esc_attr( get_field( 'ga_property', 'option' ) ); ?>'
                 );
             </script>
-        <?php
+            <?php
         }
     }
     if (get_field('google_site_verification', 'option')) {
