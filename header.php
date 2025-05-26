@@ -27,12 +27,10 @@ defined( 'ABSPATH' ) || exit;
         href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/playfair-display-v37-latin-600.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <?php
-    
-    var_dump( get_field( 'gtm_property', 'option' ) );
-    var_dump( get_field( 'gtm_property', 'options' ) );
 
     if ( get_field( 'gtm_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
+            echo '<meta name="gtm-tag" content="' . esc_attr( get_field( 'gtm_property', 'option' ) ) . '" />';
             ?>
             <!-- Google Tag Manager -->
             <script>
