@@ -29,7 +29,7 @@ $page_for_posts = get_option( 'page_for_posts' );
                 <div class="sidebar-success">
                     <div class="success-nav">
                         <h3 class="h5">Our Expertise</h3>
-                        <?php wp_nav_menu( array( 'theme_location' => 'footer_menu_2' ) ); ?>
+                        <?php wp_nav_menu( array( 'theme_location' => 'success_menu' ) ); ?>
                     </div>
                     <div class="mt-4 success-cta d-none d-lg-block">
                         <div class="fw-600 mb-3">Contact Stormcatcher for First Free Advice</div>
