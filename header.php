@@ -32,7 +32,6 @@ defined( 'ABSPATH' ) || exit;
         if ( ! is_user_logged_in() ) {
             echo '<meta name="gtm-tag" content="' . esc_attr( get_field( 'gtm_property', 'option' ) ) . '" />';
             ?>
-            <!-- Google Tag Manager -->
             <script>
                 (function(w, d, s, l, i) {
                     w[l] = w[l] || [];
@@ -49,7 +48,6 @@ defined( 'ABSPATH' ) || exit;
                     f.parentNode.insertBefore(j, f);
                 })(window, document, 'script', 'dataLayer', '<?= esc_attr( get_field( 'gtm_property', 'option' ) ); ?>');
             </script>
-            <!-- End Google Tag Manager -->
             <?php
         }
     }
