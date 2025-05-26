@@ -549,10 +549,16 @@ function phil_bio( $cat = null ) {
             <a href="<?= esc_url( 'mailto:' . antispambot( get_field( 'contact_email', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-paper-plane"></i> Email</a>
         </div>
     </div>
+        <?php
+        if ( ! is_singular( 'success' ) ) {
+            ?>
     <div class="bio__bottom text-center">
         <div class="">Not ready to get in touch?</div>
         <a class="fs-500 fw-600" href="/success-stories/">Read our Client Success Stories</a>
     </div>
+            <?php
+        }
+        ?>
 </div>
         <?php
         return ob_get_clean();
