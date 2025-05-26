@@ -27,6 +27,10 @@ defined( 'ABSPATH' ) || exit;
         href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/playfair-display-v37-latin-600.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
     <?php
+    echo '<!-- GTM Property: ';
+    var_dump( get_field('gtm_property', 'option') );
+    echo '-->';
+
     if ( get_field( 'gtm_property', 'option' ) ) {
         // if ( ! is_user_logged_in() ) {
             ?>
