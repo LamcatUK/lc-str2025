@@ -533,8 +533,6 @@ add_filter('wpseo_canonical', function ($canonical) {
 function phil_bio( $cat = null ) {
 
     $cat = preg_replace( '/-/', '_', $cat );
-
-    echo 'CHECKING FOR BIO: ' . $cat . '<br>';
     $bio = get_field( $cat, 'option' ) ?? null;
 
     if ( $bio ) {
