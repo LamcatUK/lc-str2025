@@ -1,6 +1,31 @@
 <?php
-// get posts
+/**
+ * Success By Speciality Block Template
+ *
+ * Displays a carousel of success stories filtered by speciality or category.
+ *
+ * @package lc-str2025
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+// get posts.
 $speciality_terms = get_field( 'speciality' );
+
+// if speciality_terms is empty, choose the first 5 terms from the 'category' taxonomy.
+if ( empty( $speciality_terms ) || ! is_array( $speciality_terms ) ) {
+    $terms = get_terms(
+        array(
+            'taxonomy'   => 'category',
+            'hide_empty' => true,
+            'number'     => 5,
+        )
+    );
+
+    $speciality_terms = wp_list_pluck( $terms, 'term_id' ); // Get term IDs.
+}
+
+
 if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
     $query_args = array(
         'post_type'      => 'success',  // Your custom post type.
@@ -13,7 +38,6 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
         ),
     );
 
-    // Execute query
     $q = new WP_Query( $query_args );
     if ( $q->have_posts() ) {
         ?>
@@ -36,9 +60,9 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
                                 $q->the_post();
                                 ?>
                                 <li class="splide__slide">
-                                    <a class="success_carousel__card" href="<?= get_the_permalink() ?>">
-                                        <h3><?= get_the_title() ?></h3>
-                                        <p><?= wp_trim_words(get_the_content(null, false, get_the_ID()), 55) ?></p>
+                                    <a class="success_carousel__card" href="<?= esc_url( get_the_permalink() ); ?>">
+                                        <h3><?= esc_html( get_the_title() ); ?></h3>
+                                        <p><?= wp_kses_post( wp_trim_words( get_the_content( null, false, get_the_ID() ), 55 ) ); ?></p>
                                     </a>
                                 </li>
                                 <?php
