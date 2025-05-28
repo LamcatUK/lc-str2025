@@ -457,7 +457,7 @@ function display_child_pages_with_sidebar_template( $post_id ) {
         }
         $output .= '</ul></div>';
 
-        return $output;
+        echo $output;
     } else {
         return null;
     }

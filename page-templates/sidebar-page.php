@@ -28,8 +28,10 @@ $blocks  = parse_blocks( $content );
         <div class="row g-4">
             <div class="col-lg-3">
                 <?php
+
                 $sidebar = get_field( 'sidebar', get_the_ID() ) ?? 'Siblings';
 
+                
                 if ( 'Children' === $sidebar ) {
                     display_child_pages_with_sidebar_template( get_the_ID() );
                 } elseif ( 'Siblings' === $sidebar ) {
