@@ -31,7 +31,6 @@ $blocks  = parse_blocks( $content );
 
                 $sidebar = get_field( 'sidebar', get_the_ID() ) ?? 'Siblings';
 
-                
                 if ( 'Children' === $sidebar ) {
                     display_child_pages_with_sidebar_template( get_the_ID() );
                 } elseif ( 'Siblings' === $sidebar ) {
@@ -43,7 +42,7 @@ $blocks  = parse_blocks( $content );
                 <?php
                 foreach ( $blocks as $block ) {
                     if ( isset( $block['blockName'] ) && 'acf/lc-hero' === $block['blockName'] ) {
-                        continue; // Skip this block
+                        continue; // Skip this block.
                     }
                     if ( isset( $block['blockName'] ) && 'acf/lc-breadcrumbs' === $block['blockName'] ) {
                         continue;

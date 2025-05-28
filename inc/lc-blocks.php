@@ -14,6 +14,17 @@ function acf_blocks() {
     if ( function_exists( 'acf_register_block_type' ) ) {
 
         acf_register_block_type(array(
+            'name'                => 'lc-featured-page',
+            'title'               => __('LC Featured Page'),
+            'category'            => 'layout',
+            'icon'                => 'cover-image',
+            'render_template'     => 'page-templates/blocks/lc-featured-page.php',
+            'mode'                => 'edit',
+            'supports'            => array('mode' => false, 'anchor' => true, 'className' => true),
+        ));
+
+
+        acf_register_block_type(array(
             'name'                => 'lc-single-bio',
             'title'               => __('LC Single Bio'),
             'category'            => 'layout',

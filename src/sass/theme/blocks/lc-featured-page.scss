@@ -1,0 +1,15 @@
+.lc-featured-page {
+  .success_card__featured_grid {
+    display: grid;
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 3fr;
+    }
+    gap: 1rem;
+  }
+  .featured_grid__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+}

@@ -299,7 +299,12 @@ function splide_slider_shortcode( $atts ) {
 }
 add_shortcode( 'splide_slider', 'splide_slider_shortcode' );
 
-add_filter( 'wpseo_breadcrumb_links', 'add_expertise_breadcrumb' );
+/**
+ * Adds an 'Expertise' breadcrumb link for specific pages.
+ *
+ * @param array $links The existing breadcrumb links.
+ * @return array Modified breadcrumb links with 'Expertise' added when appropriate.
+ */
 function add_expertise_breadcrumb( $links ) {
     // Define the pages where 'Expertise' should be added.
     $expertise_pages = array(
@@ -333,6 +338,7 @@ function add_expertise_breadcrumb( $links ) {
 
     return $links;
 }
+add_filter( 'wpseo_breadcrumb_links', 'add_expertise_breadcrumb' );
 
 add_filter(
     'nav_menu_css_class',
@@ -359,6 +365,12 @@ add_filter(
     4
 );
 
+/**
+ * Filters the canonical URL for 'success' post type single pages.
+ *
+ * @param string $canonical The current canonical URL.
+ * @return string Modified canonical URL for 'success' single posts.
+ */
 function correct_success_stories_canonical( $canonical ) {
     if ( is_singular( 'success' ) ) {
         $canonical = home_url( '/success-stories/' . get_post_field( 'post_name', get_queried_object() ) );
@@ -367,6 +379,12 @@ function correct_success_stories_canonical( $canonical ) {
 }
 add_filter( 'wpseo_canonical', 'correct_success_stories_canonical' );
 
+/**
+ * Retrieves sibling pages of a given post that use the 'sidebar-page.php' template.
+ *
+ * @param int $post_id The ID of the current post.
+ * @return array Array of sibling page objects with the sidebar template.
+ */
 function get_sibling_pages_with_sidebar_template( $post_id ) {
     // Get the parent of the current page.
     $parent_id = wp_get_post_parent_id( $post_id );
