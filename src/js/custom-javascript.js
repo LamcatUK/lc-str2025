@@ -1,10 +1,10 @@
 // Add your custom JS here.
 AOS.init({
-    duration: 800,
-    once: true,
-    easing: 'ease-in',
+  duration: 800,
+  once: true,
+  easing: "ease-in",
 });
-
+/*
 document.addEventListener('DOMContentLoaded', function() {
 
     const topNav = document.querySelector('header');
@@ -23,3 +23,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 });
+*/

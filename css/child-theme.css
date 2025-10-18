@@ -164,8 +164,10 @@ p {
 }
 
 abbr[title] {
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
   cursor: help;
+  -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
 }
 
@@ -2014,6 +2016,8 @@ progress {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2096,6 +2100,10 @@ progress {
 .wpcf7 textarea::-webkit-date-and-time-value {
   height: 1.5em;
 }
+.form-control::-moz-placeholder, .wpcf7 .wpcf7-validation-errors::-moz-placeholder, .wpcf7 input[type=text]::-moz-placeholder, .wpcf7 input[type=search]::-moz-placeholder, .wpcf7 input[type=url]::-moz-placeholder, .wpcf7 input[type=tel]::-moz-placeholder, .wpcf7 input[type=number]::-moz-placeholder, .wpcf7 input[type=range]::-moz-placeholder, .wpcf7 input[type=date]::-moz-placeholder, .wpcf7 input[type=month]::-moz-placeholder, .wpcf7 input[type=week]::-moz-placeholder, .wpcf7 input[type=time]::-moz-placeholder, .wpcf7 input[type=datetime]::-moz-placeholder, .wpcf7 input[type=datetime-local]::-moz-placeholder, .wpcf7 input[type=color]::-moz-placeholder, .wpcf7 input[type=email]::-moz-placeholder, .wpcf7 input[type=file]::-moz-placeholder, .wpcf7 input[type=submit]::-moz-placeholder, .wpcf7 select::-moz-placeholder, .wpcf7 textarea::-moz-placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
 .form-control::placeholder, .wpcf7 .wpcf7-validation-errors::placeholder, .wpcf7 input[type=text]::placeholder,
 .wpcf7 input[type=search]::placeholder,
 .wpcf7 input[type=url]::placeholder,
@@ -2158,6 +2166,7 @@ progress {
 .wpcf7 textarea::file-selector-button {
   padding: 0.375rem 0.75rem;
   margin: -0.375rem -0.75rem;
+  -webkit-margin-end: 0.75rem;
   margin-inline-end: 0.75rem;
   color: #212529;
   background-color: #e9ecef;
@@ -2240,6 +2249,7 @@ progress {
 .form-control-sm::file-selector-button {
   padding: 0.25rem 0.5rem;
   margin: -0.25rem -0.5rem;
+  -webkit-margin-end: 0.5rem;
   margin-inline-end: 0.5rem;
 }
 
@@ -2252,6 +2262,7 @@ progress {
 .form-control-lg::file-selector-button {
   padding: 0.5rem 1rem;
   margin: -0.5rem -1rem;
+  -webkit-margin-end: 1rem;
   margin-inline-end: 1rem;
 }
 
@@ -2305,6 +2316,8 @@ textarea.form-control-lg {
   border: 1px solid #ced4da;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2377,7 +2390,10 @@ textarea.form-control-lg {
   background-position: center;
   background-size: contain;
   border: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
+  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
@@ -2472,6 +2488,8 @@ textarea.form-control-lg {
   height: 1.5rem;
   padding: 0;
   background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 .form-range:focus {
@@ -2493,11 +2511,14 @@ textarea.form-control-lg {
   background-color: #5533ff;
   border: 0;
   border-radius: 1rem;
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-range::-webkit-slider-thumb {
+    -webkit-transition: none;
     transition: none;
   }
 }
@@ -2519,11 +2540,14 @@ textarea.form-control-lg {
   background-color: #5533ff;
   border: 0;
   border-radius: 1rem;
+  -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -moz-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .form-range::-moz-range-thumb {
+    -moz-transition: none;
     transition: none;
   }
 }
@@ -2618,6 +2642,9 @@ textarea.form-control-lg {
 .form-floating > .form-control-plaintext {
   padding: 1rem 0.75rem;
 }
+.form-floating > .form-control::-moz-placeholder, .wpcf7 .form-floating > .wpcf7-validation-errors::-moz-placeholder, .wpcf7 .form-floating > input[type=text]::-moz-placeholder, .wpcf7 .form-floating > input[type=search]::-moz-placeholder, .wpcf7 .form-floating > input[type=url]::-moz-placeholder, .wpcf7 .form-floating > input[type=tel]::-moz-placeholder, .wpcf7 .form-floating > input[type=number]::-moz-placeholder, .wpcf7 .form-floating > input[type=range]::-moz-placeholder, .wpcf7 .form-floating > input[type=date]::-moz-placeholder, .wpcf7 .form-floating > input[type=month]::-moz-placeholder, .wpcf7 .form-floating > input[type=week]::-moz-placeholder, .wpcf7 .form-floating > input[type=time]::-moz-placeholder, .wpcf7 .form-floating > input[type=datetime]::-moz-placeholder, .wpcf7 .form-floating > input[type=datetime-local]::-moz-placeholder, .wpcf7 .form-floating > input[type=color]::-moz-placeholder, .wpcf7 .form-floating > input[type=email]::-moz-placeholder, .wpcf7 .form-floating > input[type=file]::-moz-placeholder, .wpcf7 .form-floating > input[type=submit]::-moz-placeholder, .wpcf7 .form-floating > select::-moz-placeholder, .wpcf7 .form-floating > textarea::-moz-placeholder, .form-floating > .form-control-plaintext::-moz-placeholder {
+  color: transparent;
+}
 .form-floating > .form-control::placeholder, .wpcf7 .form-floating > .wpcf7-validation-errors::placeholder, .wpcf7 .form-floating > input[type=text]::placeholder,
 .wpcf7 .form-floating > input[type=search]::placeholder,
 .wpcf7 .form-floating > input[type=url]::placeholder,
@@ -2638,6 +2665,10 @@ textarea.form-control-lg {
 .wpcf7 .form-floating > textarea::placeholder,
 .form-floating > .form-control-plaintext::placeholder {
   color: transparent;
+}
+.form-floating > .form-control:not(:-moz-placeholder-shown), .wpcf7 .form-floating > .wpcf7-validation-errors:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=text]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=search]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=url]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=tel]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=number]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=range]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=date]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=month]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=week]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=time]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=datetime]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=datetime-local]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=color]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=email]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=file]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > input[type=submit]:not(:-moz-placeholder-shown), .wpcf7 .form-floating > select:not(:-moz-placeholder-shown), .wpcf7 .form-floating > textarea:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
 }
 .form-floating > .form-control:focus, .wpcf7 .form-floating > .wpcf7-validation-errors:focus, .wpcf7 .form-floating > input[type=text]:focus,
 .wpcf7 .form-floating > input[type=search]:focus,
@@ -2704,6 +2735,10 @@ textarea.form-control-lg {
 .form-floating > .form-select, .form-floating > .wpcf7-select {
   padding-top: 1.625rem;
   padding-bottom: 0.625rem;
+}
+.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > .wpcf7-validation-errors:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=text]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=search]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=url]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=tel]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=number]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=range]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=date]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=month]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=week]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=time]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=datetime]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=datetime-local]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=color]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=email]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=file]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > input[type=submit]:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > select:not(:-moz-placeholder-shown) ~ label, .wpcf7 .form-floating > textarea:not(:-moz-placeholder-shown) ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
 .form-floating > .form-control:focus ~ label, .wpcf7 .form-floating > .wpcf7-validation-errors:focus ~ label, .wpcf7 .form-floating > input[type=text]:focus ~ label,
 .wpcf7 .form-floating > input[type=search]:focus ~ label,
@@ -5313,6 +5348,8 @@ textarea.form-control-lg {
 }
 .btn-close:disabled, .btn-close.disabled {
   pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   user-select: none;
   opacity: 0.25;
 }
@@ -5359,6 +5396,7 @@ textarea.form-control-lg {
   --bs-toast-zindex: 1090;
   position: absolute;
   z-index: var(--bs-toast-zindex);
+  width: -moz-max-content;
   width: max-content;
   max-width: 100%;
   pointer-events: none;
@@ -5964,6 +6002,7 @@ textarea.form-control-lg {
   float: left;
   width: 100%;
   margin-right: -100%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
 }
@@ -6790,13 +6829,16 @@ textarea.form-control-lg {
   }
 }
 .placeholder-wave {
+  -webkit-mask-image: linear-gradient(130deg, #000 55%, rgba(0, 0, 0, 0.8) 75%, #000 95%);
   mask-image: linear-gradient(130deg, #000 55%, rgba(0, 0, 0, 0.8) 75%, #000 95%);
+  -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
   animation: placeholder-wave 2s linear infinite;
 }
 
 @keyframes placeholder-wave {
   100% {
+    -webkit-mask-position: -200% 0%;
     mask-position: -200% 0%;
   }
 }
@@ -8361,14 +8403,20 @@ textarea.form-control-lg {
 }
 
 .user-select-all {
+  -webkit-user-select: all !important;
+  -moz-user-select: all !important;
   user-select: all !important;
 }
 
 .user-select-auto {
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
   user-select: auto !important;
 }
 
 .user-select-none {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
   user-select: none !important;
 }
 
@@ -11044,6 +11092,8 @@ body {
   border: 1px solid #ced4da;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -23982,57 +24032,33 @@ strong, b, .fw-bold {
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  max-width: 100dvw;
-  transition: transform var(--transition);
   background-color: var(--col-grey-100);
-}
-header.hidden {
-  transform: translateY(-100%);
-}
-header img {
-  max-width: 312px;
-  width: auto;
-  height: auto;
-  display: block;
-  aspect-ratio: 312/58;
-}
-@media (min-width: 992px) {
-  header .header__grid {
-    display: grid;
-    column-gap: 1.5rem;
-    row-gap: 0.5rem;
-    grid-template-areas: "logo phone" "logo nav";
-    grid-template-columns: auto 1fr;
-  }
-  header .header__grid .logo {
-    min-width: 312px;
-  }
-}
-header .logo {
-  grid-area: logo;
-  align-content: center;
-}
-header .logo a {
-  display: block;
-  width: 100%;
-  margin-block: auto;
-}
-header .phone {
-  grid-area: phone;
-}
-header .phone span a {
+  box-shadow: var(--shadow-sm);
   color: var(--col-black);
 }
-header .phone span a:hover {
+header .navbar-toggler,
+header .nav-tel {
+  color: var(--col-black);
+  transition: color var(--transition);
+}
+header .navbar-toggler:hover,
+header .nav-tel:hover {
   color: var(--col-accent-400);
 }
-header .navbar {
-  grid-area: nav;
+header .contact-info {
+  color: var(--col-black);
+}
+header .contact-info a {
+  color: var(--col-black);
+  transition: color var(--transition);
+  text-decoration: none;
+}
+header .contact-info a:hover {
+  text-decoration: none;
+  color: var(--col-accent-400);
+}
+header .navbar-nav {
+  margin-block: 0;
 }
 header .current-menu-item,
 header .current_page_parent,
@@ -24050,6 +24076,7 @@ header .dropdown-toggle::after {
 header .nav-link {
   color: var(--col-black);
   position: relative;
+  width: -moz-max-content;
   width: max-content;
 }
 header .nav-link::after {
@@ -24067,6 +24094,42 @@ header .nav-link::after {
 }
 header .nav-link:hover::after {
   transform: scaleX(1);
+}
+header .logo-container {
+  max-width: 312px;
+  margin-right: 1rem;
+}
+header .logo {
+  background-image: url(../img/stormcatcher--dk.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  aspect-ratio: 312/58;
+  min-width: 180px;
+  max-width: 100%;
+  width: 220px;
+}
+@media (min-width: 768px) {
+  header .logo {
+    width: 240px;
+  }
+}
+@media (min-width: 1200px) {
+  header .logo {
+    width: 280px;
+  }
+}
+@media (min-width: 1400px) {
+  header .logo {
+    width: 312px;
+  }
+}
+
+@media (min-width: 992px) {
+  .w-lg-auto {
+    width: auto !important;
+  }
 }
 
 footer {
@@ -24094,6 +24157,7 @@ footer .footer__title {
 }
 footer .menu {
   list-style: none;
+  -webkit-padding-start: 0;
   padding-inline-start: 0;
 }
 footer .social_icons {
@@ -24134,6 +24198,7 @@ footer .colophon a:hover {
   gap: 0.5rem;
 }
 .insights__categories a {
+  min-width: -moz-max-content;
   min-width: max-content;
   background-color: var(--col-grey-100);
   border-radius: var(--border-sm);
@@ -24213,7 +24278,9 @@ footer .colophon a:hover {
   aspect-ratio: 16/9;
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
+  -o-object-position: center;
   object-position: center;
 }
 .news_index__inner {
@@ -24266,6 +24333,7 @@ footer .colophon a:hover {
   aspect-ratio: 16/9;
   border-radius: var(--border-lg);
   margin-bottom: 1rem;
+  -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
 }
@@ -24307,6 +24375,7 @@ footer .colophon a:hover {
   margin-bottom: 0;
 }
 .single-blog .sidebar-insights .quicklinks ul {
+  -webkit-padding-start: 1rem;
   padding-inline-start: 1rem;
   font-size: var(--fs-300);
 }
@@ -24345,6 +24414,7 @@ footer .colophon a:hover {
 }
 .single-blog .card__image {
   aspect-ratio: 16/9;
+  -o-object-fit: cover;
   object-fit: cover;
   border-top-left-radius: var(--border-sm);
   border-top-right-radius: var(--border-sm);
@@ -24385,6 +24455,7 @@ footer .colophon a:hover {
   left: 0;
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
   z-index: -1;
 }
@@ -24569,6 +24640,7 @@ footer .colophon a:hover {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+  -webkit-margin-start: 1.5rem;
   margin-inline-start: 1.5rem;
 }
 .splide-controls .splide-prev,
@@ -24700,6 +24772,7 @@ footer .colophon a:hover {
 }
 .insights__card img {
   aspect-ratio: 16/9;
+  -o-object-fit: cover;
   object-fit: cover;
   transition: transform var(--transition);
 }
@@ -24807,6 +24880,7 @@ footer .colophon a:hover {
   grid-area: icon;
   width: 50px;
   height: 50px;
+  -o-object-fit: contain;
   object-fit: contain;
   filter: brightness(0.2);
   transition: filter var(--transition);
@@ -24824,6 +24898,7 @@ footer .colophon a:hover {
 .lc-featured-page .featured_grid__image {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
   border-radius: 0.5rem;
 }
@@ -24843,6 +24918,11 @@ a.anchor {
 
 .edit-link {
   display: none;
+}
+
+::-moz-selection {
+  background-color: var(--col-accent-400);
+  color: var(--col-black);
 }
 
 ::selection {
@@ -24877,9 +24957,11 @@ a:hover {
 
 @media all and (min-width: 992px) {
   .cols-lg-2 {
+    -moz-columns: 2;
     columns: 2;
   }
   .cols-lg-3 {
+    -moz-columns: 3;
     columns: 3;
   }
 }
@@ -24979,6 +25061,7 @@ a:hover {
   font-weight: var(--fw-600);
 }
 .sidebar ul {
+  -webkit-padding-start: 0;
   padding-inline-start: 0;
   list-style: none;
 }
@@ -25043,6 +25126,7 @@ a:hover {
   font-weight: var(--fw-600);
 }
 .sidebar-success .success-nav ul {
+  -webkit-padding-start: 1rem;
   padding-inline-start: 1rem;
   font-size: var(--fs-300);
 }
@@ -25078,6 +25162,7 @@ a:hover {
   font-size: var(--fs-300);
 }
 .success_card__pill {
+  min-width: -moz-max-content;
   min-width: max-content;
   background-color: var(--col-black);
   color: var(--col-white);
@@ -25109,6 +25194,7 @@ a:hover {
 .bio .bio-image {
   aspect-ratio: 1;
   border-radius: 50%;
+  -o-object-fit: cover;
   object-fit: cover;
   box-shadow: var(--shadow-sm);
 }

@@ -41,7 +41,7 @@ defined( 'ABSPATH' ) || exit;
     }
     ?>
     <meta
-        charset="<?php bloginfo('charset'); ?>">
+        charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="preload"
@@ -55,17 +55,22 @@ defined( 'ABSPATH' ) || exit;
         as="font" type="font/woff2" crossorigin="anonymous">
     <?php
 
-    if (get_field('google_site_verification', 'option')) {
-        echo '<meta name="google-site-verification" content="' . get_field('google_site_verification', 'option') . '" />';
+    if ( get_field( 'google_site_verification', 'option' ) ) {
+        echo '<meta name="google-site-verification" content="' . esc_attr( get_field( 'google_site_verification', 'option' ) ) . '" />';
     }
-    if (get_field('bing_site_verification', 'option')) {
-        echo '<meta name="msvalidate.01" content="' . get_field('bing_site_verification', 'option') . '" />';
+    if ( get_field( 'bing_site_verification', 'option' ) ) {
+        echo '<meta name="msvalidate.01" content="' . esc_attr( get_field( 'bing_site_verification', 'option' ) ) . '" />';
     }
-    if (is_front_page() || is_page('contact')) {
-        $social_links = get_field('socials', 'option');
-        $filtered_links = array_values(array_filter($social_links, function ($url) {
-            return !empty($url);
-        }));
+    if ( is_front_page() || is_page( 'contact' ) ) {
+        $social_links   = get_field( 'socials', 'option' );
+        $filtered_links = array_values(
+            array_filter(
+                $social_links,
+                function ( $url ) {
+                    return ! empty( $url );
+                }
+            )
+        );
         ?>
         <script type="application/ld+json">
             {
@@ -75,9 +80,9 @@ defined( 'ABSPATH' ) || exit;
                 "url": "https://stormcatcher.co.uk/",
                 "Description": "Stormcatcher Law is a friendly and approachable renowned niche law firm with a leading reputation and enviable track record across a wide range of areas of law, specialising in consumer law and civil dispute resolution, second to none in automotive law, building and construction and contract law. We provide legal advice and services for individuals and businesses. ",
                 "sameAs": <?php
-                            echo json_encode($filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-                            ?>,
-                "logo": "<?= get_stylesheet_directory_uri() ?>/img/stormcatcher-og-696x696.png",
+                    echo wp_json_encode( $filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
+                ?>,
+                "logo": "<?= esc_url( get_stylesheet_directory_uri() . '/img/stormcatcher-og-696x696.png' ); ?>",
                 "contactPoint": [{
                     "@type": "ContactPoint",
                     "telephone": "+44-3337007676",
@@ -123,39 +128,44 @@ defined( 'ABSPATH' ) || exit;
             ?>
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe
-                    src="https://www.googletagmanager.com/ns.html?id=<?= get_field( 'gtm_property', 'option' ) ?>"
+                    src="https://www.googletagmanager.com/ns.html?id=<?= esc_attr( get_field( 'gtm_property', 'option' ) ); ?>"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- End Google Tag Manager (noscript) -->
             <?php
         }
     }
     ?>
-    <header class="pb-2 pt-2 pb-lg-0">
-        <div class="container-xl header__grid">
-            <div class="logo d-flex justify-content-between">
-                <a href="/" title="Stormcatcher"><img src="<?= get_stylesheet_directory_uri() ?>/img/stormcatcher--dk.svg" alt="Stormcatcher" width="312" height="58"></a>
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <header class="fixed-top p-0">
+        <nav class="navbar navbar-expand-lg pb-lg-0">
+            <div class="container-xl gap-4">
+            <div class="d-flex justify-content-between w-100 w-lg-auto align-items-center">
+                <div class="logo-container">
+                    <a href="/" class="logo navbar-brand" aria-label="Stormcatcher"></a>
+                </div>
+                <div class="d-lg-none me-2"><a class="nav-tel" href="tel:<?= esc_attr( parse_phone( $phone_number ) ); ?>"><i class="fas fa-phone"></i></a></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
-            <div class="phone text-lg-end d-none d-lg-block">
-                Call us today: <span class="fw-bold"><?= do_shortcode('[contact_phone]') ?></span>
-            </div>
-            <nav class="navbar navbar-expand-lg p-0">
+            <div id="navbar" class="collapse navbar-collapse">
+                <div class="w-100 d-flex flex-column justify-content-lg-between align-items-lg-center">
+                <div class="contact-info d-none d-lg-flex w-100 justify-content-end align-items-lg-center pb-2">
+                    <span>Call us today: <span class="fw-bold"><?= do_shortcode( '[contact_phone]' ); ?></span></span>
+                </div>
                 <?php
-
                 wp_nav_menu(
                     array(
-                        'theme_location'  => 'primary_nav',
-                        'container_class' => 'collapse navbar-collapse',
-                        'container_id'    => 'navbarNav',
-                        'menu_class'      => 'navbar-nav w-100 justify-content-end gap-2 gap-lg-5',
-                        'fallback_cb'     => '',
-                        'depth'           => 2,
-                        'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
+                        'theme_location' => 'primary_nav',
+                        'container'      => false,
+                        'menu_class'     => 'navbar-nav w-100 justify-content-end gap-2 gap-xl-5',
+                        'fallback_cb'    => '',
+                        'depth'          => 2,
+                        'walker'         => new Understrap_WP_Bootstrap_Navwalker(),
                     )
                 );
                 ?>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>

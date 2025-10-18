@@ -1,60 +1,33 @@
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-
-  max-width: 100dvw;
-
-  transition: transform var(--transition);
-
-  &.hidden {
-    transform: translateY(-100%);
-  }
-
   background-color: var(--col-grey-100);
-  img {
-    max-width: 312px;
-    width: auto;
-    height: auto;
-    display: block;
-    aspect-ratio: 312 / 58;
-  }
+  box-shadow: var(--shadow-sm);
 
-  .header__grid {
-    @media (min-width: 992px) {
-      display: grid;
-      column-gap: 1.5rem;
-      row-gap: 0.5rem;
-      grid-template-areas: "logo phone" "logo nav";
-      grid-template-columns: auto 1fr;
-      .logo {
-        min-width: 312px; // Ensure the logo column doesn't collapse
-      }
+  color: var(--col-black);
+
+  .navbar-toggler,
+  .nav-tel {
+    color: var(--col-black);
+    transition: color var(--transition);
+    &:hover {
+      color: var(--col-accent-400);
     }
   }
 
-  .logo {
-    grid-area: logo;
-    align-content: center;
+  .contact-info {
+    color: var(--col-black);
     a {
-      display: block;
-      width: 100%;
-      margin-block: auto;
-    }
-  }
-  .phone {
-    grid-area: phone;
-    span a {
       color: var(--col-black);
+      transition: color var(--transition);
+      text-decoration: none;
       &:hover {
+        text-decoration: none;
         color: var(--col-accent-400);
       }
     }
   }
-  .navbar {
-    grid-area: nav;
+
+  .navbar-nav {
+    margin-block: 0;
   }
 
   .current-menu-item,
@@ -93,5 +66,37 @@ header {
         transform: scaleX(1);
       }
     }
+  }
+
+  .logo-container {
+    max-width: 312px;
+    margin-right: 1rem;
+  }
+
+  .logo {
+    background-image: url(../img/stormcatcher--dk.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    aspect-ratio: 312 / 58;
+    min-width: 180px;
+    max-width: 100%;
+    width: 220px;
+    @media (min-width: 768px) {
+      width: 240px;
+    }
+    @media (min-width: 1200px) {
+      width: 280px;
+    }
+    @media (min-width: 1400px) {
+      width: 312px;
+    }
+  }
+}
+
+.w-lg-auto {
+  @media (min-width: 992px) {
+    width: auto !important;
   }
 }
