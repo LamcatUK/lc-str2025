@@ -142,7 +142,7 @@ defined( 'ABSPATH' ) || exit;
                 <div class="logo-container">
                     <a href="/" class="logo navbar-brand" aria-label="Stormcatcher"></a>
                 </div>
-                <div class="d-lg-none me-2"><a class="nav-tel" href="tel:<?= esc_attr( parse_phone( $phone_number ) ); ?>"><i class="fas fa-phone"></i></a></div>
+                <div class="d-lg-none me-2"><a class="nav-tel" href="tel:<?= esc_attr( parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>"><i class="fas fa-phone"></i></a></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
                     aria-label="Toggle navigation">
