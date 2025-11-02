@@ -564,7 +564,7 @@ function phil_bio( $cat = null ) {
     <div class="bio__middle text-center">
         <h3>Contact Stormcatcher for First Free Advice</h3>
         <div class="d-flex gap-2 justify-content-center align-items-center mb-3 flex-wrap">
-            <a href="<?= esc_url( 'tel:' . parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-phone"></i> Call</a>
+            <a href="<?= esc_url( 'tel:' . parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-phone"></i> Call<span class="d-none d-md-inline">: <?= esc_html( get_field( 'contact_phone', 'option' ) ); ?></span></a>
             <a href="<?= esc_url( 'mailto:' . antispambot( get_field( 'contact_email', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-paper-plane"></i> Email</a>
         </div>
     </div>
