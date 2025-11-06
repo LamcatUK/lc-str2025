@@ -14,62 +14,34 @@ $c = is_front_page() === 1 ? 'home_hero' : '';
     <?= wp_get_attachment_image( get_field( 'background' ), 'full', false, array( 'class' => 'hero__bg' ) ); ?>
     <div class="overlay"></div>
     <div class="container-xl py-6 my-auto">
-        <div class="row g-5">
-            <div class="col-md-9">
-                <?php
-                $c = 0;
-                if ( get_field( 'pre_title' ) ?? null ) {
-                    ?>
-                    <div class="pre-title" data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>"><?= esc_html( get_field( 'pre_title' ) ); ?></div>
-                    <?php
-                    $c += 200;
-                }
-                ?>
-                <h1 data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>"><?= esc_html( get_field( 'title' ) ); ?></h1>
-                <?php
-                $c += 200;
-                if ( get_field( 'content' ) ?? null ) {
-                    ?>
-                    <div class="content" data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>"><?= esc_html( get_field( 'content' ) ); ?></div>
-                    <?php
-                    $c += 200;
-                }
-                ?>
-                <?php
-                if ( get_field( 'cta' ) ?? null ) {
-                    $l = get_field( 'cta' );
-                    ?>
-                    <div data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>">
-                        <a href="<?= esc_url( $l['url'] ); ?>" target="<?= esc_attr( $l['target'] ); ?>" class="button button-primary"><?= esc_html( $l['title'] ); ?></a>
-                    </div>
-                    <?php
-                }
-                ?>
+        <?php
+        $c = 0;
+        if ( get_field( 'pre_title' ) ?? null ) {
+            ?>
+            <div class="pre-title" data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>"><?= esc_html( get_field( 'pre_title' ) ); ?></div>
+            <?php
+            $c += 200;
+        }
+        ?>
+        <h1 data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>"><?= esc_html( get_field( 'title' ) ); ?></h1>
+        <?php
+        $c += 200;
+        if ( get_field( 'content' ) ?? null ) {
+            ?>
+            <div class="content" data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>"><?= esc_html( get_field( 'content' ) ); ?></div>
+            <?php
+            $c += 200;
+        }
+        ?>
+        <?php
+        if ( get_field( 'cta' ) ?? null ) {
+            $l = get_field( 'cta' );
+            ?>
+            <div data-aos="fadein" data-aos-delay="<?= esc_attr( $c ); ?>">
+                <a href="<?= esc_url( $l['url'] ); ?>" target="<?= esc_attr( $l['target'] ); ?>" class="button button-primary"><?= esc_html( $l['title'] ); ?></a>
             </div>
-            <div class="col-md-3 my-md-auto">
-                <div class="hero__widget">
-                    <?php
-                    $allowed_html = array(
-                        'script' => array(
-                            'src'   => array(),
-                            'async' => array(),
-                            'defer' => array(),
-                            'type'  => array(),
-                        ),
-                        'div'    => array(
-                            'class'                  => array(),
-                            'id'                     => array(),
-                            'data-elfsight-app-lazy' => array(),
-                        ),
-                    );
-
-                    $hero_review_widget = get_field( 'hero_review_widget', 'option' );
-                    if ( $hero_review_widget ) {
-                        echo wp_kses( $hero_review_widget, $allowed_html );
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
+            <?php
+        }
+        ?>
     </div>
 </section>
