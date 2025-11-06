@@ -586,5 +586,3 @@ function phil_bio( $cat = null ) {
     return '';
 }
 
-
-?>
