@@ -18,6 +18,20 @@ add_action(
 	}
 );
 
+
+/*
+Plugin Name: Disable Trustindex Schema
+*/
+
+add_action( 'wp_head', function() {
+    ob_start(function($buffer){
+        // Remove ALL JSON-LD inside Trustindex's auto-generated scripts
+        $buffer = preg_replace('/\(function\(\)\{var b=\{.*?\}\}\)\(document\);?<\/script>/s', '', $buffer);
+        return $buffer;
+    });
+});
+
+
 /**
  * Disables Yoast SEO JSON-LD output.
  */
