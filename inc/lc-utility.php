@@ -57,7 +57,7 @@ function contact_phone($atts)
 
     if ($phone_number) {
         $link_text = $atts['text'] ? $atts['text'] : $phone_number;
-        return '<a href="tel:' . parse_phone($phone_number) . '">' . esc_html($link_text) . '</a>';
+        return '<a href="tel:' . parse_phone($phone_number) . '" aria-label="Phone">' . esc_html($link_text) . '</a>';
     }
     return '';
 }

@@ -61,37 +61,13 @@ defined( 'ABSPATH' ) || exit;
     if ( get_field( 'bing_site_verification', 'option' ) ) {
         echo '<meta name="msvalidate.01" content="' . esc_attr( get_field( 'bing_site_verification', 'option' ) ) . '" />';
     }
-    if ( is_front_page() || is_page( 'contact' ) ) {
-        $social_links   = get_field( 'socials', 'option' );
-        $filtered_links = array_values(
-            array_filter(
-                $social_links,
-                function ( $url ) {
-                    return ! empty( $url );
-                }
-            )
-        );
-        ?>
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "Organization",
-                "name": "Stormcatcher Business Legal Services UK",
-                "url": "https://stormcatcher.co.uk/",
-                "Description": "Stormcatcher Law is a friendly and approachable renowned niche law firm with a leading reputation and enviable track record across a wide range of areas of law, specialising in consumer law and civil dispute resolution, second to none in automotive law, building and construction and contract law. We provide legal advice and services for individuals and businesses. ",
-                "sameAs": <?php
-                    echo wp_json_encode( $filtered_links, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
-                ?>,
-                "logo": "<?= esc_url( get_stylesheet_directory_uri() . '/img/stormcatcher-og-696x696.png' ); ?>",
-                "contactPoint": [{
-                    "@type": "ContactPoint",
-                    "telephone": "+44-3337007676",
-                    "contactType": "enquiries"
-                }]
-            }
-        </script>
-        <?php
+
+    if ( get_field( 'schema' ) ) {
+        echo '<script type="application/ld+json">';
+        echo get_field( 'schema' );
+        echo '</script>';
     }
+
     ?>
     <?php wp_head(); ?>
     <?php
@@ -142,7 +118,7 @@ defined( 'ABSPATH' ) || exit;
                 <div class="logo-container">
                     <a href="/" class="logo navbar-brand" aria-label="Stormcatcher"></a>
                 </div>
-                <div class="d-lg-none me-2"><a class="nav-tel" href="tel:<?= esc_attr( parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>"><i class="fas fa-phone"></i></a></div>
+                <div class="d-lg-none me-2"><a class="nav-tel" aria-label="Phone" href="tel:<?= esc_attr( parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>"><i class="fas fa-phone"></i></a></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false"
                     aria-label="Toggle navigation">
