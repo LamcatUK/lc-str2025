@@ -46,7 +46,7 @@ $c = is_front_page() === 1 ? 'home_hero' : '';
         }
         ?>
             </div>
-            <div class="col-md-4 my-auto" data-aos="fadein" data-aos-delay="<?= esc_attr( $c + 200 ); ?>">
+            <div class="col-md-4 my-auto" data-aos="fadein" data-aos-delay="<?= esc_attr( $c + 200 ); ?>" style="min-height:80px;">
                 <?= do_shortcode( '[trustindex data-widget-id=a23e05058af5912541863bba2b3]' ); ?>
             </div>
         </div>
