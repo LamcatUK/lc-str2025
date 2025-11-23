@@ -62,12 +62,6 @@ defined( 'ABSPATH' ) || exit;
         echo '<meta name="msvalidate.01" content="' . esc_attr( get_field( 'bing_site_verification', 'option' ) ) . '" />';
     }
 
-    if ( get_field( 'schema' ) ) {
-        echo '<script type="application/ld+json">';
-        echo get_field( 'schema' );
-        echo '</script>';
-    }
-
     ?>
     <?php wp_head(); ?>
     <?php

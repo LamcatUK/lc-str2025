@@ -1,0 +1,233 @@
+<?php
+/**
+ * LC Schema Functions.
+ *
+ * @package lc-str2025
+ */
+
+add_action(
+	'wp_head',
+	function () {
+		ob_start(
+			function ( $buffer ) {
+				// remove Trustindex JSON-LD (Product / Organization)
+				$buffer = preg_replace('/<script type="application\/ld\+json".*?<\/script>/s', '', $buffer);
+				return $buffer;
+			}
+		);
+	}
+);
+
+
+/*
+Plugin Name: Disable Trustindex Organization Schema
+*/
+add_action(
+	'wp_head',
+	function () {
+		ob_start(
+			function ( $buffer ) {
+
+				// Remove Trustindex JSON-LD (<script type="application/ld+json"> ... </script>)
+				$buffer = preg_replace(
+					'/<!-- Inserted by https:\/\/cdn\.trustindex\.io\/loader\.js.*?<script type="application\/ld\+json">.*?<\/script>/s',
+					'',
+					$buffer
+				);
+
+				return $buffer;
+			}
+		);
+	}
+);
+
+/**
+ * Disables Yoast SEO JSON-LD output.
+ */
+add_filter( 'wpseo_json_ld_output', '__return_false' );
+
+/**
+ * Fetch and cache Trustindex rating data.
+ */
+function lc_fetch_trustindex_rating() {
+	// Get the homepage URL.
+	$homepage_url = home_url( '/' );
+
+	// Fetch the page.
+	$response = wp_remote_get(
+		$homepage_url,
+		array(
+			'timeout' => 30,
+			'headers' => array(
+				'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+			),
+		)
+	);
+
+	if ( is_wp_error( $response ) ) {
+		return array(
+			'error'   => $response->get_error_message(),
+			'success' => false,
+		);
+	}
+
+	$body = wp_remote_retrieve_body( $response );
+
+	// Extract all JSON-LD scripts.
+	preg_match_all( '/<script type="application\/ld\+json"[^>]*>(.*?)<\/script>/s', $body, $all_matches );
+
+	if ( ! empty( $all_matches[1] ) ) {
+		foreach ( $all_matches[1] as $json_content ) {
+			$schema = json_decode( $json_content, true );
+
+			if ( ! $schema ) {
+				continue;
+			}
+
+			// Check if this schema has aggregateRating (Trustindex injects this).
+			if ( isset( $schema['aggregateRating'] ) ) {
+				$rating_data = array(
+					'ratingValue'  => $schema['aggregateRating']['ratingValue'] ?? null,
+					'reviewCount'  => $schema['aggregateRating']['reviewCount'] ?? null,
+					'last_updated' => time(),
+					'source'       => 'schema',
+				);
+				update_option( 'lc_trustindex_rating', $rating_data );
+				return $rating_data;
+			}
+		}
+	}
+
+	// Fallback: Try to parse from Trustindex widget HTML.
+	// Look for common Trustindex data attributes or classes.
+	$patterns = array(
+		'rating' => array(
+			'/data-rating="([0-9.]+)"/',
+			'/class="[^"]*ti-rating[^"]*"[^>]*>([0-9.]+)/',
+			'/<meta itemprop="ratingValue" content="([0-9.]+)"/',
+		),
+		'count'  => array(
+			'/data-count="(\d+)"/',
+			'/class="[^"]*ti-count[^"]*"[^>]*>(\d+)/',
+			'/<meta itemprop="reviewCount" content="(\d+)"/',
+		),
+	);
+
+	$rating_value = null;
+	$review_count = null;
+
+	foreach ( $patterns['rating'] as $pattern ) {
+		if ( preg_match( $pattern, $body, $match ) ) {
+			$rating_value = floatval( $match[1] );
+			break;
+		}
+	}
+
+	foreach ( $patterns['count'] as $pattern ) {
+		if ( preg_match( $pattern, $body, $match ) ) {
+			$review_count = intval( $match[1] );
+			break;
+		}
+	}
+
+	if ( $rating_value && $review_count ) {
+		$rating_data = array(
+			'ratingValue'  => $rating_value,
+			'reviewCount'  => $review_count,
+			'last_updated' => time(),
+			'source'       => 'html',
+		);
+		update_option( 'lc_trustindex_rating', $rating_data );
+		return $rating_data;
+	}
+
+	return array(
+		'error'   => 'No rating data found in schema or HTML',
+		'success' => false,
+	);
+}
+
+/**
+ * Schedule daily rating fetch.
+ */
+function lc_schedule_rating_fetch() {
+	if ( ! wp_next_scheduled( 'lc_daily_rating_fetch' ) ) {
+		wp_schedule_event( time(), 'daily', 'lc_daily_rating_fetch' );
+	}
+}
+add_action( 'wp', 'lc_schedule_rating_fetch' );
+
+/**
+ * Hook into the scheduled event.
+ */
+add_action( 'lc_daily_rating_fetch', 'lc_fetch_trustindex_rating' );
+
+/**
+ * Output enhanced schema with cached rating data.
+ */
+function lc_output_enhanced_schema() {
+	if ( ! get_field( 'schema' ) ) {
+		return;
+	}
+
+	$schema_json = get_field( 'schema' );
+	$schema      = json_decode( $schema_json, true );
+
+	if ( ! $schema ) {
+		return;
+	}
+
+	// Get cached rating data.
+	$rating_data = get_option( 'lc_trustindex_rating' );
+
+	// Add aggregateRating if we have valid cached data.
+	if ( $rating_data &&
+		 isset( $rating_data['ratingValue'], $rating_data['reviewCount'] ) &&
+		 $rating_data['ratingValue'] > 0 &&
+		 $rating_data['reviewCount'] > 0 ) {
+
+		$schema['aggregateRating'] = array(
+			'@type'       => 'AggregateRating',
+			'ratingValue' => (string) $rating_data['ratingValue'],
+			'reviewCount' => (string) $rating_data['reviewCount'],
+			'bestRating'  => '5',
+			'worstRating' => '1',
+		);
+	}
+
+	// Output the schema.
+	echo '<script type="application/ld+json">';
+	echo wp_json_encode( $schema, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+	echo '</script>';
+}
+
+add_action( 'wp_head', 'lc_output_enhanced_schema', 5 );
+
+/**
+ * Manual trigger to fetch rating data (for testing/debugging).
+ * Visit: yoursite.com/?lc_fetch_rating=1 (when logged in as admin)
+ */
+add_action(
+	'init',
+	function () {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['lc_fetch_rating'] ) && current_user_can( 'manage_options' ) ) {
+			$result = lc_fetch_trustindex_rating();
+
+			$output  = '<h2>Trustindex Rating Fetch Result</h2>';
+			$output .= '<pre>' . esc_html( wp_json_encode( $result, JSON_PRETTY_PRINT ) ) . '</pre>';
+
+			if ( isset( $result['success'] ) && false === $result['success'] ) {
+				$output .= '<p style="color: red;"><strong>Error:</strong> ' . esc_html( $result['error'] ) . '</p>';
+			} else {
+				$output .= '<p style="color: green;"><strong>Success!</strong> Rating data cached.</p>';
+			}
+
+			$cached = get_option( 'lc_trustindex_rating' );
+			$output .= '<h3>Currently Cached Data:</h3>';
+			$output .= '<pre>' . esc_html( wp_json_encode( $cached, JSON_PRETTY_PRINT ) ) . '</pre>';
+
+			wp_die( $output ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+	}
+);
