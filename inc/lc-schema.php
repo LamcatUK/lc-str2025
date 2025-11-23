@@ -22,20 +22,24 @@ add_action(
 /*
 Plugin Name: Disable Trustindex Organization Schema
 */
-add_action('wp_head', function () {
-    ob_start(function($buffer){
+add_action(
+	'wp_head',
+	function () {
+		ob_start(
+			function ( $buffer ) {
 
-        // Remove Trustindex JSON-LD (<script type="application/ld+json"> ... </script>)
-        $buffer = preg_replace(
-            '/<!-- Inserted by https:\/\/cdn\.trustindex\.io\/loader\.js.*?<script type="application\/ld\+json">.*?<\/script>/s',
-            '',
-            $buffer
-        );
+				// Remove Trustindex JSON-LD (<script type="application/ld+json"> ... </script>)
+				$buffer = preg_replace(
+					'/<!-- Inserted by https:\/\/cdn\.trustindex\.io\/loader\.js.*?<script type="application\/ld\+json">.*?<\/script>/s',
+					'',
+					$buffer
+				);
 
-        return $buffer;
-    });
-});
-
+				return $buffer;
+			}
+		);
+	}
+);
 
 /**
  * Disables Yoast SEO JSON-LD output.
