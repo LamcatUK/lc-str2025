@@ -14,7 +14,7 @@ $c = is_front_page() === 1 ? 'home_hero' : '';
     <?= wp_get_attachment_image( get_field( 'background' ), 'full', false, array( 'class' => 'hero__bg' ) ); ?>
     <div class="overlay"></div>
     <div class="container-xl py-6 my-auto">
-        <div class="row">
+        <div class="row g-4">
             <div class="col-md-8">
         <?php
         $c = 0;
@@ -49,5 +49,6 @@ $c = is_front_page() === 1 ? 'home_hero' : '';
             <div class="col-md-4 my-auto" data-aos="fadein" data-aos-delay="<?= esc_attr( $c + 200 ); ?>">
                 <?= do_shortcode( '[trustindex data-widget-id=a23e05058af5912541863bba2b3]' ); ?>
             </div>
+        </div>
     </div>
 </section>
