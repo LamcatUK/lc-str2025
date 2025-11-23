@@ -53,8 +53,6 @@ defined( 'ABSPATH' ) || exit;
     <link rel="preload"
         href="<?= esc_url( get_stylesheet_directory_uri() . '/fonts/playfair-display-v37-latin-600.woff2' ); ?>"
         as="font" type="font/woff2" crossorigin="anonymous">
-
-    <script defer async src='https://cdn.trustindex.io/loader.js?a23e05058af5912541863bba2b3'></script>
     <?php
 
     if ( get_field( 'google_site_verification', 'option' ) ) {
