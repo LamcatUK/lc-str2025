@@ -379,6 +379,13 @@ function correct_success_stories_canonical( $canonical ) {
 }
 add_filter( 'wpseo_canonical', 'correct_success_stories_canonical' );
 
+
+/**
+ * Disables Yoast SEO JSON-LD output.
+ */
+add_filter( 'wpseo_json_ld_output', '__return_false' );
+
+
 /**
  * Retrieves sibling pages of a given post that use the 'sidebar-page.php' template.
  *

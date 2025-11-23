@@ -68,7 +68,7 @@ function acf_blocks() {
                 'title'           => __( 'LC Hero' ),
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_hero.php',
+                'render_template' => 'page-templates/blocks/lc-hero.php',
                 'mode'            => 'edit',
                 'supports'        => array( 'mode' => false ),
             )
