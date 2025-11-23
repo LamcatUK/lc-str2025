@@ -586,3 +586,25 @@ function phil_bio( $cat = null ) {
     return '';
 }
 
+// add_filter(
+//     'flamingo_inbound_subject',
+//     function ( $subject, $post ) {
+//         $fields = get_post_meta( $post->id, '_meta', true );
+//         if ( ! empty( $fields['menu-subject'] ) ) {
+//             return 'Website Enquiry - ' . $fields['menu-subject'];
+//         }
+//         return $subject;
+//     },
+//     10,
+//     2
+// );
+
+add_filter( 'flamingo_inbound_subject', function( $subject, $inbound_message ) {
+    $meta = get_post_meta( $inbound_message->id, '_meta', true );
+
+    if ( is_array( $meta ) && ! empty( $meta['menu-subject'] ) ) {
+        return $meta['menu-subject'];
+    }
+
+    return $subject;
+}, 10, 2 );
