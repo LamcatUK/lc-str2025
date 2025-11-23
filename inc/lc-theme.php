@@ -11,6 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once LC_THEME_DIR . '/inc/lc-schema.php';
 require_once LC_THEME_DIR . '/inc/lc-posttypes.php';
 require_once LC_THEME_DIR . '/inc/lc-utility.php';
 require_once LC_THEME_DIR . '/inc/lc-blocks.php';
@@ -378,12 +379,6 @@ function correct_success_stories_canonical( $canonical ) {
     return $canonical;
 }
 add_filter( 'wpseo_canonical', 'correct_success_stories_canonical' );
-
-
-/**
- * Disables Yoast SEO JSON-LD output.
- */
-add_filter( 'wpseo_json_ld_output', '__return_false' );
 
 
 /**
