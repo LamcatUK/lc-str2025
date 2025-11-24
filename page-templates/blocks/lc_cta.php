@@ -29,10 +29,13 @@ $class = $block['className'] ?? 'my-5';
                 <?php
             }
             ?>
+            <a href="/contact/" class="button button-primary">
+                <i class="fas fa-paper-plane"></i> Message
+            </a>
             <a href="tel:<?= esc_attr( parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>" class="button button-primary">
                 <i class="fas fa-phone"></i> Call<span class="d-none d-md-inline">: <?= esc_html( get_field( 'contact_phone', 'option' ) ); ?></span>
             </a>
-            <a href="mailto:<?= esc_attr( get_field( 'contact_email', 'option' ) ); ?>" class="button button-primary"><i class="fas fa-paper-plane"></i>
+            <a href="mailto:<?= esc_attr( get_field( 'contact_email', 'option' ) ); ?>" class="button button-primary"><i class="fas fa-envelope"></i>
                 Email
             </a>
         </div>
