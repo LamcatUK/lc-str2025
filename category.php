@@ -104,7 +104,7 @@ $page_for_posts = get_option('page_for_posts');
     </div>
     <div class="py-6 bg-grey-100">
         <div class="container-xl">
-            <?= do_shortcode('[trustindex no-registration=google]') ?>
+            <?= do_shortcode('[trustindex data-widget-id=4f2cc5d27f7c67788958c82c4a]') ?>
         </div>
     </div>
 </main>
