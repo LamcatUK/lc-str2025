@@ -1,0 +1,14 @@
+.reviews {
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  .line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--col-primary-400);
+  }
+}

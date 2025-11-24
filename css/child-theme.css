@@ -24903,6 +24903,19 @@ footer .colophon a:hover {
   border-radius: 0.5rem;
 }
 
+.reviews__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+}
+.reviews .line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--col-primary-400);
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -7,9 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<section class="reviews pb-4">
+<section class="reviews py-5">
     <div class="container">
-		<div class="insights__title mb-4 d-flex justify-content-center align-items-center text-center gap-5" data-aos="fadein">
+		<div class="reviews__title mb-4" data-aos="fadein">
             <div class="line"></div>
 			<h2>What Our <span>Customers Are Saying</span></h2>
             <div class="line"></div>
