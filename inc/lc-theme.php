@@ -577,6 +577,10 @@ function phil_bio( $cat = null ) {
     if ( $bio ) {
         $img = get_field( 'phil_photo', 'option' );
         ob_start();
+        // if it is the /yacht-law/ page, wrap in .container
+        if ( is_page( 'yacht-law' ) ) {
+            echo '<div class="container">';
+        }
         ?>
 <div class="bio">
     <div class="bio__top">
@@ -613,6 +617,9 @@ function phil_bio( $cat = null ) {
         ?>
 </div>
         <?php
+        if ( is_page( 'yacht-law' ) ) {
+            echo '</div>';
+        }
         return ob_get_clean();
     }
 
