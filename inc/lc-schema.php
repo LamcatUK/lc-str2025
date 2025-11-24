@@ -11,68 +11,53 @@
 add_filter( 'wpseo_json_ld_output', '__return_false' );
 
 /**
- * Output our base schema from ACF.
+ * Disable all Trustindex schema injection.
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function () {
+		wp_dequeue_script( 'trustindex-schema-js-js' );
+		wp_dequeue_script( 'trustindex-rich-snippets-js' );
+	},
+	9999
+);
+
+/**
+ * Output our base schema from ACF with optional aggregateRating injection.
  */
 add_action(
 	'wp_head',
 	function () {
-		if ( get_field( 'schema' ) ) {
-			echo '<script type="application/ld+json">';
-			echo get_field( 'schema' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '</script>';
+		$schema = get_field( 'schema' );
+
+		if ( ! $schema ) {
+			return;
 		}
+
+		// Decode the schema JSON.
+		$schema_data = json_decode( $schema, true );
+
+		if ( ! $schema_data ) {
+			return;
+		}
+
+		// Check if we have rating data from ACF options.
+		$rating_value = get_field( 'google_rating_value', 'option' );
+		$review_count = get_field( 'google_review_count', 'option' );
+
+		// If we have both rating values and the schema is LegalService, inject aggregateRating.
+		if ( $rating_value && $review_count && isset( $schema_data['@type'] ) && 'LegalService' === $schema_data['@type'] ) {
+			$schema_data['aggregateRating'] = array(
+				'@type'       => 'AggregateRating',
+				'ratingValue' => (string) $rating_value,
+				'reviewCount' => (int) $review_count,
+			);
+		}
+
+		// Output the schema.
+		echo '<script type="application/ld+json">';
+		echo wp_json_encode( $schema_data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '</script>';
 	},
 	5
-);
-
-/**
- * Transform Trustindex schema in the footer.
- * Extracts aggregateRating from Trustindex and merges into our LegalService schema.
- */
-add_action(
-	'wp_footer',
-	function () {
-		?>
-<script>
-(function() {
-// Wait for Trustindex to inject their schema.
-setTimeout(function() {
-var scripts = document.querySelectorAll('script[type="application/ld+json"]');
-var trustindexRating = null;
-var ourSchema = null;
-var ourSchemaElement = null;
-
-scripts.forEach(function(script) {
-try {
-var data = JSON.parse(script.textContent);
-
-// Find Trustindex schema (has aggregateRating but wrong @type).
-if (data.aggregateRating && (data['@type'] === 'Product' || data['@type'] === 'Organization')) {
-trustindexRating = data.aggregateRating;
-// Remove Trustindex's schema.
-script.remove();
-}
-
-// Find our LegalService schema.
-if (data['@type'] === 'LegalService') {
-ourSchema = data;
-ourSchemaElement = script;
-}
-} catch(e) {
-// Invalid JSON, skip.
-}
-});
-
-// If we found both, merge the rating into our schema.
-if (trustindexRating && ourSchema && ourSchemaElement) {
-ourSchema.aggregateRating = trustindexRating;
-ourSchemaElement.textContent = JSON.stringify(ourSchema);
-console.log('✓ Merged Trustindex rating into LegalService schema');
-}
-}, 2500); // Wait 2.5 seconds for Trustindex to load.
-})();
-</script>
-		<?php
-	},
-	999
 );
