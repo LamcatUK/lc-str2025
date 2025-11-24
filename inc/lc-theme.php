@@ -579,7 +579,7 @@ function phil_bio( $cat = null ) {
         ob_start();
         // if it is the /yacht-law/ page, wrap in .container
         if ( is_page( 'yacht-law' ) ) {
-            echo '<div class="container">';
+            echo '<div class="container mb-5">';
         }
         ?>
 <div class="bio">
