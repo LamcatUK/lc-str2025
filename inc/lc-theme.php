@@ -143,11 +143,11 @@ function lc_theme_enqueue() {
 
     wp_deregister_script( 'jquery' );
 
-    wp_enqueue_script( 'splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js', array(), null, true );
-    wp_enqueue_style( 'splide-style', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css', array() );
+    wp_enqueue_script( 'splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+    wp_enqueue_style( 'splide-style', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 
-    wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true );
-    wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() );
+    wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+    wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 
     wp_enqueue_style( 'child-understrap-styles', get_stylesheet_directory_uri() . $theme_styles, array(), $css_version );
 
@@ -325,7 +325,7 @@ function add_expertise_breadcrumb( $links ) {
         $top_level_slug = get_post_field( 'post_name', get_post_ancestors( $post->ID )[0] ?? $post->ID );
 
         // Check if the current page or one of its ancestors is in the list.
-        if ( in_array( $top_level_slug, $expertise_pages ) ) {
+        if ( in_array( $top_level_slug, $expertise_pages, true ) ) {
             // Create the 'Expertise' breadcrumb link.
             $expertise_link = array(
                 'url'  => home_url( '/expertise/' ),
@@ -343,7 +343,7 @@ add_filter( 'wpseo_breadcrumb_links', 'add_expertise_breadcrumb' );
 
 add_filter(
     'nav_menu_css_class',
-    function ( $classes, $item, $args, $depth ) {
+    function ( $classes, $item, $args, $depth ) { // phpcs:ignore
         // Check if we're on the "Success" archive or a single "Success" post.
         if ( is_post_type_archive( 'success' ) || is_singular( 'success' ) ) {
             // Get the blog page ID.
@@ -416,6 +416,11 @@ function get_sibling_pages_with_sidebar_template( $post_id ) {
     return $sidebar_pages;
 }
 
+/**
+ * Displays sibling pages of a given post that use the 'sidebar-page.php' template.
+ *
+ * @param int $post_id The ID of the current post.
+ */
 function display_sibling_pages_with_sidebar_template( $post_id ) {
     // Get sibling pages using the function.
     $siblings = get_sibling_pages_with_sidebar_template( $post_id );
@@ -439,6 +444,12 @@ function display_sibling_pages_with_sidebar_template( $post_id ) {
     }
 }
 
+/**
+ * Retrieves child pages of a given post that use the 'sidebar-page.php' template.
+ *
+ * @param int $post_id The ID of the current post.
+ * @return array Array of child page objects with the sidebar template.
+ */
 function get_child_pages_with_sidebar_template( $post_id ) {
 
     $args = array(
@@ -464,6 +475,11 @@ function get_child_pages_with_sidebar_template( $post_id ) {
     return $sidebar_children;
 }
 
+/**
+ * Displays child pages of a given post that use the 'sidebar-page.php' template.
+ *
+ * @param int $post_id The ID of the current post.
+ */
 function display_child_pages_with_sidebar_template( $post_id ) {
     // Get child pages using the function.
     $children = get_child_pages_with_sidebar_template( $post_id );
@@ -477,12 +493,17 @@ function display_child_pages_with_sidebar_template( $post_id ) {
         }
         $output .= '</ul></div>';
 
-        echo $output;
+        echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     } else {
         return null;
     }
 }
 
+/**
+ * Modifies the number of search results displayed per page.
+ *
+ * @param WP_Query $query The WP_Query instance (passed by reference).
+ */
 function modify_search_results_per_page( $query ) {
     // Check if it's the main query and a search query.
     if ( $query->is_main_query() && $query->is_search() ) {
@@ -491,6 +512,9 @@ function modify_search_results_per_page( $query ) {
 }
 add_action( 'pre_get_posts', 'modify_search_results_per_page' );
 
+/**
+ * Removes default dashboard widgets from the WordPress admin area.
+ */
 function remove_dashboard_widgets() {
     remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' ); // At a Glance.
     remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' ); // Activity.
@@ -499,6 +523,12 @@ function remove_dashboard_widgets() {
 }
 add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets' );
 
+/**
+ * Forces addition of 'current-menu-ancestor' class to ancestor menu items.
+ *
+ * @param array $items The menu items.
+ * @return array Modified menu items with 'current-menu-ancestor' class added.
+ */
 function force_add_current_menu_ancestor( $items ) {
     global $post;
 
@@ -508,7 +538,7 @@ function force_add_current_menu_ancestor( $items ) {
 
         foreach ( $items as &$item ) {
             // Check if the menu item's object ID is in the current page's ancestor list.
-            if ( in_array( $item->object_id, $ancestor_ids ) ) {
+            if ( in_array( $item->object_id, $ancestor_ids, true ) ) {
                 $item->classes[] = 'current-menu-ancestor';
             }
 
@@ -566,6 +596,7 @@ function phil_bio( $cat = null ) {
     <div class="bio__middle text-center">
         <h3>Contact Stormcatcher for First Free Advice</h3>
         <div class="d-flex gap-2 justify-content-center align-items-center mb-3 flex-wrap">
+            <a href="/contact" class="button button-primary"><i class="fas fa-paper-plane"></i> Message</a>
             <a href="<?= esc_url( 'tel:' . parse_phone( get_field( 'contact_phone', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-phone"></i> Call<span class="d-none d-md-inline">: <?= esc_html( get_field( 'contact_phone', 'option' ) ); ?></span></a>
             <a href="<?= esc_url( 'mailto:' . antispambot( get_field( 'contact_email', 'option' ) ) ); ?>" class="button button-primary"><i class="fas fa-paper-plane"></i> Email</a>
         </div>
@@ -588,25 +619,17 @@ function phil_bio( $cat = null ) {
     return '';
 }
 
-// add_filter(
-//     'flamingo_inbound_subject',
-//     function ( $subject, $post ) {
-//         $fields = get_post_meta( $post->id, '_meta', true );
-//         if ( ! empty( $fields['menu-subject'] ) ) {
-//             return 'Website Enquiry - ' . $fields['menu-subject'];
-//         }
-//         return $subject;
-//     },
-//     10,
-//     2
-// );
+add_filter(
+    'flamingo_inbound_subject',
+    function ( $subject, $inbound_message ) {
+        $meta = get_post_meta( $inbound_message->id, '_meta', true );
 
-add_filter( 'flamingo_inbound_subject', function( $subject, $inbound_message ) {
-    $meta = get_post_meta( $inbound_message->id, '_meta', true );
+        if ( is_array( $meta ) && ! empty( $meta['menu-subject'] ) ) {
+            return $meta['menu-subject'];
+        }
 
-    if ( is_array( $meta ) && ! empty( $meta['menu-subject'] ) ) {
-        return $meta['menu-subject'];
-    }
-
-    return $subject;
-}, 10, 2 );
+        return $subject;
+    },
+    10,
+    2
+);

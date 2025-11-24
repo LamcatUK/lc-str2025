@@ -14,15 +14,15 @@ add_filter( 'wpseo_json_ld_output', '__return_false' );
  * Output our base schema from ACF.
  */
 add_action(
-'wp_head',
-function () {
-if ( get_field( 'schema' ) ) {
-echo '<script type="application/ld+json">';
-echo get_field( 'schema' );
-echo '</script>';
-}
-},
-5
+	'wp_head',
+	function () {
+		if ( get_field( 'schema' ) ) {
+			echo '<script type="application/ld+json">';
+			echo get_field( 'schema' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '</script>';
+		}
+	},
+	5
 );
 
 /**
@@ -30,9 +30,9 @@ echo '</script>';
  * Extracts aggregateRating from Trustindex and merges into our LegalService schema.
  */
 add_action(
-'wp_footer',
-function () {
-?>
+	'wp_footer',
+	function () {
+		?>
 <script>
 (function() {
 // Wait for Trustindex to inject their schema.
@@ -72,7 +72,7 @@ console.log('✓ Merged Trustindex rating into LegalService schema');
 }, 2500); // Wait 2.5 seconds for Trustindex to load.
 })();
 </script>
-<?php
-},
-999
+		<?php
+	},
+	999
 );
