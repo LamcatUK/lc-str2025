@@ -1,0 +1,23 @@
+{
+    "key": "group_lc_reviews",
+    "title": "LC Reviews",
+    "fields": [
+        {
+            "key": "field_lc_reviews_title",
+            "label": "LC Reviews",
+            "name": "title",
+            "type": "message"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/lc-reviews"
+            }
+        ]
+    ],
+    "active": 1,
+    "description": ""
+}

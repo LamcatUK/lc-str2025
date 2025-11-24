@@ -13,6 +13,17 @@ defined( 'ABSPATH' ) || exit;
 function acf_blocks() {
     if ( function_exists( 'acf_register_block_type' ) ) {
 
+        acf_register_block_type(array(
+            'name'                => 'lc-reviews',
+            'title'               => __('LC Reviews'),
+            'category'            => 'layout',
+            'icon'                => 'cover-image',
+            'render_template'     => 'page-templates/blocks/lc-reviews.php',
+            'mode'                => 'edit',
+            'supports'            => array('mode' => false, 'anchor' => true, 'className' => true),
+        ));
+
+
         acf_register_block_type(
             array(
                 'name'            => 'lc-featured-page',
