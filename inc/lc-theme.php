@@ -143,11 +143,12 @@ function lc_theme_enqueue() {
 
     wp_deregister_script( 'jquery' );
 
-    wp_enqueue_script( 'splide', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-    wp_enqueue_style( 'splide-style', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+    // Serve vendor assets locally to avoid external cookies and tracking.
+    wp_enqueue_script( 'splide', get_stylesheet_directory_uri() . '/js/vendor/splide.min.js', array(), $theme_version, true );
+    wp_enqueue_style( 'splide-style', get_stylesheet_directory_uri() . '/css/vendor/splide.min.css', array(), $css_version );
 
-    wp_enqueue_script( 'aos', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array(), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-    wp_enqueue_style( 'aos-style', 'https://unpkg.com/aos@2.3.1/dist/aos.css', array() ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+    wp_enqueue_script( 'aos', get_stylesheet_directory_uri() . '/js/vendor/aos.min.js', array(), $theme_version, true );
+    wp_enqueue_style( 'aos-style', get_stylesheet_directory_uri() . '/css/vendor/aos.min.css', array(), $css_version );
 
     wp_enqueue_style( 'child-understrap-styles', get_stylesheet_directory_uri() . $theme_styles, array(), $css_version );
 
@@ -577,7 +578,7 @@ function phil_bio( $cat = null ) {
     if ( $bio ) {
         $img = get_field( 'phil_photo', 'option' );
         ob_start();
-        // if it is the /yacht-law/ page, wrap in .container
+        // if it is the /yacht-law/ page, wrap in .container.
         if ( is_page( 'yacht-law' ) ) {
             echo '<div class="container mb-5">';
         }

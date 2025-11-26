@@ -5,7 +5,7 @@
  * @package lc-str2025
  */
 
-! defined( 'ABSPATH' ) && exit;
+defined( 'ABSPATH' ) || exit;
 
 $c = is_front_page() === 1 ? 'home_hero' : '';
 ?>

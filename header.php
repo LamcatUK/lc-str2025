@@ -14,6 +14,8 @@ defined( 'ABSPATH' ) || exit;
 
 <head>
     <?php
+    /*
+    GTM now handled by CMP  --- IGNORE ---
     if ( get_field( 'gtm_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
             echo '<meta name="gtm-tag" content="' . esc_attr( get_field( 'gtm_property', 'option' ) ) . '" />';
@@ -39,6 +41,8 @@ defined( 'ABSPATH' ) || exit;
             <?php
         }
     }
+    --- IGNORE ---
+    */
     ?>
     <meta
         charset="<?php bloginfo( 'charset' ); ?>">
@@ -65,6 +69,8 @@ defined( 'ABSPATH' ) || exit;
     ?>
     <?php wp_head(); ?>
     <?php
+    /*
+    GTM now handled by CMP  --- IGNORE ---
     if ( get_field( 'ga_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
             ?>
@@ -86,6 +92,8 @@ defined( 'ABSPATH' ) || exit;
             <?php
         }
     }
+    --- IGNORE ---
+    */
     ?>
 </head>
 
@@ -93,6 +101,8 @@ defined( 'ABSPATH' ) || exit;
     <?php
     do_action( 'wp_body_open' );
 
+    /*
+    GTM now handled by CMP   --- IGNORE ---
     if ( get_field( 'gtm_property', 'option' ) ) {
         if ( ! is_user_logged_in() ) {
             ?>
@@ -104,6 +114,8 @@ defined( 'ABSPATH' ) || exit;
             <?php
         }
     }
+    --- IGNORE ---
+    */
     ?>
     <header class="fixed-top p-0">
         <nav class="navbar navbar-expand-lg pb-lg-0">
