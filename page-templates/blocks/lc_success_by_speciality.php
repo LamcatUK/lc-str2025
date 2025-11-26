@@ -43,12 +43,14 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
         ?>
         <section class="success_sp">
             <div class="container-xl py-5">
-                <div id="successBySpec" class="splide">
+                <?php $splide_id = 'successBySpec-' . uniqid(); ?>
+                <div id="<?= esc_attr( $splide_id ); ?>" class="splide">
                     <div class="d-flex justify-content-between align-items-center flex-wrap">
                         <h2 class="mb-4 fancy">
                             Success Stories
                         </h2>
-                        <div id="splide-controlsSBS" class="splide-controls">
+                        <?php $controls_id = 'splide-controlsSBS-' . uniqid(); ?>
+                        <div id="<?= esc_attr( $controls_id ); ?>" class="splide-controls">
                             <div class="splide-prev"></div>
                             <div class="splide-next"></div>
                         </div>
@@ -76,11 +78,15 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
         <?php
         add_action(
             'wp_footer',
-            function () {
+            function () use ( $splide_id, $controls_id ) {
                 ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var splide = new Splide('#successBySpec', {
+        var splideRoot = document.getElementById('<?= esc_js( $splide_id ); ?>');
+        if (!splideRoot) {
+            return; // Element not found; avoid initializing Splide.
+        }
+        var splide = new Splide('#<?= esc_js( $splide_id ); ?>', {
             direction: 'ltr', // Vertical direction
             perPage: 1, // Show two slides at once
             perMove: 1, // Move one slide at a time
@@ -95,19 +101,24 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
             autoHeight: true,
         });
         // Manually attach control buttons
-        var controls = document.getElementById('splide-controlsSBS');
+        var controls = document.getElementById('<?= esc_js( $controls_id ); ?>');
         splide.on('mounted', function() {
             // Attach previous/next buttons from the custom container
+            if (!controls) return;
             var prevButton = controls.querySelector('.splide-prev');
             var nextButton = controls.querySelector('.splide-next');
 
-            prevButton.addEventListener('click', function() {
-                splide.go('<');
-            });
+            if (prevButton) {
+                prevButton.addEventListener('click', function() {
+                    splide.go('<');
+                });
+            }
 
-            nextButton.addEventListener('click', function() {
-                splide.go('>');
-            });
+            if (nextButton) {
+                nextButton.addEventListener('click', function() {
+                    splide.go('>');
+                });
+            }
         });
 
         splide.mount();
