@@ -5,6 +5,8 @@
  * @package lc-str2025
  */
 
+defined( 'ABSPATH' ) || exit;
+
 $colour  = strtolower( get_field( 'background' ) ) ?? null;
 $bg_size = get_field( 'bg_size' ) ?? null;
 
@@ -93,7 +95,7 @@ $video_thumbnail    = get_field( 'featured_video_thumbnail' );
     "name": "<?= esc_js( $video_title ); ?>",
     "description": "<?= esc_js( $video_description ); ?>",
     "thumbnailUrl": "<?= esc_url( $video_thumbnail ); ?>",
-    "uploadDate": "<?= date( 'c', strtotime( get_field( 'video_upload_date' ) ) ); ?>",
+    "uploadDate": "<?= esc_attr( gmdate( 'c', strtotime( get_field( 'video_upload_date' ) ) ) ); ?>",
     "contentUrl": "<?= esc_url( $featured_watch_url ); ?>",
     "embedUrl": "<?= esc_url( $featured_video_url ); ?>",
     "publisher": {
@@ -113,6 +115,8 @@ add_action(
 		?>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
+				var sliderElement = document.querySelector('.video_feature__slider');
+				if (!sliderElement) { return; }
 				new Splide('.video_feature__slider', {
 					perPage: 3,
 					perMove: 1,

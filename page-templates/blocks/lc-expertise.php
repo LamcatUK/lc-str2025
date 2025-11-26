@@ -1,9 +1,20 @@
+<?php
+/**
+ * Expertise Block Template.
+ *
+ * Displays a carousel of expertise areas.
+ *
+ * @package lc-str2025
+ */
+
+defined( 'ABSPATH' ) || exit;
+?>
 <section class="expertise bg-grey-100 py-6">
     <div class="container-xl" data-aos="fadein">
         <div class="row gy-5">
             <div class="col-lg-3">
                 <h2 class="fancy">Our<br><span>Expertise</span></h2>
-                <p><?= get_field('intro') ?></p>
+                <p><?= wp_kses_post( get_field( 'intro' ) ); ?></p>
                 <a href="/expertise/" class="button button-primary">All Practice Areas</a>
             </div>
             <div class="col-lg-9 expertise__slider">
@@ -11,17 +22,17 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             <?php
-                            while (have_rows('expertise', 'option')) {
+                            while ( have_rows( 'expertise', 'option' ) ) {
                                 the_row();
-                            ?>
+                                ?>
                                 <li class="splide__slide">
-                                    <a class="expertise__card" href="<?= get_the_permalink(get_sub_field('page')[0]) ?>">
-                                        <img src="<?= get_sub_field('icon') ?>" alt="">
-                                        <h3><?= get_sub_field('title') ?></h3>
-                                        <p><?= get_sub_field('intro') ?></p>
+                                    <a class="expertise__card" href="<?= esc_url( get_the_permalink( get_sub_field( 'page' )[0] ) ); ?>">
+                                        <img src="<?= esc_url( get_sub_field( 'icon' ) ); ?>" alt="">
+                                        <h3><?= wp_kses_post( get_sub_field( 'title' ) ); ?></h3>
+                                        <p><?= wp_kses_post( get_sub_field( 'intro' ) ); ?></p>
                                     </a>
                                 </li>
-                            <?php
+                                <?php
                             }
                             ?>
                         </ul>
@@ -39,9 +50,15 @@
 </section>
 
 <!-- Splide JavaScript -->
-<?php add_action('wp_footer', function () { ?>
+<?php
+add_action(
+    'wp_footer',
+    function () {
+        ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const root = document.getElementById('expertiseSplide');
+            if (!root) { return; }
             const splide = new Splide('#expertiseSplide', {
                 breakpoints: {
                     1400: {
@@ -65,13 +82,19 @@
             }).mount();
 
             // Custom Arrow Controls
-            document.querySelector('.splide__arrow--prev').addEventListener('click', function() {
-                splide.go('<');
-            });
+            const prevArrow = document.querySelector('.splide__arrow--prev');
+            if (prevArrow) {
+                prevArrow.addEventListener('click', function() {
+                    splide.go('<');
+                });
+            }
 
-            document.querySelector('.splide__arrow--next').addEventListener('click', function() {
-                splide.go('>');
-            });
+            const nextArrow = document.querySelector('.splide__arrow--next');
+            if (nextArrow) {
+                nextArrow.addEventListener('click', function() {
+                    splide.go('>');
+                });
+            }
 
             // Custom Pagination Rendering
             const paginationContainer = document.querySelector('.splide__pagination');
@@ -106,4 +129,8 @@
             });
         });
     </script>
-<?php }, 9999); ?>
+        <?php
+    },
+    9999
+);
+?>

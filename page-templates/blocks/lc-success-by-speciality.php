@@ -30,7 +30,7 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
     $query_args = array(
         'post_type'      => 'success',  // Your custom post type.
         'posts_per_page' => -1,         // Retrieve all posts (adjust as needed).
-        'tax_query'      => array(
+        'tax_query'      => array(      // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
             'taxonomy' => 'category',  // Your taxonomy name.
             'field'    => 'term_id',   // Matching by term ID.
             'terms'    => $speciality_terms,
@@ -43,14 +43,12 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
         ?>
         <section class="success_sp">
             <div class="container-xl py-5">
-                <?php $splide_id = 'successBySpec-' . uniqid(); ?>
-                <div id="<?= esc_attr( $splide_id ); ?>" class="splide">
+                <div id="successBySpec" class="splide">
                     <div class="d-flex justify-content-between align-items-center flex-wrap">
                         <h2 class="mb-4 fancy">
                             Success Stories
                         </h2>
-                        <?php $controls_id = 'splide-controlsSBS-' . uniqid(); ?>
-                        <div id="<?= esc_attr( $controls_id ); ?>" class="splide-controls">
+                        <div id="splide-controlsSBS" class="splide-controls">
                             <div class="splide-prev"></div>
                             <div class="splide-next"></div>
                         </div>
@@ -78,15 +76,13 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
         <?php
         add_action(
             'wp_footer',
-            function () use ( $splide_id, $controls_id ) {
+            function () {
                 ?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var splideRoot = document.getElementById('<?= esc_js( $splide_id ); ?>');
-        if (!splideRoot) {
-            return; // Element not found; avoid initializing Splide.
-        }
-        var splide = new Splide('#<?= esc_js( $splide_id ); ?>', {
+        var root = document.getElementById('successBySpec');
+        if (!root) { return; }
+        var splide = new Splide('#successBySpec', {
             direction: 'ltr', // Vertical direction
             perPage: 1, // Show two slides at once
             perMove: 1, // Move one slide at a time
@@ -101,10 +97,10 @@ if ( ! empty( $speciality_terms ) && is_array( $speciality_terms ) ) {
             autoHeight: true,
         });
         // Manually attach control buttons
-        var controls = document.getElementById('<?= esc_js( $controls_id ); ?>');
+        var controls = document.getElementById('splide-controlsSBS');
         splide.on('mounted', function() {
             // Attach previous/next buttons from the custom container
-            if (!controls) return;
+            if (!controls) { return; }
             var prevButton = controls.querySelector('.splide-prev');
             var nextButton = controls.querySelector('.splide-next');
 

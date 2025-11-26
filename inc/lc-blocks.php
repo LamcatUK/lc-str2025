@@ -138,7 +138,7 @@ function acf_blocks() {
                 'title'           => 'LC Expertise Nav',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_expertise.php',
+                'render_template' => 'page-templates/blocks/lc-expertise.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,
@@ -186,7 +186,7 @@ function acf_blocks() {
                 'title'           => 'LC Success by Speciality',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_success_by_speciality.php',
+                'render_template' => 'page-templates/blocks/lc-success-by-speciality.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,

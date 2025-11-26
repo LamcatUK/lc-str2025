@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Featured Page Block Template.
+ *
+ * Displays a featured page with its title, category, excerpt, and a link to read more.
+ *
+ * @package lc-str2025
+ */
 
 defined( 'ABSPATH' ) || exit;
 
@@ -12,16 +18,17 @@ $featured_title = get_the_title( $featured_page );
 $featured_category      = get_the_category( $featured_page );
 $featured_category_name = ! empty( $featured_category ) ? $featured_category[0]->name : null;
 
+// Find hero background from parsed blocks (lc-hero) so featured layout matches source page styling.
 $featured_background = null;
 $blocks              = parse_blocks( get_post_field( 'post_content', $featured_page ) );
 
 foreach ( $blocks as $block ) {
-    if ( isset( $block['blockName'] ) && $block['blockName'] === 'acf/lc-hero' ) {
-        if ( isset( $block['attrs']['data']['background'] ) ) {
-            $featured_background = $block['attrs']['data']['background'];
-        }
-        break;
-    }
+	if ( isset( $block['blockName'] ) && 'acf/lc-hero' === $block['blockName'] ) {
+		if ( isset( $block['attrs']['data']['background'] ) ) {
+			$featured_background = $block['attrs']['data']['background'];
+		}
+		break;
+	}
 }
 
 ?>
