@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 <head>
     <?php
+    // phpcs:disable
     /*
     GTM now handled by CMP  --- IGNORE ---
     if ( get_field( 'gtm_property', 'option' ) ) {
@@ -43,6 +44,7 @@ defined( 'ABSPATH' ) || exit;
     }
     --- IGNORE ---
     */
+    // phpcs:enable
     ?>
     <meta
         charset="<?php bloginfo( 'charset' ); ?>">
@@ -69,6 +71,7 @@ defined( 'ABSPATH' ) || exit;
     ?>
     <?php wp_head(); ?>
     <?php
+    // phpcs:disable
     /*
     GTM now handled by CMP  --- IGNORE ---
     if ( get_field( 'ga_property', 'option' ) ) {
@@ -94,6 +97,7 @@ defined( 'ABSPATH' ) || exit;
     }
     --- IGNORE ---
     */
+    // phpcs:enable
     ?>
 </head>
 
@@ -101,6 +105,7 @@ defined( 'ABSPATH' ) || exit;
     <?php
     do_action( 'wp_body_open' );
 
+    // phpcs:disable
     /*
     GTM now handled by CMP   --- IGNORE ---
     if ( get_field( 'gtm_property', 'option' ) ) {
@@ -116,6 +121,7 @@ defined( 'ABSPATH' ) || exit;
     }
     --- IGNORE ---
     */
+    // phpcs:enable
     ?>
     <header class="fixed-top p-0">
         <nav class="navbar navbar-expand-lg pb-lg-0">

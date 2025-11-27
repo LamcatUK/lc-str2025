@@ -1,14 +1,11 @@
 <?php
-// Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+/**
+ * The template for displaying single success stories
+ *
+ * @package lc-str2025
+ */
 
-add_action(
-    'wp_head',
-    function () {
-        global $schema;
-        echo $schema;
-    }
-);
+defined( 'ABSPATH' ) || exit;
 
 get_header();
 
@@ -40,15 +37,15 @@ get_header();
                     if ( 'core/heading' === $block['blockName'] ) {
                         if ( ! array_key_exists( 'level', $block['attrs'] ) ) {
                             $heading    = wp_strip_all_tags( $block['innerHTML'] );
-                            $heading_id = acf_slugify( $heading );
+                            $heading_id = sanitize_title( $heading );
                             echo '<a id="' . esc_attr( $heading_id ) . '" class="anchor"></a>';
                             $sidebar[ $heading ] = $heading_id;
                         }
                     }
-                    echo apply_filters( 'the_content', render_block( $block ) );
+                    echo apply_filters( 'the_content', render_block( $block ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 }
                 $categories = get_the_category( $post_id );
-                
+
                 if ( ! empty( $categories ) ) {
                     $first_category = $categories[0]; // This is a WP_Term object.
                     echo '<div class="mt-4">';
