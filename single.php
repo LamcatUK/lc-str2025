@@ -47,12 +47,12 @@ get_header();
                     if ( 'core/heading' === $block['blockName'] ) {
                         if ( ! array_key_exists( 'level', $block['attrs'] ) ) {
                             $heading    = wp_strip_all_tags( $block['innerHTML'] );
-                            $heading_id = acf_slugify( $heading );
+                            $heading_id = sanitize_title( $heading );
                             echo '<a id="' . esc_attr( $heading_id ) . '" class="anchor"></a>';
                             $sidebar[ $heading ] = $heading_id;
                         }
                     }
-                    echo apply_filters( 'the_content', render_block( $block ) );
+                    echo apply_filters( 'the_content', render_block( $block ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 }
 
                 $categories = get_the_category( $post_id );

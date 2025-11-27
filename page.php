@@ -1,6 +1,11 @@
 <?php
-// Exit if accessed directly.
-defined('ABSPATH') || exit;
+/**
+ * The template for displaying single pages.
+ *
+ * @package lc-str2025
+ */
+
+defined( 'ABSPATH' ) || exit;
 
 get_header();
 
