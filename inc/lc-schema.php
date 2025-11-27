@@ -197,33 +197,34 @@ add_action(
 
 		$org_id = trailingslashit( home_url() ) . '#company';
 
+		// phpcs:disable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
 		$data = array(
-			'@context'            => 'https://schema.org',
-			'@type'               => array( 'Article', 'CaseStudy' ),
-			'@id'                 => trailingslashit( $permalink ) . '#case-study',
-			'url'                 => $permalink,
-			'mainEntityOfPage'    => array(
+			'@context' => 'https://schema.org',
+			'@type' => array( 'Article', 'CaseStudy' ),
+			'@id' => trailingslashit( $permalink ) . '#case-study',
+			'url' => $permalink,
+			'mainEntityOfPage' => array(
 				'@type' => 'WebPage',
-				'@id'   => $permalink,
+				'@id' => $permalink,
 			),
-			'headline'            => $title,
-			'name'                => $title,
-			'description'         => $description,
-			'datePublished'       => get_the_date( DATE_W3C, $post_id ),
-			'dateModified'        => get_the_modified_date( DATE_W3C, $post_id ),
-			'inLanguage'          => get_bloginfo( 'language' ),
-			'isAccessibleForFree' => true,
-			'articleSection'      => $article_section,
-			'author'              => $author_data,
-			'publisher'           => array(
+			'headline' => $title,
+			'name' => $title,
+			'description' => $description,
+			'datePublished' => get_the_date( DATE_W3C, $post_id ),
+			'dateModified' => get_the_modified_date( DATE_W3C, $post_id ),
+			'inLanguage' => get_bloginfo( 'language' ),
+			'articleSection' => $article_section,
+			'author' => $author_data,
+			'publisher' => array(
 				'@type' => 'LegalService',
-				'@id'   => $org_id,
+				'@id' => $org_id,
 			),
-			'provider'            => array(
+			'provider' => array(
 				'@type' => 'LegalService',
-				'@id'   => $org_id,
+				'@id' => $org_id,
 			),
 		);
+		// phpcs:enable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
 
 		if ( $image_obj ) {
 			$data['image'] = $image_obj;
