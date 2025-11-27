@@ -54,6 +54,132 @@ add_action(
 			);
 		}
 
+
+		// Augment Product schemas from ACF to reduce GSC warnings for Merchant listings.
+		$post_id = get_queried_object_id();
+		// Build a representative image if the Product node lacks one.
+		$image_obj = null;
+		if ( $post_id && has_post_thumbnail( $post_id ) ) {
+			$thumb_id = get_post_thumbnail_id( $post_id );
+			$src      = wp_get_attachment_image_src( $thumb_id, 'full' );
+			if ( $src ) {
+				$image_obj = array(
+					'@type'  => 'ImageObject',
+					'url'    => $src[0],
+					'width'  => (int) $src[1],
+					'height' => (int) $src[2],
+				);
+			}
+		}
+		if ( ! $image_obj ) {
+			$phil_img = get_field( 'phil_photo', 'option' );
+			$phil_id  = null;
+			$phil_url = null;
+
+			if ( is_numeric( $phil_img ) ) {
+				$phil_id = (int) $phil_img;
+			} elseif ( is_array( $phil_img ) ) {
+				if ( isset( $phil_img['ID'] ) ) {
+					$phil_id = (int) $phil_img['ID'];
+				} elseif ( isset( $phil_img['id'] ) ) {
+					$phil_id = (int) $phil_img['id'];
+				} elseif ( isset( $phil_img['url'] ) ) {
+					$phil_url = $phil_img['url'];
+				}
+			} elseif ( is_string( $phil_img ) ) {
+				$phil_url = $phil_img;
+			}
+
+			if ( $phil_id ) {
+				$src = wp_get_attachment_image_src( $phil_id, 'full' );
+				if ( $src ) {
+					$image_obj = array(
+						'@type'  => 'ImageObject',
+						'url'    => $src[0],
+						'width'  => (int) $src[1],
+						'height' => (int) $src[2],
+					);
+				}
+			} elseif ( $phil_url ) {
+				$image_obj = array(
+					'@type' => 'ImageObject',
+					'url'   => $phil_url,
+				);
+			}
+		}
+		if ( ! $image_obj ) {
+			$custom_logo_id = (int) get_theme_mod( 'custom_logo' );
+			if ( $custom_logo_id ) {
+				$src = wp_get_attachment_image_src( $custom_logo_id, 'full' );
+				if ( $src ) {
+					$image_obj = array(
+						'@type'  => 'ImageObject',
+						'url'    => $src[0],
+						'width'  => (int) $src[1],
+						'height' => (int) $src[2],
+					);
+				}
+			}
+		}
+		if ( ! $image_obj && function_exists( 'has_site_icon' ) && has_site_icon() ) {
+			$icon_url = get_site_icon_url( 512 );
+			if ( $icon_url ) {
+				$image_obj = array(
+					'@type'  => 'ImageObject',
+					'url'    => $icon_url,
+					'width'  => 512,
+					'height' => 512,
+				);
+			}
+		}
+
+		$maybe_augment_product = function ( &$node ) use ( $image_obj ) {
+			if ( ! is_array( $node ) || ! isset( $node['@type'] ) ) {
+				return;
+			}
+			// Normalize @type to array for checking multi-type values.
+			$types = is_array( $node['@type'] ) ? $node['@type'] : array( $node['@type'] );
+			if ( ! in_array( 'Product', $types, true ) ) {
+				return;
+			}
+			// Ensure image exists.
+			if ( $image_obj && empty( $node['image'] ) ) {
+				$node['image'] = $image_obj;
+			}
+			// Ensure Offer includes at least a PriceSpecification or price.
+			if ( isset( $node['offers'] ) ) {
+				$ensure_price_spec = static function ( &$offer ) {
+					if ( ! is_array( $offer ) ) {
+						return;
+					}
+					if ( empty( $offer['price'] ) && empty( $offer['priceSpecification'] ) ) {
+						$offer['priceSpecification'] = array(
+							'@type'         => 'PriceSpecification',
+							'priceCurrency' => 'GBP', // Default currency for UK site.
+						);
+					}
+				};
+				if ( isset( $node['offers'][0] ) && is_array( $node['offers'] ) ) {
+					foreach ( $node['offers'] as &$o ) {
+						$ensure_price_spec( $o );
+					}
+					unset( $o );
+				} else {
+					$ensure_price_spec( $node['offers'] );
+				}
+			}
+		};
+
+		// Apply augmentation to Product nodes.
+		if ( isset( $schema_data['@graph'] ) && is_array( $schema_data['@graph'] ) ) {
+			foreach ( $schema_data['@graph'] as &$graph_node ) {
+				$maybe_augment_product( $graph_node );
+			}
+			unset( $graph_node );
+		} else {
+			$maybe_augment_product( $schema_data );
+		}
+
 		// Output the schema.
 		echo '<script type="application/ld+json">';
 		echo wp_json_encode( $schema_data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
