@@ -566,3 +566,160 @@ add_action(
 	},
 	6
 );
+
+/**
+ * Output CollectionPage + ItemList schema on Success archive.
+ */
+add_action(
+	'wp_head',
+	function () {
+		if ( ! is_post_type_archive( 'success' ) ) {
+			return;
+		}
+
+		$archive_url = get_post_type_archive_link( 'success' );
+		$org_id      = trailingslashit( home_url() ) . '#company';
+
+		// Query all published success posts for the ItemList.
+		$query = new WP_Query(
+			array(
+				'post_type'      => 'success',
+				'posts_per_page' => -1,
+				'post_status'    => 'publish',
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+			)
+		);
+
+		$items = array();
+		if ( $query->have_posts() ) {
+			$position = 1;
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$items[] = array(
+					'@type'    => 'ListItem',
+					'position' => $position++,
+					'url'      => get_permalink(),
+					'name'     => get_the_title(),
+				);
+			}
+			wp_reset_postdata();
+		}
+
+		$data = array(
+			'@context'    => 'https://schema.org',
+			'@type'       => 'CollectionPage',
+			'@id'         => trailingslashit( $archive_url ) . '#collection',
+			'url'         => $archive_url,
+			'name'        => 'Success Stories',
+			'description' => 'Real examples of claims handled by Stormcatcher, from mis-sold finance and defective vehicle complaints to high-value disputes involving classic cars and luxury marques.',
+			'inLanguage'  => get_bloginfo( 'language' ),
+			'isPartOf'    => array(
+				'@type' => 'WebSite',
+				'@id'   => trailingslashit( home_url() ) . '#website',
+			),
+			'about'       => array(
+				'@type' => 'LegalService',
+				'@id'   => $org_id,
+			),
+			'mainEntity'  => array(
+				'@type'           => 'ItemList',
+				'itemListElement' => $items,
+				'numberOfItems'   => count( $items ),
+			),
+		);
+
+		echo '<script type="application/ld+json">';
+		echo wp_json_encode(
+			$data,
+			JSON_UNESCAPED_SLASHES
+			| JSON_UNESCAPED_UNICODE
+			| JSON_HEX_TAG
+			| JSON_HEX_AMP
+			| JSON_HEX_APOS
+			| JSON_HEX_QUOT
+		); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '</script>';
+	},
+	6
+);
+
+/**
+ * Output CollectionPage + ItemList schema on Category archives.
+ */
+add_action(
+	'wp_head',
+	function () {
+		if ( ! is_category() ) {
+			return;
+		}
+
+		$category     = get_queried_object();
+		$category_url = get_category_link( $category->term_id );
+		$org_id       = trailingslashit( home_url() ) . '#company';
+
+		// Query all posts in this category for the ItemList.
+		$query = new WP_Query(
+			array(
+				'cat'            => $category->term_id,
+				'posts_per_page' => -1,
+				'post_status'    => 'publish',
+				'orderby'        => 'date',
+				'order'          => 'DESC',
+			)
+		);
+
+		$items = array();
+		if ( $query->have_posts() ) {
+			$position = 1;
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$items[] = array(
+					'@type'    => 'ListItem',
+					'position' => $position++,
+					'url'      => get_permalink(),
+					'name'     => get_the_title(),
+				);
+			}
+			wp_reset_postdata();
+		}
+
+		$description = $category->description ? wp_strip_all_tags( $category->description ) : 'Insights and articles about ' . $category->name . ' from Stormcatcher.';
+
+		$data = array(
+			'@context'    => 'https://schema.org',
+			'@type'       => 'CollectionPage',
+			'@id'         => trailingslashit( $category_url ) . '#collection',
+			'url'         => $category_url,
+			'name'        => $category->name . ' Insights',
+			'description' => $description,
+			'inLanguage'  => get_bloginfo( 'language' ),
+			'isPartOf'    => array(
+				'@type' => 'WebSite',
+				'@id'   => trailingslashit( home_url() ) . '#website',
+			),
+			'about'       => array(
+				'@type' => 'LegalService',
+				'@id'   => $org_id,
+			),
+			'mainEntity'  => array(
+				'@type'           => 'ItemList',
+				'itemListElement' => $items,
+				'numberOfItems'   => count( $items ),
+			),
+		);
+
+		echo '<script type="application/ld+json">';
+		echo wp_json_encode(
+			$data,
+			JSON_UNESCAPED_SLASHES
+			| JSON_UNESCAPED_UNICODE
+			| JSON_HEX_TAG
+			| JSON_HEX_AMP
+			| JSON_HEX_APOS
+			| JSON_HEX_QUOT
+		); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '</script>';
+	},
+	6
+);
