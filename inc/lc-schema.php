@@ -54,7 +54,6 @@ add_action(
 			);
 		}
 
-
 		// Augment Product schemas from ACF to reduce GSC warnings for Merchant listings.
 		$post_id = get_queried_object_id();
 		// Build a representative image if the Product node lacks one.
@@ -156,9 +155,9 @@ add_action(
 					$default_price = apply_filters( 'lc_schema_default_product_price', 1 );
 					if ( empty( $offer['price'] ) && empty( $offer['priceSpecification'] ) ) {
 						$offer['priceSpecification'] = array(
-							'@type'          => 'PriceSpecification',
-							'priceCurrency'  => 'GBP', // Default currency for UK site.
-							'price'          => $default_price,
+							'@type'         => 'PriceSpecification',
+							'priceCurrency' => 'GBP', // Default currency for UK site.
+							'price'         => $default_price,
 						);
 					} elseif ( isset( $offer['priceSpecification'] ) && is_array( $offer['priceSpecification'] ) ) {
 						if ( empty( $offer['priceSpecification']['price'] ) ) {

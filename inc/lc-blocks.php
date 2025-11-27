@@ -13,16 +13,21 @@ defined( 'ABSPATH' ) || exit;
 function acf_blocks() {
     if ( function_exists( 'acf_register_block_type' ) ) {
 
-        acf_register_block_type(array(
-            'name'                => 'lc-reviews',
-            'title'               => __('LC Reviews'),
-            'category'            => 'layout',
-            'icon'                => 'cover-image',
-            'render_template'     => 'page-templates/blocks/lc-reviews.php',
-            'mode'                => 'edit',
-            'supports'            => array('mode' => false, 'anchor' => true, 'className' => true),
-        ));
-
+        acf_register_block_type(
+            array(
+                'name'            => 'lc-reviews',
+                'title'           => 'LC Reviews',
+                'category'        => 'layout',
+                'icon'            => 'cover-image',
+                'render_template' => 'page-templates/blocks/lc-reviews.php',
+                'mode'            => 'edit',
+                'supports'        => array(
+                    'mode'      => false,
+                    'anchor'    => true,
+                    'className' => true,
+                ),
+            )
+        );
 
         acf_register_block_type(
             array(
@@ -154,7 +159,7 @@ function acf_blocks() {
                 'title'           => 'LC Expertise Cards',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_expertise_block.php',
+                'render_template' => 'page-templates/blocks/lc-expertise-block.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,
@@ -202,7 +207,7 @@ function acf_blocks() {
                 'title'           => 'LC Insights',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_insights.php',
+                'render_template' => 'page-templates/blocks/lc-insights.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,
@@ -218,7 +223,7 @@ function acf_blocks() {
                 'title'           => 'LC Contact',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_contact.php',
+                'render_template' => 'page-templates/blocks/lc-contact.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,
@@ -234,7 +239,7 @@ function acf_blocks() {
                 'title'           => 'LC Section Nav',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_section_nav.php',
+                'render_template' => 'page-templates/blocks/lc-section-nav.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,
@@ -266,7 +271,7 @@ function acf_blocks() {
                 'title'           => 'LC FAQ',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_faq.php',
+                'render_template' => 'page-templates/blocks/lc-faq.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,
@@ -282,7 +287,7 @@ function acf_blocks() {
                 'title'           => 'LC Breadcrumbs',
                 'category'        => 'layout',
                 'icon'            => 'cover-image',
-                'render_template' => 'page-templates/blocks/lc_breadcrumbs.php',
+                'render_template' => 'page-templates/blocks/lc-breadcrumbs.php',
                 'mode'            => 'edit',
                 'supports'        => array(
                     'mode'      => false,
