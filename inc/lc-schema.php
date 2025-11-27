@@ -200,7 +200,7 @@ add_action(
 		// phpcs:disable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
 		$data = array(
 			'@context' => 'https://schema.org',
-			'@type' => array( 'Article', 'CaseStudy' ),
+			'@type' => 'Article',
 			'@id' => trailingslashit( $permalink ) . '#case-study',
 			'url' => $permalink,
 			'mainEntityOfPage' => array(
