@@ -152,11 +152,21 @@ add_action(
 					if ( ! is_array( $offer ) ) {
 						return;
 					}
+					// Default numeric placeholder price to satisfy Product snippet requirements.
+					$default_price = apply_filters( 'lc_schema_default_product_price', 1 );
 					if ( empty( $offer['price'] ) && empty( $offer['priceSpecification'] ) ) {
 						$offer['priceSpecification'] = array(
-							'@type'         => 'PriceSpecification',
-							'priceCurrency' => 'GBP', // Default currency for UK site.
+							'@type'          => 'PriceSpecification',
+							'priceCurrency'  => 'GBP', // Default currency for UK site.
+							'price'          => $default_price,
 						);
+					} elseif ( isset( $offer['priceSpecification'] ) && is_array( $offer['priceSpecification'] ) ) {
+						if ( empty( $offer['priceSpecification']['price'] ) ) {
+							$offer['priceSpecification']['price'] = $default_price;
+						}
+						if ( empty( $offer['priceSpecification']['priceCurrency'] ) ) {
+							$offer['priceSpecification']['priceCurrency'] = 'GBP';
+						}
 					}
 				};
 				if ( isset( $node['offers'][0] ) && is_array( $node['offers'] ) ) {
