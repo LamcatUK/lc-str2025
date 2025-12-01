@@ -124,38 +124,53 @@ function lc_dashboard_widget_display() {
 
 
 /**
- * Enqueues theme styles and scripts.
+ * Enqueues vendor scripts and deregisters jQuery.
  *
- * This function deregisters jQuery, enqueues external libraries like Splide and AOS,
- * and includes the theme's custom styles and scripts with versioning based on file modification time.
+ * This function deregisters jQuery and enqueues external libraries like Splide and AOS.
+ * Child theme CSS and JS are enqueued in functions.php with FOUC prevention.
  */
 function lc_theme_enqueue() {
     $the_theme     = wp_get_theme();
     $theme_version = $the_theme->get( 'Version' );
 
     $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-    // Grab asset urls.
-    $theme_styles  = "/css/child-theme{$suffix}.css";
-    $theme_scripts = "/js/child-theme{$suffix}.js";
-
-    // $css_version = $theme_version . '.' . filemtime( get_stylesheet_directory() . $theme_styles ); // phpcs.ignore
-    $css_version = $theme_version;
 
     wp_deregister_script( 'jquery' );
 
     // Serve vendor assets locally to avoid external cookies and tracking.
-    wp_enqueue_script( 'splide', get_stylesheet_directory_uri() . '/js/vendor/splide.min.js', array(), $theme_version, true );
-    wp_enqueue_style( 'splide-style', get_stylesheet_directory_uri() . '/css/vendor/splide.min.css', array(), $css_version );
+    // Load with filemtime versioning for proper cache busting.
+    $splide_js  = '/js/vendor/splide.min.js';
+    $splide_css = '/css/vendor/splide.min.css';
+    $aos_js     = '/js/vendor/aos.min.js';
+    $aos_css    = '/css/vendor/aos.min.css';
 
-    wp_enqueue_script( 'aos', get_stylesheet_directory_uri() . '/js/vendor/aos.min.js', array(), $theme_version, true );
-    wp_enqueue_style( 'aos-style', get_stylesheet_directory_uri() . '/css/vendor/aos.min.css', array(), $css_version );
+    wp_enqueue_script(
+        'splide',
+        get_stylesheet_directory_uri() . $splide_js,
+        array(),
+        file_exists( get_stylesheet_directory() . $splide_js ) ? filemtime( get_stylesheet_directory() . $splide_js ) : $theme_version,
+        true
+    );
+    wp_enqueue_style(
+        'splide-style',
+        get_stylesheet_directory_uri() . $splide_css,
+        array(),
+        file_exists( get_stylesheet_directory() . $splide_css ) ? filemtime( get_stylesheet_directory() . $splide_css ) : $theme_version
+    );
 
-    wp_enqueue_style( 'child-understrap-styles', get_stylesheet_directory_uri() . $theme_styles, array(), $css_version );
-
-    // $js_version = $theme_version . '.' . filemtime(get_stylesheet_directory() . $theme_scripts); // phpcs.ignore
-    $js_version = $theme_version;
-
-    wp_enqueue_script( 'child-understrap-scripts', get_stylesheet_directory_uri() . $theme_scripts, array(), $js_version, true );
+    wp_enqueue_script(
+        'aos',
+        get_stylesheet_directory_uri() . $aos_js,
+        array(),
+        file_exists( get_stylesheet_directory() . $aos_js ) ? filemtime( get_stylesheet_directory() . $aos_js ) : $theme_version,
+        true
+    );
+    wp_enqueue_style(
+        'aos-style',
+        get_stylesheet_directory_uri() . $aos_css,
+        array(),
+        file_exists( get_stylesheet_directory() . $aos_css ) ? filemtime( get_stylesheet_directory() . $aos_css ) : $theme_version
+    );
 }
 add_action( 'wp_enqueue_scripts', 'lc_theme_enqueue' );
 
