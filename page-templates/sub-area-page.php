@@ -5,8 +5,9 @@ defined('ABSPATH') || exit;
 
 get_header();
 
+$post_id = get_the_ID();
 $content = get_post_field('post_content', $post_id);
-$blocks = parse_blocks($content);
+$blocks  = parse_blocks($content);
 
 ?>
 <main>
