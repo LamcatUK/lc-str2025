@@ -6,7 +6,9 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-$img = get_the_post_thumbnail( get_the_ID(), 'full', array( 'class' => 'single-blog__image' ) );
+
+$post_id = get_the_ID();
+$img     = get_the_post_thumbnail( $post_id, 'full', array( 'class' => 'single-blog__image' ) );
 
 add_action(
     'wp_head',
