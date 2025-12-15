@@ -234,7 +234,9 @@ add_action( 'login_enqueue_scripts', 'custom_login_logo' );
 add_action(
     'admin_init',
     function () {
-        define( 'DISALLOW_FILE_EDIT', true );
+        if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
+            define( 'DISALLOW_FILE_EDIT', true );
+        }
     }
 );
 
