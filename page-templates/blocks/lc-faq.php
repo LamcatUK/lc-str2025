@@ -16,7 +16,7 @@ $class = $block['className'] ?? 'py-5';
             ?>
             <div class="center-container">
                 <h2 class="mb-4">
-                    <?= esc_html( get_field( 'faq_title' ) ); ?>
+                    <?= wp_kses_post( get_field( 'faq_title' ) ); ?>
                 </h2>
             </div>
             <?php
@@ -24,7 +24,7 @@ $class = $block['className'] ?? 'py-5';
         if ( get_field( 'faq_intro' ) ) {
             ?>
             <div class="mb-5 faq_intro text-center w-constrained">
-                <?= esc_html( get_field( 'faq_intro' ) ); ?>
+                <?= wp_kses_post( get_field( 'faq_intro' ) ); ?>
             </div>
             <?php
         }
@@ -54,7 +54,7 @@ $class = $block['className'] ?? 'py-5';
                             data-bs-target="#c<?= esc_attr( $ac ); ?>"
                             aria-expanded="<?= esc_attr( $expanded ); ?>"
                             aria-controls="c<?= esc_attr( $ac ); ?>">
-                            <?= esc_html( get_sub_field( 'question' ) ); ?>
+                            <?= wp_kses_post( get_sub_field( 'question' ) ); ?>
                         </button>
                     </div>
                     <div id="c<?= esc_attr( $ac ); ?>"
@@ -62,7 +62,7 @@ $class = $block['className'] ?? 'py-5';
                         itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
                         data-bs-parent="#accordion<?= esc_attr( $accordion ); ?>">
                         <div class="accordion-body" itemprop="text">
-                            <?= esc_html( get_sub_field( 'answer' ) ); ?>
+                            <?= wp_kses_post( get_sub_field( 'answer' ) ); ?>
                         </div>
                     </div>
                 </div>
