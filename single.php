@@ -156,6 +156,121 @@ get_header();
     }
     ?>
 </main>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Philip Harmer",
+  "url": "https://stormcatcher.co.uk/about/",
+  "image": "https://stormcatcher.co.uk/wp-content/uploads/2025/04/xphilip-harmer-e1745870942730-300x300.jpg.pagespeed.ic.cF5N3hgHPj.jpg",
+  "jobTitle": "Consumer Rights Lawyer",
+  "description": "Philip Harmer is a specialist consumer rights lawyer and founder of Stormcatcher Law. Called to the Bar at Middle Temple following completion of the Bar Professional Training Course at BPP Law School Holborn, he holds an LLB (Hons) Upper Second Class and an LLM from the University of Kent, specialising in consumer law and policy, banking and finance, and corporate governance. He has advised industry bodies and provided legal insight to the BBC, Morning Live and Watchdog.",
+  "knowsAbout": [
+    "Consumer Rights Law",
+    "Consumer Law and Policy",
+    "Consumer Credit Act 1974",
+    "Consumer Rights Act 2015",
+    "Faulty Goods Claims",
+    "Misrepresentation and Mis-Selling",
+    "Automotive Consumer Disputes",
+    "Banking and Finance Law",
+    "Corporate Governance",
+    "Alternative Dispute Resolution",
+    "International Arbitration",
+    "International Trade Law",
+    "Commercial Law"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Foundation Degree in Law, Legal System, Jurisprudence and Philosophy",
+      "credentialCategory": "degree",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "MidKent College"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "LLB (Hons) Qualifying Law Degree, Upper Second Class",
+      "credentialCategory": "degree",
+      "description": "Options in Company Law and Employment. Chair of Kent Law Clinic, winner of The Queen's Award 2008.",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "University of Kent"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "LLM Master of Laws",
+      "credentialCategory": "degree",
+      "description": "Specialising in Consumer Law and Policy, Banking and Finance, and Corporate Governance. Member of Kent Law Clinic.",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "University of Kent"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Bar Professional Training Course, specialising in International Trade and Commercial Law",
+      "credentialCategory": "professional qualification",
+      "description": "Member of the Honourable Society of Middle Temple.",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "BPP Law School Holborn"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "CIArb Accelerated Route to Membership in International Arbitration",
+      "credentialCategory": "professional qualification",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Chartered Institute of Arbitrators"
+      }
+    }
+  ],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Honourable Society of Middle Temple",
+    "url": "https://www.middletemple.org.uk"
+  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Kent",
+      "url": "https://www.kent.ac.uk"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "BPP Law School",
+      "url": "https://www.bpp.com"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "MidKent College",
+      "url": "https://www.midkent.ac.uk"
+    }
+  ],
+  "worksFor": {
+    "@type": "LegalService",
+    "name": "Stormcatcher Law",
+    "url": "https://stormcatcher.co.uk",
+    "telephone": "+443337007676",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "58 Doods Park Road",
+      "addressLocality": "Reigate",
+      "addressRegion": "Surrey",
+      "postalCode": "RH2 0PY",
+      "addressCountry": "GB"
+    }
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/philip-harmer-95217546/"
+  ]
+}
+</script>
 <?php
 get_footer();
 ?>
