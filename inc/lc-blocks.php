@@ -318,19 +318,20 @@ function acf_blocks() {
 add_action( 'acf/init', 'acf_blocks' );
 
 /**
- * Forces all ACF blocks to render in edit (field form) mode in the block editor.
+ * Forces all ACF blocks into edit mode in the block editor by overriding any
+ * "preview" mode attribute stored in post content before it reaches ACF's
+ * render callback.
  *
- * Prevents any stored "preview" mode attribute in post content from switching
- * blocks into visual mode, ensuring ACF field forms are always shown.
- *
- * @param  array $block The block data array.
- * @return array The block data array with mode forced to 'edit'.
+ * @param  array $parsed_block The parsed block data.
+ * @return array The parsed block data with mode forced to 'edit' for ACF blocks.
  */
-function lc_force_acf_blocks_edit_mode( $block ) {
-    $block['mode'] = 'edit';
-    return $block;
+function lc_force_acf_blocks_edit_mode( $parsed_block ) {
+    if ( isset( $parsed_block['blockName'] ) && str_starts_with( $parsed_block['blockName'], 'acf/' ) ) {
+        $parsed_block['attrs']['mode'] = 'edit';
+    }
+    return $parsed_block;
 }
-add_filter( 'acf/pre_render_block', 'lc_force_acf_blocks_edit_mode' );
+add_filter( 'render_block_data', 'lc_force_acf_blocks_edit_mode' );
 
 /**
  * Modifies the arguments for core block types to add a custom render callback.
