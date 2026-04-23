@@ -12,9 +12,6 @@ define( 'LC_THEME_DIR', WP_CONTENT_DIR . '/themes/lc-str2025' );
 
 require_once LC_THEME_DIR . '/inc/lc-theme.php';
 
-// ONE-OFF FIX — remove this line and fix-block-preview-mode.php after deploying.
-require_once LC_THEME_DIR . '/fix-block-preview-mode.php';
-
 /**
  * Removes the parent themes stylesheet and scripts from inc/enqueue.php
  */
