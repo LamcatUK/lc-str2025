@@ -318,22 +318,6 @@ function acf_blocks() {
 add_action( 'acf/init', 'acf_blocks' );
 
 /**
- * Forces all ACF blocks into edit mode in the block editor by overriding any
- * "preview" mode attribute stored in post content before it reaches ACF's
- * render callback.
- *
- * @param  array $parsed_block The parsed block data.
- * @return array The parsed block data with mode forced to 'edit' for ACF blocks.
- */
-function lc_force_acf_blocks_edit_mode( $parsed_block ) {
-    if ( isset( $parsed_block['blockName'] ) && str_starts_with( $parsed_block['blockName'], 'acf/' ) ) {
-        $parsed_block['attrs']['mode'] = 'edit';
-    }
-    return $parsed_block;
-}
-add_filter( 'render_block_data', 'lc_force_acf_blocks_edit_mode' );
-
-/**
  * Modifies the arguments for core block types to add a custom render callback.
  *
  * @param  array  $args The block type arguments.
