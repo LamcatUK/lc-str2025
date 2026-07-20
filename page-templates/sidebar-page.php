@@ -27,7 +27,7 @@ $blocks  = parse_blocks( $content );
     ?>
     <div class="container-xl">
         <div class="row g-4">
-            <div class="col-lg-3">
+            <div class="col-lg-3 order-2 order-lg-1 mb-4">
                 <?php
 
                 $sidebar = get_field( 'sidebar', get_the_ID() ) ?? 'Siblings';
@@ -39,7 +39,7 @@ $blocks  = parse_blocks( $content );
                 }
                 ?>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9 order-1 order-lg-2">
                 <?php
                 foreach ( $blocks as $block ) {
                     if ( isset( $block['blockName'] ) && 'acf/lc-hero' === $block['blockName'] ) {
