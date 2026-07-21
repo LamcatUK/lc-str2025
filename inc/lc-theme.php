@@ -610,7 +610,7 @@ function phil_bio( $cat = null ) {
                 <h2 class="bio-heading">About Philip Harmer</h2>
                 <?= wp_kses_post( $bio ); ?>
                 <div class="text-end">
-                    <a class="fw-600" href="/about-us/">Read more about Philip</a>
+                    <a class="fw-600" href="/about/">Read more about Philip</a>
                 </div>
             </div>
         </div>
